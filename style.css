@@ -44,10 +44,11 @@ body {
     width: 100%;
     height: auto;
     margin: 0;
+    color: #454545;
 
     font-family: sans-serif;
     line-height: normal;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: normal;
     word-wrap: break-word;
     white-space: normal;
@@ -55,24 +56,91 @@ body {
     overflow-y: auto;
 }
 
-/* Page Content */
-.tkr-page-content {
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+
+/* Button */
+.tkr-btn {
+    display: inline-block;
+    position: relative;
+    width: auto;
+    height: 70px;
+    padding: 0 17px;
+    background: #FFF;
+    color: #454545;
+    border-radius: 4px;
+    line-height: 70px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Layout */
+.tkr-container,
+.tkr-container-fluid {
     position: relative;
     width: 100%;
     height: auto;
+    padding: 0 15px;
+}
+.tkr-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.tkr-container-fluid {
+    float: left;
+}
+
+/* Page Top Nav */
+.tkr-nav {
+    /* display: none; */
+    position: fixed;
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    background: transparent;
+    z-index: 1000;
+}
+.tkr-nav ul {
+    margin: 0;
+    padding: 0;
+}
+.tkr-nav li {
+    display: inline-block;
+    list-style: none;
+}
+.tkr-nav .tkr-btn {
+    height: 60px;
+    background: transparent;
+}
+
+/* Page Content */
+.tkr-page-content {
+    position: relative;
+    float: left;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+}
+.tkr-page-content .tkr-container {
+    padding: 70px 10px;
 }
 
 /* Splash */
 .tkr-splash {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    background: #e7d857;
+    height: auto;
+    background: #e4d555;
     color: #fff;
     text-align: center;
-    padding-top: 40vh;
+    padding-top: 20vh;
+}
+.tkr-hot {
+    background: #e05151;
 }
 .tkr-splash h1 {
     position: relative;
@@ -82,6 +150,47 @@ body {
 }
 .tkr-splash p {
     position: relative;
+    margin-bottom: 50px;
     font-size: 19px;
     z-index: 1000;
+}
+.tkr-splash .tkr-btn {
+    position: relative;
+    min-width: 180px;
+    margin-bottom: 120px;
+    box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
+}
+
+/* Posts */
+.tkr-post {
+    position: relative;
+    float: left;
+    width: calc(33% - 20px);
+    height: auto;
+    margin: 0 10px 10px;
+    padding: 0 20px;
+    background: #FFF;
+    box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
+}
+.tkr-post .tkr-post-title {
+
+}
+.tkr-post .tkr-post-date {
+    opacity: 0.4;
+}
+.tkr-post .tkr-post-content {
+    margin-bottom: 30px;
+}
+.tkr-post .tkr-btn {
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    background: #e27272;
+    color: #FFF;
+}
+
+/* Extras */
+.nopad {
+    padding: 0;
 }

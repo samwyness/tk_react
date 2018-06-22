@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { NavLink, Route } from 'react-router-dom'
 
-import Splash from './template_parts/pages/Splash';
+import TopNav from './template_parts/components/TopNav';
+
+// Page templates for routing
+import Home from './template_parts/pages/Home';
+import Posts from './template_parts/pages/Posts';
 
 class App extends Component {
     render() {
         return (
-            <div className="tkr-page-content">
-                <Splash title="tk_react" text="A WordPress + React starter theme." />
+            <div className="tkr-app">
+                <TopNav/>
+
+                <div className="tkr-page-content">
+                    <Route path='/' exact component={Home} />
+                    <Route path='/posts' component={Posts} />
+                </div>
             </div>
         );
     }
 }
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('tkr-app')
-);
+export default App;

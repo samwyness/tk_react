@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import Splash from '../components/Splash';
 
 class Home extends Component {
-    componentDidMount() {
-        console.log('I was triggered during componentDidMount');
-    }
-
     render() {
-        console.log('I was triggered during render');
-
         return (
-            <div className="tkr-splash">
-                <h1>{props.title}</h1>
-            </div>
+            <Splash
+                title="tk_react"
+                text="A WordPress + React starter theme."
+                link_to="/posts"
+                link_text="Check out some posts"
+            />
         );
     }
 }

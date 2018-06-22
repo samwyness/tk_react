@@ -12,6 +12,6 @@
 
 get_header(); ?>
 
-    <div id="tkr-app"></div>
+    <div id="tkr-root"></div>
 
 <?php get_footer(); ?>
