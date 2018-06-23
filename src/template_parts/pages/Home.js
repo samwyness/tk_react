@@ -8,7 +8,7 @@ class Home extends Component {
                 title="tk_react"
                 text="A WordPress + React starter theme."
                 link_to="/posts"
-                link_text="Check out some posts"
+                link_text="Check Out Some Posts"
             />
         );
     }
