@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Splash from '../components/Splash';
-import Post from '../components/Post';
+import PostEntry from '../components/PostEntry';
 
-class Posts extends Component {
+export default class Blog extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,14 +31,18 @@ class Posts extends Component {
                 <Splash
                     key="0"
                     bg_class="tkr-hot"
-                    title="tk_react"
-                    text="A WordPress + React starter theme."
+                    title="Your Blog"
+                    text="mmmm fast eh."
                     link_to="/"
                     link_text="Back Home"
-                />,
+                />
+
                 <div key="1" className="tkr-container nopad">
+                    <h1>Latest Posts</h1>
+                    <span className="tkr-title-underline"></span>
+
                     {this.state.posts.map((post) =>
-                        <Post
+                        <PostEntry
                             key={post.id}
                             image={post.featured_media}
                             date={post.date}
@@ -53,5 +57,3 @@ class Posts extends Component {
         );
     }
 }
-
-export default Posts;

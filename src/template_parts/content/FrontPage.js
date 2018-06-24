@@ -7,8 +7,8 @@ class Home extends Component {
             <Splash
                 title="tk_react"
                 text="A WordPress + React starter theme."
-                link_to="/posts"
-                link_text="Check Out Some Posts"
+                link_to="/blog"
+                link_text="Check Out Your Blog"
             />
         );
     }

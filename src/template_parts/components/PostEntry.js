@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 
-export default class Post extends Component {
+export default class PostEntry extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,19 +19,15 @@ export default class Post extends Component {
     render() {
         return (
             <div className="tkr-post">
-                {/* <div className="tkr-post-image">
-                    {this.state.image}
-                </div> */}
-
                 <div className="tkr-post-title">
-                    <h1>{this.state.title}</h1>
+                    <h2>{this.state.title}</h2>
                 </div>
 
                 <div className="tkr-post-date">{new Date(this.state.date).toLocaleString()}</div>
 
                 <div className="tkr-post-content" dangerouslySetInnerHTML={this.createPostContentMarkup()}></div>
 
-                <NavLink className="tkr-btn" to={this.props.link_text}>{this.props.link_text}</NavLink>
+                {/* <NavLink className="tkr-btn" to={this.props.link_text}>{this.props.link_text}</NavLink> */}
             </div>
         );
     }
