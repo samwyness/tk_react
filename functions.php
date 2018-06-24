@@ -24,6 +24,6 @@ function tk_react_scripts() {
 	wp_enqueue_style( 'tk_react-styles', get_stylesheet_uri(), '1.0', true );
 
 	// Theme js files.
-	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/dist/tkr.bundle.js' ), array(), '1.0', true );
+	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/build/tkr.bundle.js' ), array(), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'tk_react_scripts' );
