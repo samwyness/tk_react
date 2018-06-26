@@ -83,7 +83,7 @@ h1, h2, h3 {
     position: relative;
     width: 100%;
     height: auto;
-    padding: 0 15px;
+    padding: 0 10px;
 }
 .tkr-container {
     max-width: 980px;
@@ -92,6 +92,13 @@ h1, h2, h3 {
 }
 .tkr-container-fluid {
     float: left;
+}
+.tkr-row {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-right: -10px;
+    margin-left: -10px;
 }
 
 /* Page Top Nav */
@@ -178,9 +185,9 @@ h1, h2, h3 {
 .tkr-post {
     position: relative;
     float: left;
-    width: calc(33% - 20px);
+    width: 100%;
     height: auto;
-    margin: 0 10px 10px;
+    margin-bottom: 20px;
     padding: 0 20px;
     background: #FFF;
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
@@ -208,6 +215,15 @@ h1, h2, h3 {
     padding: 0;
 }
 
+
+@media (min-width: 768px) {
+    /* Posts */
+    .tkr-post {
+        width: calc(33% - 20px);
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
 /* Custom scroll on webkit browsers */
 ::-webkit-scrollbar {
     width: 7px;

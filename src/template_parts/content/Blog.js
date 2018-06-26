@@ -25,11 +25,14 @@ export default class Blog extends Component {
             });
     }
 
+    replaceExcerptBrackets(content) {
+        return content.replace(/\[&hellip;]/g, '..');
+    }
+
     render() {
         return (
             <div className="tkr-container-fluid nopad">
                 <Splash
-                    key="0"
                     bg_class="tkr-hot"
                     title="Your Blog"
                     text="mmmm fast eh."
@@ -37,21 +40,23 @@ export default class Blog extends Component {
                     link_text="Back Home"
                 />
 
-                <div key="1" className="tkr-container nopad">
+                <div className="tkr-container nopad">
                     <h1>Latest Posts</h1>
                     <span className="tkr-title-underline"></span>
 
-                    {this.state.posts.map((post) =>
-                        <PostEntry
-                            key={post.id}
-                            image={post.featured_media}
-                            date={post.date}
-                            title={post.title.rendered}
-                            content={post.content.rendered}
-                            link_to={post.link}
-                            link_text="Read Post"
-                        />
-                    )}
+                    <div className="tkr-row">
+                        {this.state.posts.map((post) =>
+                            <PostEntry
+                                key={post.id}
+                                image={post.featured_media}
+                                date={post.date}
+                                title={post.title.rendered}
+                                content={this.replaceExcerptBrackets(post.excerpt.rendered)}
+                                link_to={post.link}
+                                link_text="Read Post"
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         );
