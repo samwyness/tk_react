@@ -10,4 +10,7 @@
 
     </body>
 
+    <!-- Prompt a message in the browser if users disabled JS -->
+    <noscript>Your browser does not support JavaScript!</noscript>
+
 </html>
