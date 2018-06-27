@@ -11,25 +11,20 @@ export default class Blog extends Component {
             posts: []
         };
     }
-    componentDidMount() {
-        const self = this;
-        fetch("http://tk-react.local/wp-json/wp/v2/posts")
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(json) {
-                self.setState({
-                    isLoaded: true,
-                    posts: json
-                });
-            });
+
+    componentDidMount() {;
+        fetch( "http://tk-react.local/wp-json/wp/v2/posts" )
+        .then( response => response.json() )
+        .then( json => {
+            this.setState( { posts: json }  );
+        } )
+        .catch( error => console.log( error ) );
     }
 
     render() {
         return (
             <div className="tkr-container-fluid nopad">
                 <Splash
-                    key="0"
                     bg_class="tkr-hot"
                     title="Your Blog"
                     text="mmmm fast eh."
@@ -37,21 +32,25 @@ export default class Blog extends Component {
                     link_text="Back Home"
                 />
 
-                <div key="1" className="tkr-container nopad">
-                    <h1>Latest Posts</h1>
+                <div className="tkr-container nopad">
+
+                    <h1 style={{textTransform: 'uppercase'}}>Latest <span className="tkr-hot-title">Blog Posts</span></h1>
                     <span className="tkr-title-underline"></span>
 
-                    {this.state.posts.map((post) =>
-                        <PostEntry
-                            key={post.id}
-                            image={post.featured_media}
-                            date={post.date}
-                            title={post.title.rendered}
-                            content={post.content.rendered}
-                            link_to={post.link}
-                            link_text="Read Post"
-                        />
-                    )}
+                    <div className="tkr-row">
+                        {this.state.posts.map((post) =>
+                            <PostEntry
+                                key={post.id}
+                                image={post.featured_media}
+                                date={post.date}
+                                title={post.title.rendered}
+                                content={post.content.rendered}
+                                link_to={post.link}
+                                link_text="Read Post"
+                            />
+                        )}
+                    </div>
+
                 </div>
             </div>
         );

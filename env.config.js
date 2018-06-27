@@ -5,7 +5,6 @@ module.exports = {
     proxy_target: 'http://tk-react.local', // Point to where your wordpress install is served i.e 'http://localhost:8080'
     paths: {
         base: path.resolve(__dirname),
-        build: path.resolve(__dirname, 'build'),
         src: path.resolve(__dirname, 'src')
     }
 };

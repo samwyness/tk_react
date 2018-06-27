@@ -44,7 +44,7 @@ body {
     width: 100%;
     height: auto;
     margin: 0;
-    color: #454545;
+    color: #202122;
 
     font-family: sans-serif;
     line-height: normal;
@@ -60,7 +60,11 @@ body {
 h1, h2, h3 {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.4rem; }
 
+p { opacity: 0.8 }
 
 /* Button */
 .tkr-btn {
@@ -147,10 +151,6 @@ h1, h2, h3 {
     text-align: center;
     padding-top: 20vh;
 }
-.tkr-hot {
-    background: #e05151;
-    background: #dd5d5d;
-}
 .tkr-splash h1 {
     position: relative;
     margin: 0;
@@ -185,7 +185,7 @@ h1, h2, h3 {
     float: left;
     width: calc(33% - 20px);
     height: auto;
-    margin: 0 10px 10px;
+    margin: 0 10px 20px;
     padding: 0 20px;
     background: #FFF;
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
@@ -213,21 +213,12 @@ h1, h2, h3 {
     padding: 0;
 }
 
-/* Custom scroll on webkit browsers */
-::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+.tkr-hot {
+    background: #e05151;
 }
-::-webkit-scrollbar-track {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background: rgba(0,0,0,0.05);
-}
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background: rgba(0,0,0,0.1);
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(0,0,0,0.2);
+.tkr-hot-title {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(30deg, #FF9800,#E91E63);
 }

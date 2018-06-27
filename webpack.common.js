@@ -7,7 +7,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: THEME_ENV.paths.build
+        path: THEME_ENV.paths.base
     },
     module: {
         rules: [

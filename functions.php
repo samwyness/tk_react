@@ -35,7 +35,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'tk_react-styles', get_stylesheet_uri(), '1.0', true );
 
 	// Theme js files.
-	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/build/tkr.bundle.js' ), array(), '1.0', true );
+	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/tkr.bundle.js' ), array(), '1.0', true );
 
 } );
 
@@ -83,3 +83,13 @@ function add_user_id_column_content($value, $column_name, $user_id) {
 	return $value;
 }
 add_action('manage_users_custom_column',  'add_user_id_column_content', 10, 3);
+
+
+/*
+ *
+ * Add custom post excerpt length
+ *
+ */
+add_filter( 'excerpt_length', function( $length ) {
+	return 24;
+}, 999 );
