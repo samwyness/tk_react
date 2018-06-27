@@ -95,8 +95,7 @@ h1, h2, h3 {
 }
 
 /* Page Top Nav */
-.tkr-nav {
-    /* display: none; */
+.tkr-top-nav {
     position: fixed;
     width: 100%;
     height: auto;
@@ -104,18 +103,24 @@ h1, h2, h3 {
     background: transparent;
     z-index: 1000;
 }
-.tkr-nav ul {
+.tkr-top-nav ul {
     margin: 0;
     padding: 0;
 }
-.tkr-nav li {
+.tkr-top-nav li {
     display: inline-block;
     list-style: none;
 }
-.tkr-nav .tkr-btn {
+.tkr-top-nav .tkr-btn {
     height: 60px;
     background: transparent;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
     color: #FFF;
+    line-height: 60px;
+}
+.tkr-top-nav .tkr-btn.active {
+    border-bottom-color: #FFF;
 }
 
 /* Page Content */

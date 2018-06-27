@@ -31,45 +31,35 @@ class TKR_REST_Menus_Controller extends TKR_REST_API {
 
     public function get_items( $request ) {
         $wp_menus = wp_get_nav_menus();
-        $wp_menu_locations = get_nav_menu_locations();
-
-        $data = [];
+        $repsonse = [];
 
         foreach ($wp_menus as $key => $menu) {
-            $data[$key] = wp_get_nav_menu_object( $menu->term_id );
-            $data[$key]->menu_items = wp_get_nav_menu_items( $menu->term_id );
-            $data[$key]->menu_locations = [];
-
-            foreach ($wp_menu_locations as $location => $menu_id) {
-                if ( $menu_id === $menu->term_id ) {
-                    $data[$key]->menu_locations[] = $location;
-                }
-            }
+            $menu = wp_get_nav_menu_object( $menu->term_id );
+            $repsonse[$key] = $this->prepare_item_for_response( $menu, $request );
         }
 
-        $response = rest_ensure_response( $data );
         return $repsonse;
     }
 
     public function get_item ( $request ) {
         $wp_menu_locations = get_nav_menu_locations();
         $menu_location = $request['location'];
+
         $menu_id = false;
+        $menu = false;
 
         if ( $wp_menu_locations[$menu_location] ) {
             $menu_id = $wp_menu_locations[$menu_location];
+            $menu = wp_get_nav_menu_object( $menu_id );
         }
 
-        $data = wp_get_nav_menu_object( $menu_id );
-
-        $response = rest_ensure_response( $data );
-        return $repsonse;
+        $response = $this->prepare_item_for_response( $menu, $request );
+        return $response;
     }
 
-    public function prepare_item_for_response ( $menu, $request ) {
-
-
-        return $repsonse;
+    public function prepare_item_for_response( $item, $request ) {
+        $item->menu_items = wp_get_nav_menu_items( $item->term_id );
+        return rest_ensure_response( $item );
     }
 
     // public function index_permissions_check( WP_REST_Request $request ) {
