@@ -21,6 +21,10 @@ export default class Blog extends Component {
         .catch( error => console.log( error ) );
     }
 
+    replaceExcerptBrackets(content) {
+        return content.replace(/\[&hellip;]/g, '..');
+    }
+
     render() {
         return (
             <div className="tkr-container-fluid nopad">
