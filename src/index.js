@@ -9,7 +9,7 @@ import Header from './template_parts/Header';
 import Content from './template_parts/Content';
 import Footer from './template_parts/Footer';
 
-// Our App Component, gets rendered to <div id="tkr-root"></div>
+// Our core App Component
 class App extends Component {
     render() {
         return (
