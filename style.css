@@ -44,6 +44,7 @@ body {
     width: 100%;
     height: auto;
     margin: 0;
+    background: #f6f7f9;
     color: #202122;
 
     font-family: sans-serif;
@@ -96,6 +97,10 @@ p { opacity: 0.8 }
 }
 .tkr-container-fluid {
     float: left;
+}
+.tkr-row {
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
 /* Page Top Nav */
@@ -154,7 +159,7 @@ p { opacity: 0.8 }
 .tkr-splash h1 {
     position: relative;
     margin: 0;
-    font-size: 80px;
+    font-size: 4rem;
     z-index: 1000;
 }
 .tkr-splash p {
@@ -183,9 +188,10 @@ p { opacity: 0.8 }
 .tkr-post {
     position: relative;
     float: left;
-    width: calc(33% - 20px);
+    width: calc(100% - 30px);
     height: auto;
-    margin: 0 10px 20px;
+    margin: 0 15px;
+    margin-bottom: 15px;
     padding: 0 20px;
     background: #FFF;
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
@@ -204,8 +210,19 @@ p { opacity: 0.8 }
     height: 40px;
     line-height: 40px;
     margin-bottom: 20px;
-    background: #e27272;
+    background: #e05151;
     color: #FFF;
+}
+
+@media (min-width: 992px) {
+    .tkr-splash h1 {
+        font-size: 5rem;
+    }
+    .tkr-post {
+        width: calc(33% - 20px);
+        margin-right: 10px;
+        margin-left: 10px;
+    }
 }
 
 /* Extras */
@@ -215,10 +232,4 @@ p { opacity: 0.8 }
 
 .tkr-hot {
     background: #e05151;
-}
-.tkr-hot-title {
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-image: linear-gradient(30deg, #FF9800,#E91E63);
 }
