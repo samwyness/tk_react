@@ -6,7 +6,6 @@ module.exports = {
     api: 'http://tk-react.local/wp-json/tkr/v1/',
     paths: {
         base: path.resolve(__dirname),
-        build: path.resolve(__dirname, 'build'),
         src: path.resolve(__dirname, 'src')
     }
 };

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Splash from '../components/Splash';
-import PostEntry from '../components/PostEntry';
+import ReactDOM from 'react-dom';
 
-export default class Blog extends Component {
+import PostEntry from './PostEntry';
+
+export default class Content extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            error: null,
-            isLoaded: false,
             posts: []
         };
     }
@@ -27,18 +27,10 @@ export default class Blog extends Component {
 
     render() {
         return (
-            <div className="tkr-container-fluid nopad">
-                <Splash
-                    bg_class="tkr-hot"
-                    title="Your Blog"
-                    text="mmmm fast eh."
-                    link_to="/"
-                    link_text="Back Home"
-                />
+            <section className="site-main">
+                <div className="tkr-container">
 
-                <div className="tkr-container nopad">
-
-                    <h1 style={{textTransform: 'uppercase'}}>Latest <span className="tkr-hot-title">Blog Posts</span></h1>
+                    <h1 style={ {textTransform: 'uppercase'} }>Latest <span className="tkr-hot-title">Blog Posts</span></h1>
                     <span className="tkr-title-underline"></span>
 
                     <div className="tkr-row">
@@ -56,7 +48,8 @@ export default class Blog extends Component {
                     </div>
 
                 </div>
-            </div>
+            </section>
         );
     }
+
 }
