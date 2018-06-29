@@ -36,7 +36,6 @@ add_action( 'wp_enqueue_scripts', function() {
 
 	// Theme js files.
 	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/tkr.bundle.js' ), array(), '1.0', true );
-
 } );
 
 
@@ -72,17 +71,6 @@ add_action( 'wp_head', function() {
   	echo "<script> window.{$var} = {$data}; </script>\n";
 
 }, 10 );
-
-
-/*
- * Add id to custom column column
- */
-function add_user_id_column_content($value, $column_name, $user_id) {
-	if ( 'user_id' == $column_name )
-		return $user_id;
-	return $value;
-}
-add_action('manage_users_custom_column',  'add_user_id_column_content', 10, 3);
 
 
 /*
