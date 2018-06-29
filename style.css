@@ -49,7 +49,7 @@ body {
 
     font-family: sans-serif;
     line-height: normal;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: normal;
     word-wrap: break-word;
     white-space: normal;
@@ -65,7 +65,12 @@ h1 { font-size: 3rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.4rem; }
 
-p { opacity: 0.8 }
+p {
+    font-size: 100%;
+    line-height: 1.4rem;
+    opacity: 0.8;
+}
+
 
 /* Button */
 .tkr-btn {
@@ -73,7 +78,7 @@ p { opacity: 0.8 }
     position: relative;
     width: auto;
     height: 70px;
-    padding: 0 17px;
+    padding: 1px 17px 0;
     background: #FFF;
     color: #454545;
     border-radius: 4px;
@@ -81,6 +86,7 @@ p { opacity: 0.8 }
     text-align: center;
     text-decoration: none;
 }
+
 
 /* Layout */
 .tkr-container,
@@ -103,6 +109,7 @@ p { opacity: 0.8 }
     margin-left: -15px;
 }
 
+
 /* Page Top Nav */
 .tkr-top-nav {
     position: fixed;
@@ -110,7 +117,17 @@ p { opacity: 0.8 }
     height: auto;
     padding: 0 20px;
     background: transparent;
-    z-index: 1000;
+    color: #FFF;
+    z-index: 9000;
+    transition: background 0.14s ease,
+                box-shadow 0.14s ease;
+}
+.tkr-top-nav.scrolled {
+    box-shadow: 0 2px 34px -4px rgba(0,0,0,0.34);
+}
+.tkr-top-nav.scrolled {
+    background: #FFF;
+    color: #36454f;
 }
 .tkr-top-nav ul {
     margin: 0;
@@ -125,24 +142,29 @@ p { opacity: 0.8 }
     background: transparent;
     border-bottom: 3px solid transparent;
     border-radius: 0;
-    color: #FFF;
+    color: inherit;
     line-height: 60px;
 }
 .tkr-top-nav .tkr-btn.active {
     border-bottom-color: #FFF;
 }
+.tkr-top-nav.scrolled .tkr-btn.active {
+    border-bottom-color: #36454f;
+}
+
 
 /* Page Content */
-.tkr-page-content {
+.site-main {
     position: relative;
     float: left;
     min-height: 100%;
     width: 100%;
     height: auto;
 }
-.tkr-page-content .tkr-container {
+.site-main .tkr-container {
     padding: 70px 10px;
 }
+
 
 /* Splash */
 .tkr-splash {
@@ -175,14 +197,23 @@ p { opacity: 0.8 }
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
 }
 
+
 /* Page Title  */
 .tkr-title-underline {
+    display: block;
+    width: 120px;
+    height: 3px;
+    background: #a7ce6b;
+    margin-bottom: 40px;
+}
+.tkr-hot + .site-main .tkr-title-underline {
     display: block;
     width: 120px;
     height: 3px;
     background: #e05151;
     margin-bottom: 40px;
 }
+
 
 /* Posts */
 .tkr-post {
@@ -225,11 +256,11 @@ p { opacity: 0.8 }
     }
 }
 
+
 /* Extras */
 .nopad {
     padding: 0;
 }
-
 .tkr-hot {
     background: #e05151;
 }
