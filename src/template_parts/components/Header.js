@@ -32,7 +32,11 @@ export default class Header extends Component {
     render() {
         return (
             <header id="masthead" className={this.state.classes} ref={this.top_nav}>
-                <Menu name="Main Navigation"/>
+                <div className="tkr-container">
+
+                    <Menu name="Main Navigation"/>
+                    
+                </div>
             </header>
         );
     }
