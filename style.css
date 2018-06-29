@@ -115,7 +115,6 @@ p {
     position: fixed;
     width: 100%;
     height: auto;
-    padding: 0 20px;
     background: transparent;
     color: #FFF;
     z-index: 9000;
