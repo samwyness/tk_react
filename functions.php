@@ -21,6 +21,7 @@ function tk_react_setup() {
 		'slide-nav-menu'    => __( 'Slide Nav Menu', 'tk_react' )
 	) );
 
+	require_once get_template_directory() . '/include/api/v1/api.php';
 }
 add_action( 'after_setup_theme', 'tk_react_setup' );
 
@@ -60,8 +61,8 @@ add_action( 'wp_head', function() {
 		),
 		'woo' => array(
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
-			'consumer_key' => 'ck_803bcdcaa73d3a406a0f107041b07ef6217e05b9',
-			'consumer_secret' => 'cs_c50ba3a77cc88c3bf46ebac49bbc96de3a543f03'
+			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 		),
 		'nonce'   => wp_create_nonce( 'wp_rest' ),
 		'post_id' => is_singular() ? get_the_ID() : 0,

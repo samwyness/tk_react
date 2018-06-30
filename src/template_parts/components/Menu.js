@@ -34,7 +34,7 @@ export default class Menu extends Component {
             <ul className="align-right">
                 { this.state.menu.map( ( item, index ) => (
                     <li key={index}>
-                        <NavLink className="tkr-btn" exact to={ this.stripBaseUrl( item.url ) }>{ item.title }</NavLink>
+                        <NavLink className="tk-btn" exact to={ this.stripBaseUrl( item.url ) }>{ item.title }</NavLink>
                     </li>
                 ) ) }
             </ul>

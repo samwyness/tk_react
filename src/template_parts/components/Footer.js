@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-    <footer id="footer" className="site-footer tkr-footer"></footer>
+    <footer className="tk-footer"></footer>
 );
 
 export default Footer;

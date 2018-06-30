@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 
-import Header from './components/Header';
 import Splash from './components/Splash';
 import MainContent from './components/MainContent';
-import Footer from './components/Footer';
 
 export default class Archive extends Component {
     render() {
         return (
-            <section className="tkr-page-template nopad template-single">
+            <div className="tkr-page-content">
 
-                <Header/>
                 <Splash
                     bg_class="tkr-hot"
                     title="Archive Template"
@@ -18,9 +15,8 @@ export default class Archive extends Component {
                     link_text="Back Home"
                 />
                 <MainContent/>
-                <Footer/>
 
-            </section>
+            </div>
         );
     }
 }

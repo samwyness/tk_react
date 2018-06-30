@@ -22,7 +22,7 @@ export default class NavMenu extends Component {
             <ul className="align-right">
                 { menu_items.map( ( item, index ) => (
                     <li key={index}>
-                        <NavLink className="tkr-btn" exact to={ this.stripBaseUrl( item.url ) }>{ item.title }</NavLink>
+                        <NavLink className="tk-btn" exact to={ this.stripBaseUrl( item.url ) }>{ item.title }</NavLink>
                     </li>
                 ) ) }
             </ul>

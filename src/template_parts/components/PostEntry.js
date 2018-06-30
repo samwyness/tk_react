@@ -18,16 +18,16 @@ export default class PostEntry extends Component {
 
     render() {
         return (
-            <div className="tkr-post">
-                <div className="tkr-post-title">
+            <div className="tk-post">
+                <div className="tk-post-title">
                     <h2>{this.state.title}</h2>
                 </div>
 
-                <div className="tkr-post-date">{new Date(this.state.date).toLocaleString()}</div>
+                <div className="tk-post-date">{new Date(this.state.date).toLocaleString()}</div>
 
-                <div className="tkr-post-content" dangerouslySetInnerHTML={this.createPostContentMarkup()}></div>
+                <div className="tk-post-content" dangerouslySetInnerHTML={this.createPostContentMarkup()}></div>
 
-                {/* <NavLink className="tkr-btn" to={this.props.link_text}>{this.props.link_text}</NavLink> */}
+                {/* <NavLink className="tk-btn" to={this.props.link_text}>{this.props.link_text}</NavLink> */}
             </div>
         );
     }

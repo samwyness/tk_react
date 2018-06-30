@@ -5,8 +5,8 @@ import PostEntry from './PostEntry';
 
 export default class Content extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             posts: []
         };
@@ -21,20 +21,20 @@ export default class Content extends Component {
         .catch( error => console.log( error ) );
     }
 
-    replaceExcerptBrackets(content) {
-        return content.replace(/\[&hellip;]/g, '..');
+    replaceExcerptBrackets( content ) {
+        return content.replace( /\[&hellip;]/g, '..' );
     }
 
     render() {
         return (
             <section className="site-main">
-                <div className="tkr-container">
+                <div className="tk-container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Latest <span className="tkr-hot-title">Blog Posts</span></h1>
-                    <span className="tkr-title-underline"></span>
+                    <h1 style={ {textTransform: 'uppercase'} }>Latest <span className="tk-hot-title">Blog Posts</span></h1>
+                    <span className="tk-title-underline"></span>
 
-                    <div className="tkr-row">
-                        {this.state.posts.map((post) =>
+                    <div className="tk-row">
+                        {this.state.posts.map( ( post ) =>
                             <PostEntry
                                 key={post.id}
                                 image={post.featured_media}
@@ -44,7 +44,7 @@ export default class Content extends Component {
                                 link_to={post.link}
                                 link_text="Read Post"
                             />
-                        )}
+                        ) }
                     </div>
 
                 </div>
