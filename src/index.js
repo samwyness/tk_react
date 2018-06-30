@@ -42,5 +42,5 @@ ReactDOM.render(
     <BrowserRouter>
         <App/>
     </BrowserRouter>,
-    document.getElementById('tkr-root')
+    document.getElementById('App')
 );
