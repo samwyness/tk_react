@@ -15,7 +15,7 @@ export default class FrontPage extends Component {
     componentDidMount() {
         // TODO: Move this fetch to index.js and handle page slug dynamically
         //       then we can pass page data down as props.
-        fetch( __TKR__.urls.wp_api + '/pages?slug=home' )
+        fetch( __TK__.urls.wp_api + '/pages?slug=home' )
         .then( response => response.json() )
         .then( json => {
             this.setState( {

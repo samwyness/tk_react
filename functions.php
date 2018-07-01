@@ -46,27 +46,29 @@ add_action( 'wp_enqueue_scripts', function() {
  *
  */
 add_action( 'wp_head', function() {
-	$url = trailingslashit( home_url() );
-	$path = trailingslashit( parse_url( $url, PHP_URL_PATH ) );
 
 	// Create the script
-	$var = '__TKR__';
+	$var = '__TK__';
 	$data = json_encode(array(
-		'title' => get_bloginfo( 'name', 'display' ),
-		'path' => $path,
 		'urls' => array(
-			'base' => esc_url_raw( $url ),
+			'base' => get_option( 'home' ),
 			'wp_api' => esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
 			'tkr_api' => esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
 		),
+		'settings' => array(
+			'blogname' => get_option( 'blogname' ),
+			'blogdescription' => get_option( 'blogdescription' ),
+			'default_category' => get_option( 'default_category' ),
+			'home' => get_option( 'home' ),
+			'siteurl' => get_option( 'siteurl' ),
+			'template' => get_option( 'template' )
+		),
+		'nonce'   => wp_create_nonce( 'wp_rest' ),
 		'woo' => array(
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
 			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-		),
-		'nonce'   => wp_create_nonce( 'wp_rest' ),
-		'post_id' => is_singular() ? get_the_ID() : 0,
-		'type'    => ! empty( $post_type_object->rest_base ) ? $post_type_object->rest_base : $post_type_object->name,
+		)
 	));
 
   	echo "<script> window.{$var} = {$data}; </script>\n";

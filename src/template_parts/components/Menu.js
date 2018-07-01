@@ -17,7 +17,7 @@ export default class Menu extends Component {
 
     // Helpers
     getMenu() {
-        fetch( __TKR__.urls.tkr_api + '/menus/locations/top-nav-menu' )
+        fetch( __TK__.urls.tkr_api + '/menus/locations/top-nav-menu' )
         .then( response => response.json() )
         .then( json => {
             this.setState( { menu: json }  );
@@ -26,7 +26,7 @@ export default class Menu extends Component {
     }
 
     stripBaseUrl( url_str ) {
-        return url_str.replace( __TKR__.urls.base, '/' );
+        return url_str.replace( __TK__.urls.base, '' );
     }
 
     render() {
