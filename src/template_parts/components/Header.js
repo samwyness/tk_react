@@ -15,7 +15,7 @@ export default class Header extends Component {
     componentDidMount() {
         this.registerScrollHandler();
     }
-
+    
     registerScrollHandler() {
         window.addEventListener( 'scroll', () => {
             let top_nav = this.top_nav.current;

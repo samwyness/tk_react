@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
+import PostsList from './components/PostsList';
 
 export default class Search extends Component {
     render() {
         return (
-            <div className="tk-page-content">
+            <div className="tk-content">
 
                 <Splash
                     bg_class="tk-hot"
@@ -14,7 +14,13 @@ export default class Search extends Component {
                     link_to="/"
                     link_text="Back Home"
                 />
-                <MainContent/>
+
+                <section className="tk-container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Search</h1>
+                    <span className="tk-title-underline"></span>
+
+                </section>
 
             </div>
         );

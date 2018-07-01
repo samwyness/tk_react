@@ -68,7 +68,14 @@ h3 { font-size: 1.4rem; }
 p {
     font-size: 100%;
     line-height: 1.4rem;
-    opacity: 0.8;
+    color: #484b4d;
+}
+
+
+/* Media */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 
@@ -80,7 +87,7 @@ p {
     height: 70px;
     padding: 1px 17px 0;
     background: #FFF;
-    color: #454545;
+    color: #484b4d;
     border-radius: 4px;
     line-height: 70px;
     text-align: center;
@@ -151,6 +158,11 @@ p {
     border-bottom-color: #36454f;
 }
 
+/* Footer */
+.tk-footer {
+    margin-top: 60px;
+    padding: 20vh 0;
+}
 
 /* Page Styles */
 .tk-site-wrap {
@@ -160,10 +172,9 @@ p {
     width: 100%;
     height: auto;
 }
-.site-wrap .tk-container {
-    padding: 70px 10px;
+.tk-content .tk-container {
+    padding-top: 60px;
 }
-
 
 /* Splash */
 .tk-splash {
@@ -175,7 +186,7 @@ p {
     background: #a7ce6b;
     color: #fff;
     text-align: center;
-    padding-top: 20vh;
+    padding: 20vh 0 15vh;
 }
 .tk-splash h1 {
     position: relative;
@@ -187,12 +198,12 @@ p {
     position: relative;
     margin-bottom: 50px;
     font-size: 19px;
+    color: inherit;
     z-index: 1000;
 }
 .tk-splash .tk-btn {
     position: relative;
     min-width: 180px;
-    margin-bottom: 120px;
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
 }
 
@@ -205,7 +216,7 @@ p {
     background: #a7ce6b;
     margin-bottom: 40px;
 }
-.tk-hot + .site-main .tk-title-underline {
+.tk-hot + .tk-container .tk-title-underline {
     display: block;
     width: 120px;
     height: 3px;
@@ -240,7 +251,7 @@ p {
     height: 40px;
     line-height: 40px;
     margin-bottom: 20px;
-    background: #e05151;
+    background: #ccced0;
     color: #FFF;
 }
 
@@ -262,4 +273,7 @@ p {
 }
 .tk-hot {
     background: #e05151;
+}
+.tk-dark {
+    background: #212223;
 }

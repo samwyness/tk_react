@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
+import PostsList from './components/PostsList';
 
 export default class FrontPage extends Component {
 
@@ -32,7 +32,7 @@ export default class FrontPage extends Component {
 
     render() {
         return (
-            <div className="tk-page-content">
+            <div className="tk-content">
 
                 <Splash
                     title="tk_react"
@@ -41,14 +41,22 @@ export default class FrontPage extends Component {
                     link_text="Check Out Your Blog"
                 />
 
-                <section className="site-main">
-                    <div className="tk-container">
+                <section className="tk-container">
 
-                        <h1 style={ {textTransform: 'uppercase'} }>Hello <span className="tk-hot-title">World</span></h1>
-                        <span className="tk-title-underline"></span>
+                    <h1 style={ {textTransform: 'uppercase'} }>Hello <span className="tk-hot-title">World</span></h1>
+                    <span className="tk-title-underline"></span>
 
-                        <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
-                    </div>
+                    <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
+
+                </section>
+
+                <section className="tk-container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
+                    <span className="tk-title-underline"></span>
+
+                    <PostsList/>
+
                 </section>
 
             </div>

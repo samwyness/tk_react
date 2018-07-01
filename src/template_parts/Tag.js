@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
+import PostsList from './components/PostsList';
 
 export default class Tag extends Component {
     render() {
         return (
-            <div className="tk-page-content">
+            <div className="tk-content">
+
                 <Splash
                     bg_class="tk-hot"
                     title="Tag Template"
                     link_to="/"
                     link_text="Back Home"
                 />
-                <MainContent/>
+
+                <section className="tk-container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Tags</h1>
+                    <span className="tk-title-underline"></span>
+
+                    <PostsList/>
+                    
+                </section>
+
             </div>
         );
     }
