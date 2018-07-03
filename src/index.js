@@ -15,26 +15,22 @@ import Tag from './template_parts/Tag';
 import Single from './template_parts/Single';
 
 const App = () => (
-    <div id="page" className="site">
-
+    <div className="tk-site-wrap">
         <Header/>
-        <div className="site-content-contain">
-            <Switch>
-                <Route exact path="/" component={ FrontPage }/>
-                <Route path="/blog" component={ Blog }/>
-                {/* <Route path="/page/:pageNum" component={Blog}/>
-                <Route path="/search/:term" component={Search}/>
-                <Route path="/category/:slug/page/:pageNum" component={Category}/>
-                <Route path="/category/:slug/" component={Category}/>
-                <Route path="/category/:parent/:slug/page/:pageNum" component={Category}/>
-                <Route path="/category/:parent/:slug/" component={Category}/>
-                <Route path="/tag/:slug/page/:pageNum" component={Tag}/>
-                <Route path="/tag/:slug" component={Tag}/> */}
-                <Route path="*" component={ Single }/>
-            </Switch>
-        </div>
+        <Switch>
+            <Route exact path="/" component={ FrontPage }/>
+            <Route path="/blog" component={ Blog }/>
+            {/* <Route path="/page/:pageNum" component={Blog}/>
+            <Route path="/search/:term" component={Search}/>
+            <Route path="/category/:slug/page/:pageNum" component={Category}/>
+            <Route path="/category/:slug/" component={Category}/>
+            <Route path="/category/:parent/:slug/page/:pageNum" component={Category}/>
+            <Route path="/category/:parent/:slug/" component={Category}/>
+            <Route path="/tag/:slug/page/:pageNum" component={Tag}/>
+            <Route path="/tag/:slug" component={Tag}/> */}
+            <Route path="*" component={ Single }/>
+        </Switch>
         <Footer/>
-
     </div>
 );
 
@@ -42,5 +38,5 @@ ReactDOM.render(
     <BrowserRouter>
         <App/>
     </BrowserRouter>,
-    document.getElementById('tkr-root')
+    document.getElementById('App')
 );

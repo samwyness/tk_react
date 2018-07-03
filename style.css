@@ -68,19 +68,26 @@ h3 { font-size: 1.4rem; }
 p {
     font-size: 100%;
     line-height: 1.4rem;
-    opacity: 0.8;
+    color: #484b4d;
+}
+
+
+/* Media */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 
 /* Button */
-.tkr-btn {
+.tk-btn {
     display: inline-block;
     position: relative;
     width: auto;
     height: 70px;
     padding: 1px 17px 0;
     background: #FFF;
-    color: #454545;
+    color: #484b4d;
     border-radius: 4px;
     line-height: 70px;
     text-align: center;
@@ -89,29 +96,29 @@ p {
 
 
 /* Layout */
-.tkr-container,
-.tkr-container-fluid {
+.tk-container,
+.tk-container-fluid {
     position: relative;
     width: 100%;
     height: auto;
     padding: 0 10px;
 }
-.tkr-container {
+.tk-container {
     max-width: 980px;
     margin: 0 auto;
     overflow: hidden;
 }
-.tkr-container-fluid {
+.tk-container-fluid {
     float: left;
 }
-.tkr-row {
+.tk-row {
     margin-right: -15px;
     margin-left: -15px;
 }
 
 
 /* Page Top Nav */
-.tkr-top-nav {
+.tk-top-nav {
     position: fixed;
     width: 100%;
     height: auto;
@@ -121,22 +128,22 @@ p {
     transition: background 0.14s ease,
                 box-shadow 0.14s ease;
 }
-.tkr-top-nav.scrolled {
+.tk-top-nav.scrolled {
     box-shadow: 0 2px 34px -4px rgba(0,0,0,0.34);
 }
-.tkr-top-nav.scrolled {
+.tk-top-nav.scrolled {
     background: #FFF;
     color: #36454f;
 }
-.tkr-top-nav ul {
+.tk-top-nav ul {
     margin: 0;
     padding: 0;
 }
-.tkr-top-nav li {
+.tk-top-nav li {
     display: inline-block;
     list-style: none;
 }
-.tkr-top-nav .tkr-btn {
+.tk-top-nav .tk-btn {
     height: 60px;
     background: transparent;
     border-bottom: 3px solid transparent;
@@ -144,29 +151,33 @@ p {
     color: inherit;
     line-height: 60px;
 }
-.tkr-top-nav .tkr-btn.active {
+.tk-top-nav .tk-btn.active {
     border-bottom-color: #FFF;
 }
-.tkr-top-nav.scrolled .tkr-btn.active {
+.tk-top-nav.scrolled .tk-btn.active {
     border-bottom-color: #36454f;
 }
 
+/* Footer */
+.tk-footer {
+    margin-top: 60px;
+    padding: 20vh 0;
+}
 
-/* Page Content */
-.site-main {
+/* Page Styles */
+.tk-site-wrap {
     position: relative;
     float: left;
     min-height: 100%;
     width: 100%;
     height: auto;
 }
-.site-main .tkr-container {
-    padding: 70px 10px;
+.tk-content .tk-container {
+    padding-top: 60px;
 }
 
-
 /* Splash */
-.tkr-splash {
+.tk-splash {
     position: relative;
     width: 100%;
     height: auto;
@@ -175,37 +186,37 @@ p {
     background: #a7ce6b;
     color: #fff;
     text-align: center;
-    padding-top: 20vh;
+    padding: 20vh 0 15vh;
 }
-.tkr-splash h1 {
+.tk-splash h1 {
     position: relative;
     margin: 0;
     font-size: 4rem;
     z-index: 1000;
 }
-.tkr-splash p {
+.tk-splash p {
     position: relative;
     margin-bottom: 50px;
     font-size: 19px;
+    color: inherit;
     z-index: 1000;
 }
-.tkr-splash .tkr-btn {
+.tk-splash .tk-btn {
     position: relative;
     min-width: 180px;
-    margin-bottom: 120px;
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
 }
 
 
 /* Page Title  */
-.tkr-title-underline {
+.tk-title-underline {
     display: block;
     width: 120px;
     height: 3px;
     background: #a7ce6b;
     margin-bottom: 40px;
 }
-.tkr-hot + .site-main .tkr-title-underline {
+.tk-hot + .tk-container .tk-title-underline {
     display: block;
     width: 120px;
     height: 3px;
@@ -215,7 +226,7 @@ p {
 
 
 /* Posts */
-.tkr-post {
+.tk-post {
     position: relative;
     float: left;
     width: calc(100% - 30px);
@@ -226,29 +237,29 @@ p {
     background: #FFF;
     box-shadow: 0 2px 21px -6px rgba(0,0,0,0.3);
 }
-.tkr-post .tkr-post-title {
+.tk-post .tk-post-title {
 
 }
-.tkr-post .tkr-post-date {
+.tk-post .tk-post-date {
     opacity: 0.4;
 }
-.tkr-post .tkr-post-content {
+.tk-post .tk-post-content {
     margin-bottom: 30px;
 }
-.tkr-post .tkr-btn {
+.tk-post .tk-btn {
     float: right;
     height: 40px;
     line-height: 40px;
     margin-bottom: 20px;
-    background: #e05151;
+    background: #ccced0;
     color: #FFF;
 }
 
 @media (min-width: 992px) {
-    .tkr-splash h1 {
+    .tk-splash h1 {
         font-size: 5rem;
     }
-    .tkr-post {
+    .tk-post {
         width: calc(33% - 20px);
         margin-right: 10px;
         margin-left: 10px;
@@ -260,6 +271,9 @@ p {
 .nopad {
     padding: 0;
 }
-.tkr-hot {
+.tk-hot {
     background: #e05151;
+}
+.tk-dark {
+    background: #212223;
 }

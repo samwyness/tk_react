@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
 
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
+import PostsList from './components/PostsList';
 
 export default class FrontPage extends Component {
+
+    constructor( props ) {
+        super( props )
+        this.state = {
+            page_data: false
+        }
+    }
+
+    componentDidMount() {
+        // TODO: Move this fetch to index.js and handle page slug dynamically
+        //       then we can pass page data down as props.
+        fetch( __TK__.urls.wp_api + '/pages?slug=home' )
+        .then( response => response.json() )
+        .then( json => {
+            this.setState( {
+                page_data: json[0]
+            } );
+        } )
+        .catch( error => { console.log( error ) } );
+    }
+
+    createPageContentMarkup() {
+        const content = (this.state.page_data) ? this.state.page_data.content.rendered : 'Loading...';
+        return {__html: content};
+    }
+
     render() {
         return (
-            <div className="site-content">
+            <div className="tk-content">
 
                 <Splash
                     title="tk_react"
@@ -15,13 +41,22 @@ export default class FrontPage extends Component {
                     link_text="Check Out Your Blog"
                 />
 
-                <section className="site-main">
-                    <div className="tkr-container">
+                <section className="tk-container">
 
-                        <h1 style={ {textTransform: 'uppercase'} }>Hello <span className="tkr-hot-title">World</span></h1>
-                        <span className="tkr-title-underline"></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
+                    <h1 style={ {textTransform: 'uppercase'} }>Hello <span className="tk-hot-title">World</span></h1>
+                    <span className="tk-title-underline"></span>
+
+                    <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
+
+                </section>
+
+                <section className="tk-container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
+                    <span className="tk-title-underline"></span>
+
+                    <PostsList/>
+
                 </section>
 
             </div>

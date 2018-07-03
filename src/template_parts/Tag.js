@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 
-import Header from './components/Header';
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
+import PostsList from './components/PostsList';
 
 export default class Tag extends Component {
     render() {
         return (
-            <section className="tkr-page-template nopad template-single">
+            <div className="tk-content">
 
-                <Header/>
                 <Splash
-                    bg_class="tkr-hot"
+                    bg_class="tk-hot"
                     title="Tag Template"
                     link_to="/"
                     link_text="Back Home"
                 />
-                <MainContent/>
-                <Footer/>
 
-            </section>
+                <section className="tk-container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Tags</h1>
+                    <span className="tk-title-underline"></span>
+
+                    <PostsList/>
+                    
+                </section>
+
+            </div>
         );
     }
 }

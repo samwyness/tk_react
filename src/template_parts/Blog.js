@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 
-import Header from './components/Header';
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
+import PostsList from './components/PostsList';
 
 export default class Blog extends Component {
     render() {
         return (
-            <div className="site-content">
+            <div className="tk-content">
 
                 <Splash
-                    bg_class="tkr-hot"
+                    bg_class="tk-hot"
                     title="Blog Template"
                     text="mmmm fast eh."
                     link_to="/"
                     link_text="Back Home"
                 />
-                <MainContent/>
+
+                <section className="tk-container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
+                    <span className="tk-title-underline"></span>
+
+                    <PostsList/>
+
+                </section>
 
             </div>
         );
