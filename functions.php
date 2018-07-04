@@ -15,6 +15,9 @@ function tk_react_setup() {
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
+	// Enable support for title-tag options
+	add_theme_support( 'title-tag' );
+	
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'top-nav-menu'    => __( 'Top Nav Menu', 'tk_react' ),
