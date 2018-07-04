@@ -15,7 +15,9 @@
         <meta name="theme-color" content="#ffffff">
 
         <link rel="manifest" href="./manifest.json">
-        
+
+        <link rel="stylesheet" href="<?php echo get_theme_file_uri( '/include/css/bootstrap/bootstrap-grid.min.css' ) ?>">
+
         <?php wp_head(); ?>
 	</head>
 

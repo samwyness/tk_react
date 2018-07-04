@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 
-import Header from './components/Header';
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
+import PostsList from './components/PostsList';
 
 export default class Archive extends Component {
     render() {
         return (
-            <section className="tkr-page-template nopad template-single">
+            <div className="tkr-content">
 
-                <Header/>
                 <Splash
                     bg_class="tkr-hot"
                     title="Archive Template"
                     link_to="/"
                     link_text="Back Home"
                 />
-                <MainContent/>
-                <Footer/>
 
-            </section>
+                <section className="container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
+                    <span className="tk-title-underline"></span>
+
+                    <PostsList/>
+
+                </section>
+
+            </div>
         );
     }
 }
