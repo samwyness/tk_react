@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Splash from './components/Splash';
-import MainContent from './components/MainContent';
 
 export default class Page extends Component {
     render() {
