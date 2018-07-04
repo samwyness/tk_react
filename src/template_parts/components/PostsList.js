@@ -24,7 +24,6 @@ export default class Content extends Component {
     render() {
         return (
             <div className={'tk-posts-list ' + this.props.container_class}>
-                <div className="tk-row">
                     {this.state.posts.map( ( post ) =>
                         <PostEntry
                             key={post.id}
@@ -32,6 +31,7 @@ export default class Content extends Component {
                             link_to={post.link}
                             link_text="Read Post"
                         />
+                <div className="row">
                     ) }
                 </div>
             </div>

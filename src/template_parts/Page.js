@@ -6,7 +6,7 @@ import MainContent from './components/MainContent';
 export default class Page extends Component {
     render() {
         return (
-            <div className="tk-page-content">
+            <div className="tk-content">
 
                 <Splash
                     bg_class="tk-hot"
@@ -14,9 +14,16 @@ export default class Page extends Component {
                     link_to="/"
                     link_text="Back Home"
                 />
-                <MainContent/>
+
+                <section className="container">
+
+                    <h1 style={ {textTransform: 'uppercase'} }>{}</h1>
+                    <span className="tk-title-underline"></span>
+
+                </section>
 
             </div>
         );
     }
+
 }

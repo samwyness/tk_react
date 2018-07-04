@@ -15,7 +15,7 @@ export default class Archive extends Component {
                     link_text="Back Home"
                 />
 
-                <section className="tk-container">
+                <section className="container">
 
                     <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
                     <span className="tk-title-underline"></span>

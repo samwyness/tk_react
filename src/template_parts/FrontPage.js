@@ -41,7 +41,7 @@ export default class FrontPage extends Component {
                     link_text="Check Out Your Blog"
                 />
 
-                <section className="tk-container">
+                <section className="container">
 
                     <h1 style={ {textTransform: 'uppercase'} }>Hello <span className="tk-hot-title">World</span></h1>
                     <span className="tk-title-underline"></span>
@@ -50,7 +50,7 @@ export default class FrontPage extends Component {
 
                 </section>
 
-                <section className="tk-container">
+                <section className="container">
 
                     <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
                     <span className="tk-title-underline"></span>
