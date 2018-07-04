@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { NavLink } from 'react-router-dom'
 
-import PostEntry from './PostEntry';
 
 export default class Content extends Component {
 
@@ -21,17 +21,32 @@ export default class Content extends Component {
         .catch( error => console.log( error ) );
     }
 
+    replaceExcerptBrackets( excerpt ) {
+        return excerpt.replace( /\[&hellip;]/g, '...' );
+    }
+
+    createPostContentMarkup( post_content ) {
+        return {__html: this.replaceExcerptBrackets( post_content.rendered )};
+    }
+
     render() {
         return (
             <div className={'tk-posts-list ' + this.props.container_class}>
-                    {this.state.posts.map( ( post ) =>
-                        <PostEntry
-                            key={post.id}
-                            {...post}
-                            link_to={post.link}
-                            link_text="Read Post"
-                        />
                 <div className="row">
+                    {this.state.posts.map( ( post, index ) =>
+                        <div key={index} className="tk-post col-xs-12 col-md-4">
+                            <div className="tk-post-title">
+                                <h2>{post.title.rendered}</h2>
+                            </div>
+
+                            <div className="tk-post-date">{new Date(post.date).toLocaleString()}</div>
+
+                            <div className="tk-post-content" dangerouslySetInnerHTML={this.createPostContentMarkup( post.excerpt )}></div>
+
+                            <NavLink className="tk-btn" to={post.link.replace( __TK__.urls.base, '' )}>
+                                Read More
+                            </NavLink>
+                        </div>
                     ) }
                 </div>
             </div>
