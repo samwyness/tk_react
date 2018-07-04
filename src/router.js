@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import FrontPage from './template_parts/FrontPage';
 import Blog from './template_parts/Blog';
@@ -9,7 +9,16 @@ import Category from './template_parts/Category';
 import Tag from './template_parts/Tag';
 import Search from './template_parts/Search';
 
-export default class PageRouter extends Component {
+class PageRouter extends Component {
+
+    componentDidUpdate(prevProps) {
+        // Handle the scroll restoration on change
+        // TODO: handle hashes
+        if (this.props.location !== prevProps.location) {
+            window.scrollTo(0, 0);
+        }
+    }
+
     render() {
         return (
             <Switch>
@@ -28,3 +37,5 @@ export default class PageRouter extends Component {
         );
     }
 }
+
+export default withRouter(PageRouter);
