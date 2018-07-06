@@ -64,7 +64,8 @@ add_action( 'wp_head', function() {
 			'default_category' => get_option( 'default_category' ),
 			'home' => get_option( 'home' ),
 			'siteurl' => get_option( 'siteurl' ),
-			'template' => get_option( 'template' )
+			'template' => get_option( 'template' ),
+			'permalinks' => get_option( 'permalink_structure' )
 		),
 		'nonce'   => wp_create_nonce( 'wp_rest' ),
 		'woo' => array(
