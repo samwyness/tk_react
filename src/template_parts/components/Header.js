@@ -15,7 +15,7 @@ export default class Header extends Component {
     componentDidMount() {
         this.registerScrollHandler();
     }
-    
+
     registerScrollHandler() {
         window.addEventListener( 'scroll', () => {
             let top_nav = this.top_nav.current;
@@ -32,7 +32,7 @@ export default class Header extends Component {
     render() {
         return (
             <header className={this.state.classes} ref={this.top_nav}>
-                <div className="tk-container">
+                <div className="container">
 
                     <Menu name="Main Navigation"/>
 

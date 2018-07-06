@@ -2,7 +2,9 @@ import React from 'react';
 
 const Footer = () => (
     <footer className="tk-footer tk-splash tk-dark">
-        <h1>tk_react</h1>
+        <div className="container">
+            <h1>tk_react.</h1>
+        </div>
     </footer>
 );
 

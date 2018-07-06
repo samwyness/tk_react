@@ -56,7 +56,7 @@ export default class Single extends Component {
                     title={post_title}
                 />
 
-                <div className="tk-container">
+                <div className="container">
 
                     <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
 
