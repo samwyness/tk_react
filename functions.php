@@ -72,7 +72,8 @@ add_action( 'wp_head', function() {
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
 			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-		)
+		),
+		'shortcodes' => array()
 	));
 
   	echo "<script> window.{$var} = {$data}; </script>\n";
