@@ -50,6 +50,13 @@ add_action( 'wp_enqueue_scripts', function() {
  *
  */
 add_action( 'wp_head', function() {
+	$page_on_front = false; // latest blog posts
+	$page_for_posts = false;
+
+	if ( $page_on_front !== 0 ) {
+		$page_on_front = get_option( 'page_on_front' );
+		$page_for_posts = get_option( 'page_for_posts' );
+	}
 
 	// Create the script
 	$var = '__TK__';
@@ -60,13 +67,16 @@ add_action( 'wp_head', function() {
 			'tkr_api' => esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
 		),
 		'settings' => array(
-			'blogname' => get_option( 'blogname' ),
-			'blogdescription' => get_option( 'blogdescription' ),
+			'home_page' => $page_on_front,
+			'blog_page' => $page_for_posts,
 			'default_category' => get_option( 'default_category' ),
-			'home' => get_option( 'home' ),
-			'siteurl' => get_option( 'siteurl' ),
+			'site_url' => get_option( 'siteurl' ),
 			'template' => get_option( 'template' ),
-			'permalinks' => get_option( 'permalink_structure' )
+			'permalinks' => get_option( 'permalink_structure' ),
+			'meta' => array(
+				'title' => get_option( 'blogname' ),
+				'description' => get_option( 'blogdescription' )
+			)
 		),
 		'nonce'   => wp_create_nonce( 'wp_rest' ),
 		'woo' => array(

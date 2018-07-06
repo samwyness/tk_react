@@ -25,8 +25,14 @@ export default class Menu extends Component {
         .catch( error => console.log( error ) );
     }
 
-    stripBaseUrl( url_str ) {
-        return url_str.replace( __TK__.urls.base, '' );
+    trimUrlBase( url ) {
+        if (url === __TK__.urls.base + '/') {
+            url = '/';
+        } else {
+            url = url.replace( __TK__.urls.base, '' );
+        }
+        
+        return url;
     }
 
     render() {
@@ -34,7 +40,7 @@ export default class Menu extends Component {
             <ul className="align-right">
                 { this.state.menu.map( ( item, index ) => (
                     <li key={index}>
-                        <NavLink className="tk-btn" exact to={ this.stripBaseUrl( item.url ) }>{ item.title }</NavLink>
+                        <NavLink className="tk-btn" exact to={ this.trimUrlBase( item.url ) }>{ item.title }</NavLink>
                     </li>
                 ) ) }
             </ul>

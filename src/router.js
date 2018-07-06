@@ -20,15 +20,27 @@ class PageRouter extends Component {
     }
 
     // Helpers
-    trimBaseUrl( url ) {
-        return url.replace( window.location.origin, '' );
+    trimUrlOrigin( url ) {
+        if (url === window.location.origin) {
+            url = '/';
+        } else {
+            url = url.replace( window.location.origin, '' );
+        }
+
+        return url;
+    }
     }
 
     render() {
+        let home_path = this.trimUrlOrigin( __TK__.urls.base );
+        let home_component = ( home_path ) ? FrontPage : Blog;
+
         return (
             <Switch>
-                <Route path={ this.trimBaseUrl( __TK__.urls.base ) } component={ FrontPage }/>
-                <Route path="/blog" component={ Blog }/>
+                <Route exact path="/" component={ home_component }/>
+
+                <Route path="/blog/" component={ Blog }/>
+
                 <Route path="/page/:pageNum" component={ Page }/>
                 <Route path="/search/:term" component={ Search }/>
                 <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
@@ -37,8 +49,9 @@ class PageRouter extends Component {
                 <Route path="/category/:slug/" component={ Category }/>
                 <Route path="/tag/:slug" component={ Tag }/>
                 <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
-                <Route path=":year/:month/:day/:slug" component={ Single }/>
-                <Route path="*" component={ Page }/> // = last case: catch all other routes
+
+
+                <Route path="*" component={ Page }/>
             </Switch>
         );
     }
