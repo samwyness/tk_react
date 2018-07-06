@@ -19,20 +19,26 @@ class PageRouter extends Component {
         }
     }
 
+    // Helpers
+    trimBaseUrl( url ) {
+        return url.replace( window.location.origin, '' );
+    }
+
     render() {
         return (
             <Switch>
-                <Route exact path="/" component={ FrontPage }/>
+                <Route path={ this.trimBaseUrl( __TK__.urls.base ) } component={ FrontPage }/>
                 <Route path="/blog" component={ Blog }/>
-                <Route path="/page/:pageNum" component={Page}/>
-                <Route path="/search/:term" component={Search}/>
-                <Route path="/category/:slug/page/:pageNum" component={Category}/>
-                <Route path="/category/:slug/" component={Category}/>
-                <Route path="/category/:parent/:slug/page/:pageNum" component={Category}/>
-                <Route path="/category/:parent/:slug/" component={Category}/>
-                <Route path="/tag/:slug/page/:pageNum" component={Tag}/>
-                <Route path="/tag/:slug" component={Tag}/>
-                <Route path="*" component={ Page }/>
+                <Route path="/page/:pageNum" component={ Page }/>
+                <Route path="/search/:term" component={ Search }/>
+                <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
+                <Route path="/category/:parent/:slug/" component={ Category }/>
+                <Route path="/category/:slug/page/:pageNum" component={ Category }/>
+                <Route path="/category/:slug/" component={ Category }/>
+                <Route path="/tag/:slug" component={ Tag }/>
+                <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
+                <Route path=":year/:month/:day/:slug" component={ Single }/>
+                <Route path="*" component={ Page }/> // = last case: catch all other routes
             </Switch>
         );
     }
