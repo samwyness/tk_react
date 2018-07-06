@@ -177,7 +177,7 @@ img {
     background: #a7ce6b;
     margin-bottom: 40px;
 }
-.tk-hot + .tk-container .tk-title-underline {
+.tk-hot + .container .tk-title-underline {
     display: block;
     width: 120px;
     height: 3px;
