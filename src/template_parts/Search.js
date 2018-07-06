@@ -15,7 +15,7 @@ export default class Search extends Component {
                     link_text="Back Home"
                 />
 
-                <section className="tk-container">
+                <section className="container">
 
                     <h1 style={ {textTransform: 'uppercase'} }>Search</h1>
                     <span className="tk-title-underline"></span>

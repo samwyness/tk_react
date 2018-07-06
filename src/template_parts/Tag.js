@@ -15,7 +15,7 @@ export default class Tag extends Component {
                     link_text="Back Home"
                 />
 
-                <section className="tk-container">
+                <section className="container">
 
                     <h1 style={ {textTransform: 'uppercase'} }>Tags</h1>
                     <span className="tk-title-underline"></span>
