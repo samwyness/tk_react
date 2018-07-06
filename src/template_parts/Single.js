@@ -14,7 +14,7 @@ export default class Single extends Component {
     componentDidMount() {
         let post_slug = this.props.match.params.slug;
 
-        fetch( __TK__.urls.wp_api + '/posts?slug=' + post_slug )
+        fetch( __TK__.urls.wp_api + '/posts/?slug=' + post_slug )
         .then( response => response.json() )
         .then( json => {
             this.setState( {
