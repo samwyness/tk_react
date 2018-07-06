@@ -15,6 +15,9 @@ function tk_react_setup() {
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
+	// Enable support for title-tag options
+	add_theme_support( 'title-tag' );
+	
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'top-nav-menu'    => __( 'Top Nav Menu', 'tk_react' ),
@@ -33,9 +36,8 @@ add_action( 'after_setup_theme', 'tk_react_setup' );
  */
 add_action( 'wp_enqueue_scripts', function() {
 	// Theme css files.
-	// wp_enqueue_style( 'tk_react-styles', get_stylesheet_uri(), '1.0', true );
 	wp_enqueue_style( 'tk_react-styles', get_theme_file_uri( '/src/css/critical.css' ), '1.0', true );
-	// wp_enqueue_style( 'tk_react-styles', get_theme_file_uri( '/src/css/critical.css' ), '1.0', true );
+	wp_enqueue_style( 'bootstrap-grid', get_theme_file_uri( '/assets/bootstrap/bootstrap-grid.min.css' ));
 
 	// Theme js files.
 	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/tkr.bundle.js' ), array(), '1.0', true );
@@ -63,19 +65,30 @@ add_action( 'wp_head', function() {
 			'default_category' => get_option( 'default_category' ),
 			'home' => get_option( 'home' ),
 			'siteurl' => get_option( 'siteurl' ),
-			'template' => get_option( 'template' )
+			'template' => get_option( 'template' ),
+			'permalinks' => get_option( 'permalink_structure' )
 		),
 		'nonce'   => wp_create_nonce( 'wp_rest' ),
 		'woo' => array(
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
 			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-		)
+		),
+		'shortcodes' => array()
 	));
 
   	echo "<script> window.{$var} = {$data}; </script>\n";
 
 }, 10 );
+
+
+/*
+ *
+ * Remove wp emoji scripts and styles
+ *
+ */
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
 
 
 /*

@@ -39,7 +39,7 @@ export default class Content extends Component {
                                 <h2>{post.title.rendered}</h2>
                             </div>
 
-                            <div className="tk-post-date">{new Date(post.date).toLocaleString()}</div>
+                            <p className="tk-post-date">{new Date(post.date).toLocaleString()}</p>
 
                             <div className="tk-post-content" dangerouslySetInnerHTML={this.createPostContentMarkup( post.excerpt )}></div>
 

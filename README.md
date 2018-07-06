@@ -1,7 +1,7 @@
 # tk_react
 A WordPress + React starter theme.
 
-## Installation
+## Getting Started
 tk_react requires [Node.js](https://nodejs.org/) to run.
 
 1. Upload the theme to your local WordPress install.
