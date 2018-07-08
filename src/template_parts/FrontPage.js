@@ -15,11 +15,11 @@ export default class FrontPage extends Component {
     componentDidMount() {
         // TODO: Move this fetch to index.js and handle page slug dynamically
         //       then we can pass page data down as props.
-        fetch( __TK__.urls.wp_api + '/pages?slug=home' )
+        fetch( __TK__.urls.wp_api + '/pages/' + __TK__.settings.home_page )
         .then( response => response.json() )
         .then( json => {
             this.setState( {
-                page_data: json[0]
+                page_data: json
             } );
         } )
         .catch( error => { console.log( error ) } );
@@ -43,7 +43,7 @@ export default class FrontPage extends Component {
 
                 <section className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Hello <span className="tk-hot-title">World</span></h1>
+                    <h1 style={ {textTransform: 'uppercase'} }>Front Page <span className="tk-hot-title">Content</span></h1>
                     <span className="tk-title-underline"></span>
 
                     <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>

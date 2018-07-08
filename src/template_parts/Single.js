@@ -12,11 +12,9 @@ export default class Single extends Component {
     }
 
     componentDidMount() {
-        // TODO: Move this fetch to index.js and handle post slug dynamically
-        //       then we can pass page data down as props.
-        let post_slug = this.props.location.pathname;
+        let post_slug = this.props.match.params.slug;
 
-        fetch( __TK__.urls.wp_api + '/posts?slug=' + post_slug )
+        fetch( __TK__.urls.wp_api + '/posts/?slug=' + post_slug )
         .then( response => response.json() )
         .then( json => {
             this.setState( {
@@ -41,7 +39,7 @@ export default class Single extends Component {
     }
 
     createPageContentMarkup() {
-        let content = (this.state.post_data.content) ? this.state.post_data.content.rendered : '';
+        let content = (this.state.post_data.content) ? this.state.post_data.content.rendered : '<p><i>No Posts found...</i></p>';
         return {__html: content};
     }
 

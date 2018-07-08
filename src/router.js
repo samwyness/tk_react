@@ -20,25 +20,76 @@ class PageRouter extends Component {
     }
 
     // Helpers
-    trimBaseUrl( url ) {
-        return url.replace( window.location.origin, '' );
+    trimUrlOrigin( url ) {
+        if (url === window.location.origin) {
+            url = '/';
+        } else {
+            url = url.replace( window.location.origin, '' );
+        }
+
+        return url;
+    }
+
+    getPermalinkStructure() {
+        let output = false;
+
+        switch (__TK__.settings.permalinks) {
+            case '': // Plain
+                // TODO: Remove this option from permalink settings page?
+                output = "/:id";
+                break;
+
+            case '/%year%/%monthnum%/%day%/%postname%/': // Day and name
+                output = "/:year/:month/:day/:slug";
+                break;
+
+            case '/%year%/%monthnum%/%postname%/': // Month and name
+                output = "/:year/:month/:slug";
+                break;
+
+            case '/archives/%post_id%': // Numeric (archives)
+                output = "/archives/:id";
+                break;
+
+            case '/%postname%/': // Post name
+                // TODO: Currently catches all routes and renders to single
+                // possibyl we need look for post type decide
+                output = "/:slug";
+                break;
+        }
+
+        return output;
     }
 
     render() {
+        let home_path = this.trimUrlOrigin( __TK__.urls.base );
+        let home_component = ( home_path ) ? FrontPage : Blog;
+
         return (
             <Switch>
-                <Route path={ this.trimBaseUrl( __TK__.urls.base ) } component={ FrontPage }/>
-                <Route path="/blog" component={ Blog }/>
+                {/* Index */}
+                <Route exact path="/" component={ home_component }/>
+
+                {/* Wordpress default routes */}
                 <Route path="/page/:pageNum" component={ Page }/>
                 <Route path="/search/:term" component={ Search }/>
+
+                {/* Category and tag routes */}
                 <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
                 <Route path="/category/:parent/:slug/" component={ Category }/>
                 <Route path="/category/:slug/page/:pageNum" component={ Category }/>
                 <Route path="/category/:slug/" component={ Category }/>
                 <Route path="/tag/:slug" component={ Tag }/>
                 <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
-                <Route path=":year/:month/:day/:slug" component={ Single }/>
-                <Route path="*" component={ Page }/> // = last case: catch all other routes
+
+                {/* Custom routes */}
+                <Route path="/blog/" component={ Blog }/>
+
+                {/* Posts */}
+                <Route path={ this.getPermalinkStructure() } component={ Single }/>
+
+                {/* Catch all */}
+                <Route path="*" component={ Page }/>
             </Switch>
         );
     }

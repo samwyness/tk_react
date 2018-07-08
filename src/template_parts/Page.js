@@ -52,6 +52,7 @@ export default class Page extends Component {
           <div className="tk-content">
 
               <Splash
+                  bg_class="tk-hot"
                   title={page_title}
               />
 
