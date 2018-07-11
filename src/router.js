@@ -62,8 +62,8 @@ class PageRouter extends Component {
     }
 
     render() {
-        let home_path = this.trimUrlOrigin( __TK__.urls.base );
-        let home_component = ( home_path ) ? FrontPage : Blog;
+        let home_page_id = this.trimUrlOrigin( __TK__.settings.home_page );
+        let home_component = ( home_page_id === '0' ) ? Blog : FrontPage;
 
         return (
             <Switch>
