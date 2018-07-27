@@ -17,7 +17,17 @@ function tk_react_setup() {
 
 	// Enable support for title-tag options
 	add_theme_support( 'title-tag' );
-	
+
+	// Enable support for custom logo
+	$defaults = array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-height' => true,
+        'flex-width'  => true,
+        'header-text' => array( 'site-title', 'site-description' ),
+    );
+    add_theme_support( 'custom-logo', $defaults );
+
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'top-nav-menu'    => __( 'Top Nav Menu', 'tk_react' ),
@@ -58,6 +68,12 @@ add_action( 'wp_head', function() {
 		$page_for_posts = get_option( 'page_for_posts' );
 	}
 
+	$logo_url = false;
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	if ( has_custom_logo() ) {
+		$logo_url = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+	}
+
 	// Create the script
 	$var = '__TK__';
 	$data = json_encode(array(
@@ -84,7 +100,7 @@ add_action( 'wp_head', function() {
 			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 		),
-		'shortcodes' => array()
+		'custom_logo' => $logo_url
 	));
 
   	echo "<script> window.{$var} = {$data}; </script>\n";
