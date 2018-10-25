@@ -60,7 +60,8 @@ add_action( 'wp_enqueue_scripts', function() {
  *
  */
 add_action( 'wp_head', function() {
-	$page_on_front = false; // latest blog posts
+	// Front Page Settings
+	$page_on_front = false;
 	$page_for_posts = false;
 
 	if ( $page_on_front !== 0 ) {
@@ -68,10 +69,11 @@ add_action( 'wp_head', function() {
 		$page_for_posts = get_option( 'page_for_posts' );
 	}
 
+	// Custom Logo
+	$logo_id = get_theme_mod( 'custom_logo' );
 	$logo_url = false;
-	$custom_logo_id = get_theme_mod( 'custom_logo' );
-	if ( has_custom_logo() ) {
-		$logo_url = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+	if ( get_theme_mod( 'custom_logo' ) ) {
+		$logo_url = wp_get_attachment_image_src( $logo_id , 'full' )[0];
 	}
 
 	// Create the script
@@ -87,6 +89,7 @@ add_action( 'wp_head', function() {
 			'blog_page' => $page_for_posts,
 			'default_category' => get_option( 'default_category' ),
 			'site_url' => get_option( 'siteurl' ),
+			'site_logo' => $logo_url,
 			'template' => get_option( 'template' ),
 			'permalinks' => get_option( 'permalink_structure' ),
 			'meta' => array(
@@ -99,10 +102,10 @@ add_action( 'wp_head', function() {
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
 			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-		),
-		'custom_logo' => $logo_url
+		)
 	));
 
+	// Add to the wp header
   	echo "<script> window.{$var} = {$data}; </script>\n";
 
 }, 10 );
