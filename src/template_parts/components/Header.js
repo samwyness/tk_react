@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom'
+
 import Menu from './Menu';
 
 export default class Header extends Component {
@@ -36,7 +38,9 @@ export default class Header extends Component {
                 <div className="container">
 
                     <div className="tk-nav-logo">
-                        <img src={ __TK__.settings.site_logo } />
+                        <Link to="/">
+                            <img src={ __TK__.settings.site_logo } />
+                        </Link>
                     </div>
 
                     <Menu name="Main Navigation"/>

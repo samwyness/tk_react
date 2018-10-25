@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 export default class Menu extends Component {
 
@@ -31,7 +31,7 @@ export default class Menu extends Component {
         } else {
             url = url.replace( __TK__.urls.base, '' );
         }
-        
+
         return url;
     }
 
