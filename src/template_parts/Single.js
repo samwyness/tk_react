@@ -12,9 +12,13 @@ export default class Single extends Component {
     }
 
     componentDidMount() {
+        this.fetchPostData();
+    }
+
+    fetchPostData() {
         let post_slug = this.props.match.params.slug;
 
-        fetch( __TK__.urls.wp_api + '/posts/?slug=' + post_slug )
+        fetch( __TK__.urls.wp_api + '/posts?slug=' + post_slug )
         .then( response => response.json() )
         .then( json => {
             this.setState( {
@@ -24,20 +28,6 @@ export default class Single extends Component {
         .catch( error => { console.log( error ) } );
     }
 
-    shouldComponentUpdate( nextProps, nextState ) {
-        if (!nextState.post_data) {
-            this.setState( {
-                post_data: {
-                    title: { rendered: 'Single Post Template' }
-                }
-            } );
-
-            return false;
-        }
-
-        return true;
-    }
-
     createPageContentMarkup() {
         let content = (this.state.post_data.content) ? this.state.post_data.content.rendered : '<p><i>No Posts found...</i></p>';
         return {__html: content};
@@ -45,7 +35,7 @@ export default class Single extends Component {
 
     render() {
         let post_data = this.state.post_data || false;
-        let post_title = (post_data) ? post_data.title.rendered : false;
+        let post_title = (post_data) ? post_data.title.rendered : 'Loading..';
 
         return (
             <div className="tk-content">
