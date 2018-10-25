@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Menu from './Menu';
 
 export default class Header extends Component {
@@ -33,6 +34,10 @@ export default class Header extends Component {
         return (
             <header className={this.state.classes} ref={this.top_nav}>
                 <div className="container">
+
+                    <div className="tk-nav-logo">
+                        <img src={ __TK__.settings.site_logo } />
+                    </div>
 
                     <Menu name="Main Navigation"/>
 
