@@ -52,8 +52,6 @@ class PageRouter extends Component {
                 break;
 
             case '/%postname%/': // Post name
-                // TODO: Currently catches all routes and renders to single
-                // possibyl we need look for post type decide
                 output = "/:slug";
                 break;
         }
@@ -63,12 +61,12 @@ class PageRouter extends Component {
 
     render() {
         let home_page_id = this.trimUrlOrigin( __TK__.settings.home_page );
-        let home_component = ( home_page_id === '0' ) ? Blog : FrontPage;
+        let Home = ( home_page_id === '0' ) ? Blog : FrontPage;
 
         return (
             <Switch>
                 {/* Index */}
-                <Route exact path="/" component={ home_component }/>
+                <Route exact path="/" component={ Home }/>
 
                 {/* Wordpress default routes */}
                 <Route path="/page/:pageNum" component={ Page }/>
@@ -88,8 +86,8 @@ class PageRouter extends Component {
                 {/* Posts */}
                 <Route path={ this.getPermalinkStructure() } component={ Single }/>
 
-                {/* Catch all */}
-                <Route path="*" component={ Page }/>
+                {/* Pages */}
+                <Route path="/:slug" component={ Page }/>
             </Switch>
         );
     }
