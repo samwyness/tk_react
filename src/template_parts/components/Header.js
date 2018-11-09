@@ -51,7 +51,7 @@ export default class Header extends Component {
                     { ( !this.props.activeUser ) ? (
                         <Menu location="user-menu" className="align-right"/>
                     ) : (
-                        <Link to="" className="tk-avatar align-right">
+                        <Link to="/dashboard" className="tk-avatar align-right">
                             <img src={ avatar_src } />
                         </Link>
                     ) }
