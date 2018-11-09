@@ -32,6 +32,7 @@ function tk_theme_setup() {
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'top-nav-menu'    => __( 'Top Nav Menu', 'tk_react' ),
+		'user-menu'    => __( 'User Menu', 'tk_react' ),
 		'slide-nav-menu'    => __( 'Slide Nav Menu', 'tk_react' )
 	) );
 }
