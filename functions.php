@@ -11,7 +11,8 @@
  * Sets up theme defaults and registers support for various WordPress features.
  *
  */
-function tk_react_setup() {
+add_action( 'after_setup_theme', 'tk_theme_setup' );
+function tk_theme_setup() {
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
@@ -36,7 +37,6 @@ function tk_react_setup() {
 
 	require_once get_template_directory() . '/include/api/v1/api.php';
 }
-add_action( 'after_setup_theme', 'tk_react_setup' );
 
 
 /*
@@ -44,22 +44,24 @@ add_action( 'after_setup_theme', 'tk_react_setup' );
  * Enqueue scripts and styles.
  *
  */
-add_action( 'wp_enqueue_scripts', function() {
+add_action( 'wp_enqueue_scripts', 'tk_enqueue_scripts' );
+function tk_enqueue_scripts() {
 	// Theme css files.
 	wp_enqueue_style( 'tk_react-styles', get_theme_file_uri( '/src/css/critical.css' ), '1.0', true );
 	wp_enqueue_style( 'bootstrap-grid', get_theme_file_uri( '/assets/bootstrap/bootstrap-grid.min.css' ));
 
 	// Theme js files.
 	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/tkr.bundle.js' ), array(), '1.0', true );
-} );
+}
 
 
 /*
  *
- * Add inline scripts to header
+ * Add inline script to header
  *
  */
-add_action( 'wp_head', function() {
+add_action( 'wp_head', 'tk_header_script', 10 );
+function tk_header_script() {
 	// Front Page Settings
 	$page_on_front = false;
 	$page_for_posts = false;
@@ -95,9 +97,9 @@ add_action( 'wp_head', function() {
 			'meta' => array(
 				'title' => get_option( 'blogname' ),
 				'description' => get_option( 'blogdescription' )
-			)
+			),
+			'nonce' => wp_create_nonce( 'wp_rest' )
 		),
-		'nonce'   => wp_create_nonce( 'wp_rest' ),
 		'woo' => array(
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
 			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
@@ -107,8 +109,7 @@ add_action( 'wp_head', function() {
 
 	// Add to the wp header
   	echo "<script> window.{$var} = {$data}; </script>\n";
-
-}, 10 );
+}
 
 
 /*
