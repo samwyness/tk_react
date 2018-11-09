@@ -64,6 +64,30 @@ img {
 }
 
 
+/* Alignment */
+.align-left {
+    float: left;
+}
+.align-right {
+    float: right;
+}
+.align-center {
+    display: block;
+    float: none;
+    margin: 0 auto;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+
+
 /* Button */
 .tk-btn {
     display: inline-block;
@@ -155,6 +179,7 @@ img {
 .tk-content .container {
     padding-top: 60px;
 }
+
 
 /* Splash */
 .tk-splash {
