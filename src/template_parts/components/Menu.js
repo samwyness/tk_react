@@ -18,7 +18,9 @@ export default class Menu extends Component {
 
     getMenu() {
         let location = this.props.location;
-        
+
+        if (!location) return;
+
         tk.api.menus.fetchMenu( location )
         .then( response => {
             this.setState( { menu: response }  );
@@ -27,8 +29,13 @@ export default class Menu extends Component {
     }
 
     render() {
+        let menu_classes = [
+            'tk-menu-' + this.props.location,
+            this.props.className
+        ];
+
         return (
-            <ul className="align-right">
+            <ul className={ menu_classes.join(' ') }>
                 { this.state.menu.map( ( item, index ) => (
                     <li key={ index }>
                         <NavLink className="tk-btn" exact to={ tk.tools.trimUrlBase( item.url ) }>{ item.title }</NavLink>

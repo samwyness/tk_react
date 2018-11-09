@@ -38,7 +38,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="tk-site-wrap">
-                <Header/>
+                <Header activeUser={ this.state.activeUser }/>
                 <PageRouter/>
                 <Footer/>
             </div>
