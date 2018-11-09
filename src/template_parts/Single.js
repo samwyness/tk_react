@@ -20,7 +20,7 @@ export default class Single extends Component {
     fetchPostData() {
         let post_slug = this.props.match.params.slug;
 
-        tk.api.post.fetchPostBySlug( post_slug ).then( response => {
+        tk.api.posts.fetchPostBySlug( post_slug ).then( response => {
             this.setState( {
                 post_data: response[0]
             } );
@@ -29,7 +29,8 @@ export default class Single extends Component {
 
     render() {
         let post_data = this.state.post_data || false;
-        let post_title = (post_data) ? post_data.title.rendered : 'Loading..';
+        let post_title = ( post_data.title ) ? post_data.title.rendered : 'Loading..';
+        let post_content = ( post_data.content ) ? post_data.content.rendered : '...';
 
         return (
             <div className="tk-content">
@@ -40,7 +41,7 @@ export default class Single extends Component {
 
                 <div className="container">
 
-                    <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
+                    <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( post_content ) }></div>
 
                 </div>
 
