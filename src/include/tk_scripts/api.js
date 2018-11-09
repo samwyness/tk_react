@@ -73,6 +73,18 @@ let api = {
                 } );
             } );
         },
+        fetchPageById( page_id ) {
+            return new Promise( ( resolve, reject ) => {
+                fetch( __TK__.urls.wp_api + '/pages/' + page_id )
+                .then( response => response.json() )
+                .then( json => {
+                    resolve( json )
+                } )
+                .catch( error => {
+                    reject( error )
+                } );
+            } );
+        },
         fetchPageBySlug( page_slug ) {
             return new Promise( ( resolve, reject ) => {
                 fetch( __TK__.urls.wp_api + '/pages?slug=' + page_slug )

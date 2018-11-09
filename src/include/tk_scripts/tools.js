@@ -3,7 +3,6 @@ let tools = {
     createHTMLMarkup( input ) {
         input = this.replaceExcerptBrackets( input );
 
-
         if (!input)
             input = '';
 
@@ -28,6 +27,9 @@ let tools = {
         }
 
         return url;
+    },
+    cleanDate( date ) {
+        return new Date( date ).toLocaleString();
     }
 };
 

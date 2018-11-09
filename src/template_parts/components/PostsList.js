@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NavLink } from 'react-router-dom'
 
+import tk from '../../include/tk_scripts';
 
 export default class Content extends Component {
 
@@ -13,20 +14,11 @@ export default class Content extends Component {
     }
 
     componentDidMount() {
-        fetch( __TK__.urls.wp_api + '/posts' )
-        .then( response => response.json() )
-        .then( json => {
-            this.setState( { posts: json }  );
+        tk.api.posts.fetchPosts()
+        .then( response => {
+            this.setState( { posts: response }  );
         } )
         .catch( error => console.log( error ) );
-    }
-
-    replaceExcerptBrackets( excerpt ) {
-        return excerpt.replace( /\[&hellip;]/g, '...' );
-    }
-
-    createPostContentMarkup( post_content ) {
-        return {__html: this.replaceExcerptBrackets( post_content.rendered )};
     }
 
     render() {
@@ -39,11 +31,11 @@ export default class Content extends Component {
                                 <h2>{post.title.rendered}</h2>
                             </div>
 
-                            <p className="tk-post-date">{new Date(post.date).toLocaleString()}</p>
+                            <p className="tk-post-date">{ tk.tools.cleanDate( post.date ) }</p>
 
-                            <div className="tk-post-content" dangerouslySetInnerHTML={this.createPostContentMarkup( post.excerpt )}></div>
+                            <div className="tk-post-content" dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( post.excerpt.rendered ) }></div>
 
-                            <NavLink className="tk-btn" to={post.link.replace( __TK__.urls.base, '' )}>
+                            <NavLink className="tk-btn" to={ tk.tools.trimUrlBase( post.link ) }>
                                 Read More
                             </NavLink>
                         </div>

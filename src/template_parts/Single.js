@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import tk from '../include/tk_scripts';
+
 import Splash from './components/Splash';
 
 export default class Single extends Component {
@@ -18,19 +20,11 @@ export default class Single extends Component {
     fetchPostData() {
         let post_slug = this.props.match.params.slug;
 
-        fetch( __TK__.urls.wp_api + '/posts?slug=' + post_slug )
-        .then( response => response.json() )
-        .then( json => {
+        tk.api.post.fetchPostBySlug( post_slug ).then( response => {
             this.setState( {
-                post_data: json[0] || false
+                post_data: response[0]
             } );
-        } )
-        .catch( error => { console.log( error ) } );
-    }
-
-    createPageContentMarkup() {
-        let content = (this.state.post_data.content) ? this.state.post_data.content.rendered : '<p><i>No Posts found...</i></p>';
-        return {__html: content};
+        } );
     }
 
     render() {

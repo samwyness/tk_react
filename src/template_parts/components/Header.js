@@ -43,7 +43,7 @@ export default class Header extends Component {
                         </Link>
                     </div>
 
-                    <Menu name="Main Navigation"/>
+                    <Menu location="top-nav-menu"/>
 
                 </div>
             </header>
