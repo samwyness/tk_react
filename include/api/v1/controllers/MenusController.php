@@ -27,7 +27,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 	class TKR_REST_Menus_Controller {
 
 		public function __construct() {
-	        $this->namespace = '/tkr/v1';
+	        $this->namespace = 'tkr/v1';
 			$this->rest_base = '/menus';
 	    }
 
@@ -37,13 +37,13 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 		 * @since  1.2.0
 		 */
 		public function register_routes() {
-			register_rest_route( $this->namespace, $this->rest_base . '/menus', array(
+			register_rest_route( $this->namespace, $this->rest_base, array(
 				array(
 					'methods'  => WP_REST_Server::READABLE,
 					'callback' => array( $this, 'get_menus' ),
 				)
 			) );
-			register_rest_route( $this->namespace, $this->rest_base . '/menus/(?P<id>\d+)', array(
+			register_rest_route( $this->namespace, $this->rest_base . '/(?P<id>\d+)', array(
 				array(
 					'methods'  => WP_REST_Server::READABLE,
 					'callback' => array( $this, 'get_menu' ),
@@ -75,14 +75,14 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 		 * @return array All registered menus
 		 */
 		public static function get_menus() {
-			$rest_url = trailingslashit( get_rest_url() . self::get_plugin_namespace() . '/menus/' );
+			$rest_url = trailingslashit( $this->namespace . $this->rest_base );
 			$wp_menus = wp_get_nav_menus();
 			$i          = 0;
 			$rest_menus = array();
 			foreach ( $wp_menus as $wp_menu ) :
 				$menu = (array) $wp_menu;
 				$rest_menus[ $i ]                = $menu;
-				$rest_menus[ $i ]['ID']          = $menu['term_id'];
+				$rest_menus[ $i ]['id']          = $menu['term_id'];
 				$rest_menus[ $i ]['name']        = $menu['name'];
 				$rest_menus[ $i ]['slug']        = $menu['slug'];
 				$rest_menus[ $i ]['description'] = $menu['description'];
@@ -111,7 +111,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 
 			if ( $wp_menu_object ) :
 				$menu                     = (array) $wp_menu_object;
-				$rest_menu['ID']          = abs( $menu['term_id'] );
+				$rest_menu['id']          = abs( $menu['term_id'] );
 				$rest_menu['name']        = $menu['name'];
 				$rest_menu['slug']        = $menu['slug'];
 				$rest_menu['description'] = $menu['description'];
@@ -197,7 +197,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 					if ( ! isset( $locations[ $slug ] ) ) {
 						continue;
 					}
-					$rest_menus[ $slug ]['ID']                          = $locations[ $slug ];
+					$rest_menus[ $slug ]['id']                          = $locations[ $slug ];
 					$rest_menus[ $slug ]['label']                       = $label;
 					$rest_menus[ $slug ]['meta']['links']['collection'] = $rest_url;
 					$rest_menus[ $slug ]['meta']['links']['self']       = $rest_url . $slug;
@@ -234,7 +234,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 			$cache     = array();
 			foreach ( $rev_items as $item ) :
 				$formatted = array(
-					'ID'          => abs( $item->ID ),
+					'id'          => abs( $item->id ),
 					'order'       => (int) $item->menu_order,
 					'parent'      => abs( $item->menu_item_parent ),
 					'title'       => $item->title,
@@ -250,8 +250,8 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 					'type_label'  => $item->type_label,
 					'children'    => array(),
 				);
-				if ( array_key_exists( $item->ID, $cache ) ) {
-					$formatted['children'] = array_reverse( $cache[ $item->ID ] );
+				if ( array_key_exists( $item->id, $cache ) ) {
+					$formatted['children'] = array_reverse( $cache[ $item->id ] );
 				}
 				$formatted = apply_filters( 'rest_menus_format_menu_item', $formatted );
 				if ( $item->menu_item_parent != 0 ) {
@@ -272,7 +272,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 		 *
 		 * @since   1.2.0
 		 *
-		 * @param int $parent_id The parent nav_menu_item ID
+		 * @param int $parent_id The parent nav_menu_item id
 		 * @param array $nav_menu_items Navigation menu items
 		 * @param bool $depth Gives all children or direct children only
 		 *
@@ -284,7 +284,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 				if ( $nav_menu_item->menu_item_parent == $parent_id ) :
 					$nav_menu_item_list[] = $this->format_menu_item( $nav_menu_item, true, $nav_menu_items );
 					if ( $depth ) {
-						if ( $children = $this->get_nav_menu_item_children( $nav_menu_item->ID, $nav_menu_items ) ) {
+						if ( $children = $this->get_nav_menu_item_children( $nav_menu_item->id, $nav_menu_items ) ) {
 							$nav_menu_item_list = array_merge( $nav_menu_item_list, $children );
 						}
 					}
@@ -307,7 +307,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 		public function format_menu_item( $menu_item, $children = false, $menu = array() ) {
 			$item = (array) $menu_item;
 			$menu_item = array(
-				'id'          => abs( $item['ID'] ),
+				'id'          => abs( $item['id'] ),
 				'order'       => (int) $item['menu_order'],
 				'parent'      => abs( $item['menu_item_parent'] ),
 				'title'       => $item['title'],
@@ -324,7 +324,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 				'type_label'  => $item['type_label'],
 			);
 			if ( $children === true && ! empty( $menu ) ) {
-				$menu_item['children'] = $this->get_nav_menu_item_children( $item['ID'], $menu );
+				$menu_item['children'] = $this->get_nav_menu_item_children( $item['id'], $menu );
 			}
 			return apply_filters( 'rest_menus_format_menu_item', $menu_item );
 		}
