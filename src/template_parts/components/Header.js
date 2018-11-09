@@ -12,24 +12,26 @@ export default class Header extends Component {
             classes: 'tk-top-nav'
         }
         this.top_nav = React.createRef();
-        this.registerScrollHandler = this.registerScrollHandler.bind(this);
+        this.onScroll = this.onScroll.bind( this );
     }
 
     componentDidMount() {
-        this.registerScrollHandler();
+        window.addEventListener( 'scroll', this.onScroll );
     }
 
-    registerScrollHandler() {
-        window.addEventListener( 'scroll', () => {
-            let top_nav = this.top_nav.current;
-            let top_nav_height = top_nav.getBoundingClientRect().height;
+    componentWillUnmount() {
+        window.removeEventListener( 'scroll', this.onScroll );
+    }
 
-            if ( pageYOffset > top_nav_height ) {
-                this.setState( { classes: 'tk-top-nav scrolled' } );
-            } else {
-                this.setState( { classes: 'tk-top-nav' } );
-            }
-        });
+    onScroll() {
+        let top_nav = this.top_nav.current;
+        let top_nav_height = top_nav.getBoundingClientRect().height;
+
+        if ( pageYOffset > top_nav_height ) {
+            this.setState( { classes: 'tk-top-nav scrolled' } );
+        } else {
+            this.setState( { classes: 'tk-top-nav' } );
+        }
     }
 
     render() {
