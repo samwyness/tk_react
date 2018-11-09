@@ -113,23 +113,16 @@ img {
     position: fixed;
     width: 100%;
     height: auto;
-    background: transparent;
-    color: #FFF;
-    z-index: 9000;
-    transition: background 0.14s ease,
-                box-shadow 0.14s ease;
-}
-.tk-top-nav.scrolled {
     background: #FFF;
-    box-shadow: 0 2px 34px -4px rgba(0,0,0,0.34);
-    box-shadow: 0px 17px 40px -24px rgba(0, 0, 0, 0.44);
     color: #36454f;
+    z-index: 9000;
 }
+
 .tk-top-nav .tk-nav-logo {
     display: inline-block;
     width: auto;
     height: 60px;
-    padding: 14px 0;
+    padding: 10px 0;
     vertical-align: top;
     margin-right: 20px;
 }
@@ -137,6 +130,7 @@ img {
     width: auto;
     height: 100%;
 }
+
 .tk-top-nav ul {
     display: inline-block;
     margin: 0;
@@ -156,11 +150,23 @@ img {
     line-height: 60px;
 }
 .tk-top-nav .tk-btn.active {
-    border-bottom-color: #FFF;
-}
-.tk-top-nav.scrolled .tk-btn.active {
     border-bottom-color: #36454f;
 }
+
+.tk-top-nav .tk-avatar {
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: 60px;
+    margin-left: 20px;
+    padding: 10px 0;
+}
+.tk-top-nav .tk-avatar img {
+    width: auto;
+    height: 100%;
+    border-radius: 50%;
+}
+
 
 /* Page Styles */
 .tk-site-wrap {
@@ -185,7 +191,7 @@ img {
     background: #a7ce6b;
     color: #fff;
     text-align: center;
-    padding: 20vh 0 15vh;
+    padding: 15vh 0;
 }
 .tk-splash h1 {
     position: relative;
