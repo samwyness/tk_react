@@ -35,20 +35,30 @@ export default class Header extends Component {
     }
 
     render() {
-        let active_user = this.props.activeUser;
+        let logo_src = ( __TK__.settings.site_logo ) ? __TK__.settings.site_logo : false;
         let avatar_src = ( active_user ) ? active_user.avatar_urls[96] : '';
 
         return (
             <header className={ this.state.classes } ref={ this.top_nav }>
                 <div className="container">
 
-                    <div className="tk-nav-logo">
-                        <Link to="/">
-                            <img src={ __TK__.settings.site_logo } />
-                        </Link>
-                    </div>
+                    { ( logo_src ) &&
+                        <div className="tk-nav-logo">
+                            <Link to="/">
+                                <img src={ logo_src } className="inverted" />
+                            </Link>
+                        </div>
+                    }
 
-                    <Menu location="top-nav-menu"/>
+                    { ( !logo_src ) &&
+                        <div className="tk-nav-site-title">
+                            <Link to="/">
+                                { __TK__.settings.meta.title }
+                            </Link>
+                        </div>
+                    }
+
+                    <Menu menu_location="top-menu"/>
 
                     { ( !this.props.activeUser ) ? (
                         <Menu location="user-menu" className="align-right"/>
