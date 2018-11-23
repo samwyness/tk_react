@@ -24,7 +24,7 @@ export default class FrontPage extends Component {
     }
 
     render() {
-        let page_content = (this.state.page_data.content) ? this.state.page_data.content.rendered : false;
+        let page_content = ( this.state.page_data.content ) ? this.state.page_data.content.rendered : false;
 
         return (
             <div className="tk-content">
@@ -32,8 +32,6 @@ export default class FrontPage extends Component {
                 <Splash
                     title="tk_react"
                     text="A WordPress + React starter theme."
-                    link_to="/blog"
-                    link_text="Check Out Your Blog"
                 />
 
                 <section>
