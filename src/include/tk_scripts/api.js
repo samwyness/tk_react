@@ -126,7 +126,7 @@ export default {
         }
     },
     menus: {
-        fetchMenu( location ) {
+        fetchMenuByLocation( location ) {
             return new Promise( ( resolve, reject ) => {
                 fetch( __TK__.urls.tkr_api + '/menus/locations/' + location )
                 .then( response => response.json() )
