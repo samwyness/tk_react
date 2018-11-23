@@ -230,8 +230,10 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 			if ( ! isset( $locations[ $location ] ) ) {
 				return array();
 			}
-			$wp_menu    = wp_get_nav_menu_object( $locations[ $location ] );
+
+			$wp_menu = get_term( $locations[ $location ], 'nav_menu' );
 			$menu_items = wp_get_nav_menu_items( $wp_menu->term_id );
+
 			/**
 			 * wp_get_nav_menu_items() outputs a list that's already sequenced correctly.
 			 * So the easiest thing to do is to reverse the list and then build our tree
