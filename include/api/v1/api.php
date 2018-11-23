@@ -43,6 +43,7 @@ add_action('rest_api_init', function() {
     $tkr_api->register_api();
 });
 
+
 /*
  *
  * Add feature image to wp rest
@@ -61,8 +62,6 @@ function register_rest_feature_image() {
 }
 
 function get_rest_featured_image( $object, $field_name, $request ) {
-	return $request;
-
     if ( $object['featured_media'] ) {
         $img = wp_get_attachment_image_src( $object['featured_media'], 'app-thumb' );
         return $img[0];
