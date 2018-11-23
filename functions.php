@@ -97,7 +97,8 @@ function tk_header_script() {
 				'title' => get_option( 'blogname' ),
 				'description' => get_option( 'blogdescription' )
 			),
-			'nonce' => wp_create_nonce( 'wp_rest' )
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+			'is_logged_in' => is_user_logged_in()
 		),
 		'woo' => array(
 			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
