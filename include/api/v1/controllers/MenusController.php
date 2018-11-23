@@ -74,7 +74,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 		 * @since  1.2.0
 		 * @return array All registered menus
 		 */
-		public static function get_menus() {
+		public function get_menus() {
 			$rest_url = trailingslashit( $this->namespace . $this->rest_base );
 			$wp_menus = wp_get_nav_menus();
 			$i          = 0;
