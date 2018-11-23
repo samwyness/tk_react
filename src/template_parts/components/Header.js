@@ -58,7 +58,7 @@ export default class Header extends Component {
                         </div>
                     }
 
-                    <Menu menu_location="top-menu"/>
+                    <Menu menu_location="top-nav-menu"/>
 
                     { ( !this.props.activeUser ) ? (
                         <Menu location="user-menu" className="align-right"/>
