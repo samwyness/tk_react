@@ -29,8 +29,8 @@ body {
     width: 100%;
     height: auto;
     margin: 0;
-    background: #f6f7f9;
-    color: #212223;
+    background-color: #f6f7f9;
+    color: #2c3237;
 
     font-family: sans-serif;
     line-height: normal;
@@ -53,16 +53,27 @@ h3 { font-size: 1.4rem; }
 p {
     font-size: 100%;
     line-height: 1.4rem;
-    color: #484b4d;
+    color: #2c3237;
+    opacity: 0.74;
 }
 
+a {
+    color: inherit;
+}
 
 /* Media */
 img {
     max-width: 100%;
     height: auto;
 }
-
+img.object-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+img.inverted {
+    filter: invert(1);
+}
 
 /* Alignment */
 .align-left {
@@ -93,14 +104,21 @@ img {
     display: inline-block;
     position: relative;
     width: auto;
-    height: 70px;
-    padding: 1px 17px 0;
-    background: #FFF;
-    color: #484b4d;
+    height: 50px;
+    padding: 0 14px;
+    background-color: #FFF;
+    color: #2c3237;
     border-radius: 4px;
-    line-height: 70px;
+    line-height: 50px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
+}
+.tk-btn-lg {
+    height: 70px;
+    padding: 0 17px;
+    line-height: 70px;
+    font-size: 16px;
 }
 
 
@@ -113,9 +131,26 @@ img {
     position: fixed;
     width: 100%;
     height: auto;
-    background: #FFF;
-    color: #36454f;
+    background-color: #2c3237;
+    color: #FFF;
     z-index: 9000;
+}
+
+.tk-top-nav .tk-nav-site-title {
+    display: table;
+    float: left;
+    max-width: 200px;
+    height: 60px;
+    padding: 10px 0;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+.tk-top-nav .tk-nav-site-title a {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .tk-top-nav .tk-nav-logo {
@@ -129,6 +164,11 @@ img {
 .tk-top-nav .tk-nav-logo img {
     width: auto;
     height: 100%;
+}
+
+.tk-top-nav .tk-nav-logo:hover,
+.tk-top-nav .tk-nav-site-title:hover {
+    opacity: 0.8;
 }
 
 .tk-top-nav ul {
@@ -150,7 +190,7 @@ img {
     line-height: 60px;
 }
 .tk-top-nav .tk-btn.active {
-    border-bottom-color: #36454f;
+    border-bottom-color: #FFF;
 }
 
 .tk-top-nav .tk-avatar {
@@ -168,7 +208,7 @@ img {
 }
 
 
-/* Page Styles */
+/* Layout Styles */
 .tk-site-wrap {
     position: relative;
     float: left;
@@ -176,8 +216,8 @@ img {
     width: 100%;
     height: auto;
 }
-.tk-content .container {
-    padding-top: 60px;
+.tk-content section {
+    margin: 60px 0;
 }
 
 
@@ -186,12 +226,12 @@ img {
     position: relative;
     width: 100%;
     height: auto;
-    background: #e4d555;
-    background: #c4ce6b;
-    background: #a7ce6b;
-    color: #fff;
+    background-color: #FFF;
+    background-position: center;
+    color: inherit;
+    background-size: cover;
     text-align: center;
-    padding: 15vh 0;
+    padding: 22vh 0;
 }
 .tk-splash h1 {
     position: relative;
@@ -213,34 +253,70 @@ img {
 }
 
 
-/* Page Title  */
+/* Page Styles  */
 .tk-title-underline {
     display: block;
     width: 120px;
     height: 3px;
-    background: #a7ce6b;
+    background: #2c3237;
     margin-bottom: 40px;
 }
 .tk-hot + .container .tk-title-underline {
     display: block;
     width: 120px;
     height: 3px;
-    background: #e05151;
+    background-color: #e05151;
     margin-bottom: 40px;
+}
+
+/* Post Styles */
+.tk-posts-list .tk-post {
+    display: inline-block;
+    margin-bottom: 30px;
+    background: #FFF;
+}
+.tk-posts-list .tk-post-feature-img {
+    height: 220px;
+}
+
+.tk-posts-list .tk-post-header,
+.tk-posts-list .tk-post-content,
+.tk-posts-list .tk-post-footer {
+    padding: 0 15px;
+}
+.tk-posts-list .tk-post-footer {
+    margin-bottom: 15px;
+}
+.tk-posts-list .tk-post-footer .tk-btn {
+    background: #f6f7f9;
 }
 
 
 /* Media Queries */
 @media (min-width: 992px) {
+    .tk-top-nav .tk-nav-logo,
+    .tk-top-nav .tk-nav-site-title,
+    .tk-top-nav .tk-avatar {
+        height: 70px;
+        padding: 15px 0;
+    }
+    .tk-top-nav .tk-btn {
+        height: 70px;
+        line-height: 70px;
+    }
+
     .tk-splash h1 {
         font-size: 5rem;
     }
 }
 
+@media (min-width: 1024px) {
+
+}
+
 
 /* Footer */
 .tk-footer {
-    margin-top: 60px;
     padding: 20vh 0;
 }
 .tk-footer h1 {
@@ -254,8 +330,13 @@ img {
     padding: 0;
 }
 .tk-hot {
-    background: #e05151;
+    /* background-color: #e4d555;
+    background-color: #c4ce6b;
+    background-color: #a7ce6b; */
+    background-color: #e05151;
+    color: #FFF;
 }
 .tk-dark {
-    background: #212223;
+    background-color: #2c3237;
+    color: #FFF;
 }
