@@ -59,14 +59,16 @@ export default class Page extends Component {
 
                 <Splash
                     bg_class="tk-hot"
-                    title={page_title}
+                    title={ page_title }
                 />
 
-                <div className="container">
+                <section>
+                    <div className="container">
 
-                    <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
+                        <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
 
-                </div>
+                    </div>
+                </section>
 
             </div>
         );

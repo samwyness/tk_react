@@ -15,13 +15,15 @@ export default class Archive extends Component {
                     link_text="Back Home"
                 />
 
-                <section className="container">
+                <section>
+                    <div className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
-                    <span className="tk-title-underline"></span>
+                        <h1 style={ { textTransform: 'uppercase' } }>Recent <span className="tk-hot-title">Posts</span></h1>
+                        <span className="tk-title-underline"></span>
 
-                    <PostsList/>
+                        <PostsList/>
 
+                    </div>
                 </section>
 
             </div>

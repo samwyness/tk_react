@@ -39,11 +39,13 @@ export default class Single extends Component {
                     title={post_title}
                 />
 
-                <div className="container">
+                <section>
+                    <div className="container">
 
-                    <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( post_content ) }></div>
+                        <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( post_content ) }></div>
 
-                </div>
+                    </div>
+                </section>
 
             </div>
         );

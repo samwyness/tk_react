@@ -15,13 +15,15 @@ export default class Tag extends Component {
                     link_text="Back Home"
                 />
 
-                <section className="container">
+                <section>
+                    <div className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Tags</h1>
-                    <span className="tk-title-underline"></span>
+                        <h1 style={ {textTransform: 'uppercase'} }>Tags</h1>
+                        <span className="tk-title-underline"></span>
 
-                    <PostsList/>
-                    
+                        <PostsList/>
+
+                    </div>
                 </section>
 
             </div>

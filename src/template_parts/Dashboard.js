@@ -13,13 +13,15 @@ export default class Blog extends Component {
                     title="Dashboard Template"
                 />
 
-                <section className="container">
+                <section>
+                    <div className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>My Dashboard</h1>
-                    <span className="tk-title-underline"></span>
+                        <h1 style={ {textTransform: 'uppercase'} }>My Dashboard</h1>
+                        <span className="tk-title-underline"></span>
 
-                    <PostsList/>
+                        <PostsList/>
 
+                    </div>
                 </section>
 
             </div>

@@ -36,22 +36,26 @@ export default class FrontPage extends Component {
                     link_text="Check Out Your Blog"
                 />
 
-                <section className="container">
+                <section>
+                    <div className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Front Page <span className="tk-hot-title">Content</span></h1>
-                    <span className="tk-title-underline"></span>
+                        <h1 style={ { textTransform: 'uppercase' } }>Front Page <span className="tk-hot-title">Content</span></h1>
+                        <span className="tk-title-underline"></span>
 
-                    <div dangerouslySetInnerHTML={tk.tools.createHTMLMarkup( page_content )}></div>
+                        <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
 
+                    </div>
                 </section>
 
-                <section className="container">
+                <section>
+                    <div className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
-                    <span className="tk-title-underline"></span>
+                        <h1 style={ { textTransform: 'uppercase' } }>Recent <span className="tk-hot-title">Posts</span></h1>
+                        <span className="tk-title-underline"></span>
 
-                    <PostsList/>
+                        <PostsList/>
 
+                    </div>
                 </section>
 
             </div>

@@ -15,11 +15,13 @@ export default class Search extends Component {
                     link_text="Back Home"
                 />
 
-                <section className="container">
+                <section>
+                    <div className="container">
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Search</h1>
-                    <span className="tk-title-underline"></span>
+                        <h1 style={ { textTransform: 'uppercase' } }>Search</h1>
+                        <span className="tk-title-underline"></span>
 
+                    </div>
                 </section>
 
             </div>
