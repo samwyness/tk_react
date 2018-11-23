@@ -89,6 +89,14 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 				$rest_menus[ $i ]['count']       = $menu['count'];
 				$rest_menus[ $i ]['meta']['links']['collection'] = $rest_url;
 				$rest_menus[ $i ]['meta']['links']['self']       = $rest_url . $menu['term_id'];
+				$rest_menus[ $i ]['items'] = array();
+
+				$wp_menu_items  = wp_get_nav_menu_items( $menu['term_id'] );
+
+				foreach ( $wp_menu_items as $item_object ) {
+					$rest_menus[ $i ]['items'][] = $this->format_menu_item( $item_object );
+				}
+
 				$i ++;
 			endforeach;
 			return apply_filters( 'rest_menus_format_menus', $rest_menus );
