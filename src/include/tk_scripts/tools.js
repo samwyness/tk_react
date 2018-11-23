@@ -1,4 +1,4 @@
-let tools = {
+export default {
     _version: '0.0.1',
     createHTMLMarkup( input ) {
         input = this.replaceExcerptBrackets( input );
@@ -32,5 +32,3 @@ let tools = {
         return new Date( date ).toLocaleString();
     }
 };
-
-export default tools;

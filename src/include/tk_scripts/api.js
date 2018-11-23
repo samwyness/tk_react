@@ -1,8 +1,9 @@
 import tools from './tools';
 
 const wp_api = __TK__.urls.wp_api;
+const tkr_api = __TK__.urls.tkr_api;
 
-let api = {
+export default {
     _version: '0.0.1',
     users: {
         fetchActiveUser: function() {
@@ -25,7 +26,7 @@ let api = {
     posts: {
         fetchPosts() {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/posts' )
+                fetch( wp_api + '/posts' )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -37,7 +38,7 @@ let api = {
         },
         fetchPostBySlug( post_slug ) {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/posts?slug=' + post_slug )
+                fetch( wp_api + '/posts?slug=' + post_slug )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -49,7 +50,7 @@ let api = {
         },
         fetchPostsByCategoryId( category_id ) {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/posts?categories=' + category_id )
+                fetch( wp_api + '/posts?categories=' + category_id )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -63,7 +64,7 @@ let api = {
     pages: {
         fetchPages() {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/pages' )
+                fetch( wp_api + '/pages' )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -75,7 +76,7 @@ let api = {
         },
         fetchPageById( page_id ) {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/pages/' + page_id )
+                fetch( wp_api + '/pages/' + page_id )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -87,7 +88,7 @@ let api = {
         },
         fetchPageBySlug( page_slug ) {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/pages?slug=' + page_slug )
+                fetch( wp_api + '/pages?slug=' + page_slug )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -101,7 +102,7 @@ let api = {
     categories: {
         fetchCategories() {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/categories' )
+                fetch( wp_api + '/categories' )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -113,7 +114,7 @@ let api = {
         },
         fetchCategoryBySlug( category_slug ) {
             return new Promise( ( resolve, reject ) => {
-                fetch( __TK__.urls.wp_api + '/categories?slug=' + category_slug )
+                fetch( wp_api + '/categories?slug=' + category_slug )
                 .then( response => response.json() )
                 .then( json => {
                     resolve( json )
@@ -139,5 +140,3 @@ let api = {
         }
     }
 };
-
-export default api;
