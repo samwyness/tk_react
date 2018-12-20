@@ -30,5 +30,19 @@ export default {
     },
     cleanDate( date ) {
         return new Date( date ).toLocaleString();
+    },
+    updateBodyPageClass( page_name ) {
+        let prefix = 'tk-page-';
+        let new_class = prefix + ( page_name || 'default' );
+        let regex = new RegExp( prefix + '(.*)', 'g' );
+        let matches = document.body.className.split( ' ' ) || [];
+
+        matches.map( ( item, index ) => {
+            if ( regex.test( item ) && item !== new_class ) {
+                document.body.classList.remove( item );
+            }
+        } );
+
+        return document.body.classList.add( new_class );
     }
 };
