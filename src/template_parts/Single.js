@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import tk from '../include/tk_scripts';
 
-import Splash from './components/Splash';
+import SectionHero from './components/SectionHero';
 
 export default class Single extends Component {
 
@@ -35,7 +35,7 @@ export default class Single extends Component {
         return (
             <div className="tk-content">
 
-                <Splash
+                <SectionHero
                     title={post_title}
                 />
 

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import Splash from './components/Splash';
-import PostsList from './components/PostsList';
+import SectionHero from './components/SectionHero';
+import SectionPosts from './components/SectionPosts';
 
 export default class Blog extends Component {
     render() {
         return (
             <div className="tk-content">
 
-                <Splash
+                <SectionHero
                     bg_class="tk-hot"
                     title="Blog Template"
                     text="mmmm fast eh."
@@ -22,7 +22,7 @@ export default class Blog extends Component {
                         <h1 style={ { textTransform: 'uppercase' } }>Recent <span className="tk-hot-title">Posts</span></h1>
                         <span className="tk-title-underline"></span>
 
-                        <PostsList/>
+                        <SectionPosts/>
 
                     </div>
                 </section>

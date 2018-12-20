@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import tk from '../include/tk_scripts';
 
-import Splash from './components/Splash';
+import SectionHero from './components/SectionHero';
 
 export default class Page extends Component {
     constructor( props ) {
@@ -57,8 +57,8 @@ export default class Page extends Component {
         return (
             <div className="tk-content">
 
-                <Splash
-                    bg_class="tk-hot"
+                <SectionHero
+                    bg_class="tk-dark"
                     title={ page_title }
                 />
 

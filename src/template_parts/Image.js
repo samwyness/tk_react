@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import Splash from './components/Splash';
-import PostsList from './components/PostsList';
+import SectionHero from './components/SectionHero';
+import SectionPosts from './components/SectionPosts';
 
 export default class Image extends Component {
     render() {
         return (
             <div className="tk-content">
 
-                <Splash
+                <SectionHero
                     bg_class="tk-hot"
                     title="Image Template"
                     link_to="/"
