@@ -17,11 +17,11 @@ export default class Menu extends Component {
     }
 
     getMenu() {
-        let location = this.props.location;
+        let menu_location = this.props.menu_location;
 
-        if (!location) return;
+        if ( !menu_location ) return;
 
-        tk.api.menus.fetchMenu( location )
+        tk.api.menus.fetchMenu( menu_location )
         .then( response => {
             this.setState( { menu: response }  );
         } )
@@ -30,7 +30,7 @@ export default class Menu extends Component {
 
     render() {
         let menu_classes = [
-            'tk-menu-' + this.props.location,
+            'tk-menu-' + this.props.menu_location,
             this.props.className
         ];
 

@@ -36,7 +36,6 @@ export default class Header extends Component {
 
     render() {
         let logo_src = ( __TK__.settings.site_logo ) ? __TK__.settings.site_logo : false;
-        let avatar_src = ( active_user ) ? active_user.avatar_urls[96] : '';
 
         return (
             <header className={ this.state.classes } ref={ this.top_nav }>
@@ -59,14 +58,6 @@ export default class Header extends Component {
                     }
 
                     <Menu menu_location="top-menu"/>
-
-                    { ( !this.props.activeUser ) ? (
-                        <Menu location="user-menu" className="align-right"/>
-                    ) : (
-                        <Link to="/dashboard" className="tk-avatar align-right">
-                            <img src={ avatar_src } />
-                        </Link>
-                    ) }
 
                 </div>
             </header>

@@ -3,9 +3,6 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 
 import tk from './include/tk_scripts';
 
-import Login from './template_parts/Login';
-import Dashboard from './template_parts/Dashboard';
-
 import FrontPage from './template_parts/FrontPage';
 import Blog from './template_parts/Blog';
 import Page from './template_parts/Page';
@@ -61,11 +58,8 @@ class PageRouter extends Component {
                 <Route exact path="/" component={ Home }/>
 
                 {/* Auth routes */}
-                <Route path="/dashboard/" component={ Dashboard }/>
 
                 {/* Custom routes */}
-                <Route path="/login/" component={ Login }/>
-                <Route path="/register/" component={ Login }/>
                 <Route path="/blog/" component={ Blog }/>
 
                 {/* Wordpress default routes */}
