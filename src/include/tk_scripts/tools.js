@@ -1,10 +1,10 @@
 export default {
     _version: '0.0.1',
     createHTMLMarkup( input ) {
-        input = this.replaceExcerptBrackets( input );
-
         if (!input)
-            input = '';
+            return;
+
+        input = this.replaceExcerptBrackets( input );
 
         return { __html: input };
     },
