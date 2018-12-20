@@ -21,7 +21,7 @@ export default class Menu extends Component {
 
         if ( !menu_location ) return;
 
-        tk.api.menus.fetchMenu( menu_location )
+        tk.api.menus.fetchMenuByLocation( menu_location )
         .then( response => {
             this.setState( { menu: response }  );
         } )
