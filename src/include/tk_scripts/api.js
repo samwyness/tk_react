@@ -126,7 +126,19 @@ export default {
         }
     },
     menus: {
-        fetchMenu( location ) {
+        fetchMenus() {
+            return new Promise( ( resolve, reject ) => {
+                fetch( tkr_api + '/menus' )
+                .then( response => response.json() )
+                .then( json => {
+                    resolve( json )
+                } )
+                .catch( error => {
+                    reject( error )
+                } );
+            } );
+        },
+        fetchMenuByLocation( location ) {
             return new Promise( ( resolve, reject ) => {
                 fetch( tkr_api + '/menus/locations/' + location )
                 .then( response => response.json() )
