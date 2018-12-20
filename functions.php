@@ -112,6 +112,18 @@ function tk_header_script() {
 }
 
 
+/**
+ *
+ * Add Google Fonts
+ *
+ */
+add_action('wp_enqueue_scripts', 'tk_add_google_fonts', 0 );
+function tk_add_google_fonts() {
+	// wp_register_style( 'tk-google-fonts-roboto', 'https://fonts.googleapis.com/css?family=Roboto:400,700' );
+	// wp_enqueue_style( 'tk-google-fonts-roboto' );
+}
+
+
 /*
  *
  * Remove wp emoji scripts and styles
