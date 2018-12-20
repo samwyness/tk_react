@@ -127,7 +127,7 @@ remove_action('wp_print_styles', 'print_emoji_styles');
  *
  */
 add_filter( 'excerpt_length', function( $length ) {
-	return 16;
+	return 14;
 }, 999 );
 
 
