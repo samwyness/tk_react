@@ -1,22 +1,42 @@
 <?php
+/**
+ * TKR REST API
+ * Description: A custom Wordpress API for tk_react.
+ *
+ * Version:     1.0.0
+ *
+ * Author:      Sam Wyness
+ * Author URI:  https://github.com/samwyness
+ *
+ */
 
 class TKR_REST_API extends WP_REST_Controller {
-    public function __construct() {
-        $this->namespace = 'tkr/v1';
+    const VERSION = '1.0.0';
+
+    public static function includes() {
+        require_once "controllers/Controller.php";
+        require_once "controllers/MenusController.php";
+        require_once "controllers/PagesController.php";
+        require_once "controllers/PostsController.php";
     }
 
-    public function register_api() {
-        $controllers = array(
-            'Menus',
-        );
+    public function init() {
+        self::includes();
+        self::create_rest_routes();
+    }
 
-        foreach ($controllers as $namespace) {
-            require_once "controllers/{$namespace}Controller.php";
+    public function create_rest_routes() {
+    	// Menus.
+    	$controller = new TKR_REST_Menus_Controller;
+    	$controller->register_routes();
 
-            $controller_class = "TKR_REST_{$namespace}_Controller";
-            $controller = new $controller_class();
-            $controller->register_routes();
-        }
+    	// Pages.
+    	$controller = new TKR_REST_Pages_Controller;
+    	$controller->register_routes();
+
+    	// Posts.
+    	$controller = new TKR_REST_Posts_Controller;
+    	$controller->register_routes();
     }
 
     public function tkr_api_debug( $request ) {
@@ -40,9 +60,12 @@ class TKR_REST_API extends WP_REST_Controller {
 
 add_action('rest_api_init', function() {
     $tkr_api = new TKR_REST_API();
-    $tkr_api->register_api();
+    $tkr_api->init();
 });
 
+
+
+// NOTE: These functions may need to be moved to a new controller
 
 /*
  *
