@@ -62,13 +62,16 @@ function tk_enqueue_scripts() {
 add_action( 'wp_head', 'tk_header_script', 10 );
 function tk_header_script() {
 	// Front Page Settings
-	$page_on_front = false;
-	$page_for_posts = false;
+	$page_on_front = get_option( 'page_on_front' );
+	$page_for_posts = get_option( 'page_for_posts' );
 
-	if ( $page_on_front !== 0 ) {
-		$page_on_front = get_option( 'page_on_front' );
-		$page_for_posts = get_option( 'page_for_posts' );
+	if ( $page_on_front === '0' ) {
+		$page_on_front = false;
+		$page_for_posts = false;
 	}
+
+	$home_page_url = ( $page_on_front ) ? get_post_field( 'post_name', $page_on_front ) : '/';
+	$blog_page_url = ( $page_for_posts ) ? get_post_field( 'post_name', $page_for_posts ) : '/';
 
 	// Custom Logo
 	$logo_id = get_theme_mod( 'custom_logo' );
@@ -79,33 +82,31 @@ function tk_header_script() {
 
 	// Create the script
 	$var = '__TK__';
-	$data = json_encode(array(
+	$data = json_encode( array(
 		'urls' => array(
-			'base' => get_option( 'home' ),
-			'wp_api' => esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
-			'tkr_api' => esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
+			'base' => 				get_option( 'home' ),
+			'wp_api' => 			esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
+			'tkr_api' => 			esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
 		),
 		'settings' => array(
-			'home_page' => $page_on_front,
-			'blog_page' => $page_for_posts,
-			'default_category' => get_option( 'default_category' ),
-			'site_url' => get_option( 'siteurl' ),
-			'site_logo' => $logo_url,
-			'template' => get_option( 'template' ),
-			'permalinks' => get_option( 'permalink_structure' ),
+			'home_page' => 			$page_on_front,
+			'home_page_slug' => 	$home_page_url,
+			'blog_page' => 			$page_for_posts,
+			'blog_page_slug' => 	$blog_page_url,
+
+			'site_logo' => 			$logo_url,
+			'permalinks' => 		get_option( 'permalink_structure' ),
+			'default_category' => 	get_option( 'default_category' ),
+			'template' => 			get_option( 'template' ),
+			'nonce' => 				wp_create_nonce( 'wp_rest' ),
+			'is_logged_in' => 		is_user_logged_in(),
+
 			'meta' => array(
-				'title' => get_option( 'blogname' ),
-				'description' => get_option( 'blogdescription' )
+				'title' => 			get_option( 'blogname' ),
+				'description' => 	get_option( 'blogdescription' )
 			),
-			'nonce' => wp_create_nonce( 'wp_rest' ),
-			'is_logged_in' => is_user_logged_in()
-		),
-		'woo' => array(
-			'api' => esc_url_raw( get_rest_url( null, '/wc/v2' ) ),
-			'consumer_key' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-			'consumer_secret' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 		)
-	));
+	) );
 
 	// Add to the wp header
   	echo "<script> window.{$var} = {$data}; </script>\n";
