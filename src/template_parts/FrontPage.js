@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import tk from '../include/tk_scripts';
 
-import Splash from './components/Splash';
-import PostsList from './components/PostsList';
+import SectionHero from './components/SectionHero';
+import SectionPosts from './components/SectionPosts';
 
 export default class FrontPage extends Component {
 
@@ -29,7 +29,7 @@ export default class FrontPage extends Component {
         return (
             <div className="tk-content">
 
-                <Splash
+                <SectionHero
                     title="tk_react"
                     text="A WordPress + React starter theme."
                 />
@@ -51,7 +51,7 @@ export default class FrontPage extends Component {
                         <h1 style={ { textTransform: 'uppercase' } }>Recent <span className="tk-hot-title">Posts</span></h1>
                         <span className="tk-title-underline"></span>
 
-                        <PostsList/>
+                        <SectionPosts/>
 
                     </div>
                 </section>
