@@ -5,8 +5,9 @@
     "private": true,
     "sideEffects": false,
     "scripts": {
-        "start": "webpack --mode development --config webpack.dev.js",
-        "tk_build": "webpack --mode production --config webpack.prod.js"
+        "start": "webpack --config webpack.dev.js",
+        "tk_build": "webpack --config webpack.prod.js",
+        "tk_stats": "webpack --config webpack.prod.js --profile --json > stats.json"
     },
     "devDependencies": {
         "babel-core": "^6.26",
