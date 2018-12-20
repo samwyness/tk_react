@@ -26,9 +26,10 @@
         "react-dom": "^16.4.1",
         "react-router-dom": "^4.3.1",
         "style-loader": "^0.21.0",
+        "uglifyjs-webpack-plugin": "^2.0.1",
+        "url-loader": "^1.1.2",
         "webpack": "^4.20.2",
         "webpack-cli": "^3.1.1",
-        "webpack-dev-server": "^3.1.4",
         "webpack-merge": "^4.1.2"
     },
     "author": "",
