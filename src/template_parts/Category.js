@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import SectionHero from './components/SectionHero';
-import SectionPosts from './components/SectionPosts';
+import SectionCustom from './components/SectionCustom';
 
 export default class Category extends Component {
     render() {
@@ -9,22 +9,17 @@ export default class Category extends Component {
             <div className="tk-content">
 
                 <SectionHero
-                    bg_class="tk-hot"
+                    hero_class="tk-hot"
                     title="Category Template"
                     link_to="/"
                     link_text="Back Home"
                 />
 
-                <section>
-                    <div className="container">
-
-                        <h1 style={ {textTransform: 'uppercase'} }>Category</h1>
-                        <span className="tk-title-underline"></span>
-
-                        <SectionPosts/>
-                        
-                    </div>
-                </section>
+                <SectionCustom
+                    title="Recent Posts"
+                >
+                    <ContentPosts/>
+                </SectionCustom>
 
             </div>
         );
