@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import tk from '../include/tk_scripts';
 
 import SectionHero from './components/SectionHero';
-import SectionPosts from './components/SectionPosts';
+import SectionCustom from './components/SectionCustom';
+import ContentPosts from './components/ContentPosts';
 
 export default class FrontPage extends Component {
 
@@ -24,37 +25,30 @@ export default class FrontPage extends Component {
     }
 
     render() {
-        let page_content = ( this.state.page_data.content ) ? this.state.page_data.content.rendered : false;
+        let page_data = this.state.page_data || false;
+        let page_content = ( page_data.content ) ? page_data.content.rendered : false;
+        let feature_image_src = ( page_data.content ) ? page_data.featured_media_src : false;
 
         return (
             <div className="tk-content">
 
                 <SectionHero
+                    hero_class="tk-dark"
                     title="tk_react"
                     text="A WordPress + React starter theme."
                 />
 
-                <section>
-                    <div className="container">
+                <SectionCustom
+                    title="Front Page Content"
+                >
+                    <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
+                </SectionCustom>
 
-                        <h1 style={ { textTransform: 'uppercase' } }>Front Page <span className="tk-hot-title">Content</span></h1>
-                        <span className="tk-title-underline"></span>
-
-                        <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
-
-                    </div>
-                </section>
-
-                <section>
-                    <div className="container">
-
-                        <h1 style={ { textTransform: 'uppercase' } }>Recent <span className="tk-hot-title">Posts</span></h1>
-                        <span className="tk-title-underline"></span>
-
-                        <SectionPosts/>
-
-                    </div>
-                </section>
+                <SectionCustom
+                    title="Recent Posts"
+                >
+                    <ContentPosts/>
+                </SectionCustom>
 
             </div>
         );
