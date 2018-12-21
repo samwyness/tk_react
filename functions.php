@@ -46,11 +46,11 @@ function tk_theme_setup() {
 add_action( 'wp_enqueue_scripts', 'tk_enqueue_scripts' );
 function tk_enqueue_scripts() {
 	// Theme css files.
-	wp_enqueue_style( 'tk_react-styles', get_theme_file_uri( '/src/css/critical.css' ), '1.0', true );
+	wp_enqueue_style( 'tk_react-styles', get_theme_file_uri( '/dist/style.css' ), '1.0', true );
 	wp_enqueue_style( 'bootstrap-grid', get_theme_file_uri( '/assets/bootstrap/bootstrap-grid.min.css' ));
 
 	// Theme js files.
-	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( '/tkr.bundle.js' ), array(), '1.0', true );
+	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( 'dist/bundle.js' ), array(), '1.0', true );
 }
 
 
