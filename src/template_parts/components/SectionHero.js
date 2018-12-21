@@ -12,29 +12,31 @@ export default class SectionHero extends Component {
 
         let feature_img_src = ( this.props.feature_img_src ) ? this.props.feature_img_src : false;
 
-        let bg_class = ( this.props.bg_class ) ? this.props.bg_class : '';
+        let hero_class = ( this.props.hero_class ) ? this.props.hero_class : '';
+
+        if ( feature_img_src ) {
+            hero_class += ' tk-has-feature-img'
+        }
 
         return (
-            <section className={ 'tk-section-hero ' + bg_class }>
+            <section className={ 'tk-section-hero ' + hero_class }>
                 <div className="container">
-                    <div className="row align-items-center">
+                    <div className="row">
 
-                        <div className="col-12 col-xl-9">
-                            <header className="tk-section-header">
-                                <h1 className="tk-section-title" dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( title ) }></h1>
+                        <header className="tk-section-header col-12 col-xl-9">
+                            <h1 className="tk-section-title" dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( title ) }></h1>
 
-                                { ( text ) &&
-                                    <h3 className="tk-section-info" dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( text ) }></h3>
-                                }
+                            { ( text ) &&
+                                <h3 className="tk-section-info" dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( text ) }></h3>
+                            }
 
-                                { ( link_to ) &&
-                                    <Link className="tk-btn tk-btn-lg" to={ link_to }>{ link_text }</Link>
-                                }
-                            </header>
-                        </div>
+                            { ( link_to ) &&
+                                <Link className="tk-btn tk-btn-lg" to={ link_to }>{ link_text }</Link>
+                            }
+                        </header>
 
                         { ( feature_img_src ) &&
-                            <div key={ 'hero_feature_img' } className="tk-feature-img">
+                            <div key={ 'hero_feature_img' } className="tk-feature-img col-12">
                                 <img src={ feature_img_src } className="object-cover align-left" />
                                 <div className="shine"></div>
                             </div>
