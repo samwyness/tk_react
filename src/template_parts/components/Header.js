@@ -44,7 +44,7 @@ export default class Header extends Component {
                     { ( logo_src ) &&
                         <div className="tk-nav-logo">
                             <Link to="/">
-                                <img src={ logo_src } className="inverted" />
+                                <img src={ logo_src } className="inverted" alt={ logo_src } />
                             </Link>
                         </div>
                     }

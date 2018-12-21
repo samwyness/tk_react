@@ -37,7 +37,7 @@ export default class SectionHero extends Component {
 
                         { ( feature_img_src ) &&
                             <div key={ 'hero_feature_img' } className="tk-feature-img col-12">
-                                <img src={ feature_img_src } className="object-cover align-left" />
+                                <img src={ feature_img_src } className="object-cover align-left" alt={ feature_img_src } />
                                 <div className="shine"></div>
                             </div>
                         }

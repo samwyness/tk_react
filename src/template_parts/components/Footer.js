@@ -13,7 +13,7 @@ const Footer = () => (
                     { ( logo_src ) &&
                         <div className="tk-nav-logo">
                             <Link to="/">
-                                <img src={ logo_src } className="" />
+                                <img src={ logo_src } className="" alt={ logo_src } />
                             </Link>
                         </div>
                     }

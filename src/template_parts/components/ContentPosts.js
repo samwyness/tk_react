@@ -28,7 +28,7 @@ export default class ContentPosts extends Component {
                     <div key={ index } className="col-12 col-md-6 col-lg-4">
                         <div className="tk-post" ref={ this.post_card }>
                             <div className="tk-post-feature-img">
-                                <img src={ post.featured_media_src || '' } className="object-cover" />
+                                <img src={ post.featured_media_src || '' } className="object-cover" alt={ post.featured_media_src } />
                             </div>
 
                             <header className="tk-post-header">
