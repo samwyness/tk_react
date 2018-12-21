@@ -35,13 +35,15 @@ export default class Menu extends Component {
         ];
 
         return (
-            <ul className={ menu_classes.join(' ') }>
-                { this.state.menu.map( ( item, index ) => (
-                    <li key={ index }>
-                        <NavLink className="tk-btn" exact to={ tk.tools.trimUrlBase( item.url ) }>{ item.title }</NavLink>
-                    </li>
-                ) ) }
-            </ul>
+            <nav className={ menu_classes.join(' ') }>
+                <ul>
+                    { this.state.menu.map( ( item, index ) => (
+                        <li key={ index }>
+                            <NavLink className="tk-btn" exact to={ tk.tools.trimUrlBase( item.url ) }>{ item.title }</NavLink>
+                        </li>
+                    ) ) }
+                </ul>
+            </nav>
         );
     }
 };
