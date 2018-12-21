@@ -58,7 +58,7 @@ export default class Page extends Component {
             <div className="tk-content">
 
                 <SectionHero
-                    bg_class="tk-dark"
+                    hero_class="tk-dark"
                     title={ page_title }
                 />
 
