@@ -35,14 +35,10 @@ module.exports = merge(common, {
             automaticNameDelimiter: '~',
             name: true,
             cacheGroups: {
-                vendors: {
+                commons: {
                     test: /[\\/]node_modules[\\/]/,
-                    priority: -10
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
+                    name: 'vendors',
+                    chunks: 'all'
                 }
             }
         }
