@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
 import tk from './include/tk_scripts';
+import Header from './template_parts/components/Header';
+import Footer from './template_parts/components/Footer';
 
 import FrontPage from './template_parts/FrontPage';
 import Blog from './template_parts/Blog';
@@ -51,35 +53,41 @@ class PageRouter extends Component {
     render() {
         let home_page_id = tk.tools.trimUrlBase( __TK__.settings.home_page );
         let Home = ( home_page_id === '0' ) ? Blog : FrontPage;
-
+        
         return (
-            <Switch>
-                {/* Index */}
-                <Route exact path="/" component={ Home }/>
+            <div className="tk-site-wrap">
+                <Header location={ this.props.location.pathname }/>
 
-                {/* Auth routes */}
+                <Switch>
+                    {/* Index */}
+                    <Route exact path="/" component={ Home }/>
 
-                {/* Custom routes */}
-                <Route path="/blog/" component={ Blog }/>
+                    {/* Auth routes */}
 
-                {/* Wordpress default routes */}
-                <Route path="/page/:pageNum" component={ Page }/>
-                <Route path="/search/:term" component={ Search }/>
+                    {/* Custom routes */}
+                    <Route path="/blog/" component={ Blog }/>
 
-                {/* Category and tag routes */}
-                <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
-                <Route path="/category/:parent/:slug/" component={ Category }/>
-                <Route path="/category/:slug/page/:pageNum" component={ Category }/>
-                <Route path="/category/:slug/" component={ Category }/>
-                <Route path="/tag/:slug" component={ Tag }/>
-                <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
+                    {/* Wordpress default routes */}
+                    <Route path="/page/:pageNum" component={ Page }/>
+                    <Route path="/search/:term" component={ Search }/>
 
-                {/* Posts */}
-                <Route path={ this.getPermalinkStructure() } component={ Single }/>
+                    {/* Category and tag routes */}
+                    <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
+                    <Route path="/category/:parent/:slug/" component={ Category }/>
+                    <Route path="/category/:slug/page/:pageNum" component={ Category }/>
+                    <Route path="/category/:slug/" component={ Category }/>
+                    <Route path="/tag/:slug" component={ Tag }/>
+                    <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
 
-                {/* Pages */}
-                <Route path="/:slug" component={ Page }/>
-            </Switch>
+                    {/* Posts */}
+                    <Route path={ this.getPermalinkStructure() } component={ Single }/>
+
+                    {/* Pages */}
+                    <Route path="/:slug" component={ Page }/>
+                </Switch>
+
+                <Footer/>
+            </div>
         );
     }
 }
