@@ -301,6 +301,42 @@ a.tk-btn.tk-btn-link:hover {
     border-bottom-color: #FFF;
 }
 
+/*--------------------------------
+    Slide Navigation
+--------------------------------*/
+.tk-slide-nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #2c3237;
+    box-shadow: 0 -3px 17px rgba(0,0,0,0.34);
+    transform: translate3d(0,210%,0);
+    transition: transform 0.14s ease-in;
+    overflow-y: auto;
+}
+.tk-slide-nav.open {
+    transform: translate3d(0,100%,0);
+}
+.tk-slide-nav nav.tk-menu-top-nav-menu {
+    display: block;
+    margin-top: 15px;
+}
+.tk-slide-nav nav li,
+.tk-slide-nav nav a.tk-btn {
+    display: block;
+    width: 100%;
+}
+.tk-slide-nav nav a.tk-btn {
+
+}
+.tk-slide-nav nav a.tk-btn.active {
+    background: #222;
+    border: none;
+}
+
 
 /*--------------------------------
     Layout
@@ -502,6 +538,10 @@ section.tk-section-hero.tk-has-feature-img {
     /* Header */
     .tk-top-nav nav.tk-menu-top-nav-menu  {
         display: inline-block;
+    }
+    .tk-slide-nav,
+    .tk-top-nav .tk-btn.tk-menu-btn {
+        display: none;
     }
 
     /* Content */
