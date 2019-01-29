@@ -400,6 +400,7 @@ section .tk-section-footer {
 }
 .tk-section-posts .tk-post-feature-img {
     height: 220px;
+    background: #e1e2e3;
 }
 
 .tk-section-posts .tk-post-header,
