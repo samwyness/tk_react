@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
+import tk from './include/tk_scripts';
+import Header from './template_parts/components/Header';
+import Footer from './template_parts/components/Footer';
+
 import FrontPage from './template_parts/FrontPage';
 import Blog from './template_parts/Blog';
 import Page from './template_parts/Page';
@@ -13,21 +17,9 @@ class PageRouter extends Component {
 
     componentDidUpdate(prevProps) {
         // Handle the scroll restoration on change
-        // TODO: handle hashes
         if (this.props.location !== prevProps.location) {
             window.scrollTo(0, 0);
         }
-    }
-
-    // Helpers
-    trimUrlOrigin( url ) {
-        if (url === window.location.origin) {
-            url = '/';
-        } else {
-            url = url.replace( window.location.origin, '' );
-        }
-
-        return url;
     }
 
     getPermalinkStructure() {
@@ -35,7 +27,6 @@ class PageRouter extends Component {
 
         switch (__TK__.settings.permalinks) {
             case '': // Plain
-                // TODO: Remove this option from permalink settings page?
                 output = "/:id";
                 break;
 
@@ -52,8 +43,6 @@ class PageRouter extends Component {
                 break;
 
             case '/%postname%/': // Post name
-                // TODO: Currently catches all routes and renders to single
-                // possibyl we need look for post type decide
                 output = "/:slug";
                 break;
         }
@@ -62,35 +51,43 @@ class PageRouter extends Component {
     }
 
     render() {
-        let home_path = this.trimUrlOrigin( __TK__.urls.base );
-        let home_component = ( home_path ) ? FrontPage : Blog;
-
+        let home_page_id = tk.tools.trimUrlBase( __TK__.settings.home_page );
+        let Home = ( home_page_id === '0' ) ? Blog : FrontPage;
+        
         return (
-            <Switch>
-                {/* Index */}
-                <Route exact path="/" component={ home_component }/>
+            <div className="tk-site-wrap">
+                <Header location={ this.props.location.pathname }/>
 
-                {/* Wordpress default routes */}
-                <Route path="/page/:pageNum" component={ Page }/>
-                <Route path="/search/:term" component={ Search }/>
+                <Switch>
+                    {/* Index */}
+                    <Route exact path="/" component={ Home }/>
 
-                {/* Category and tag routes */}
-                <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
-                <Route path="/category/:parent/:slug/" component={ Category }/>
-                <Route path="/category/:slug/page/:pageNum" component={ Category }/>
-                <Route path="/category/:slug/" component={ Category }/>
-                <Route path="/tag/:slug" component={ Tag }/>
-                <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
+                    {/* Auth routes */}
 
-                {/* Custom routes */}
-                <Route path="/blog/" component={ Blog }/>
+                    {/* Custom routes */}
+                    <Route path="/blog/" component={ Blog }/>
 
-                {/* Posts */}
-                <Route path={ this.getPermalinkStructure() } component={ Single }/>
+                    {/* Wordpress default routes */}
+                    <Route path="/page/:pageNum" component={ Page }/>
+                    <Route path="/search/:term" component={ Search }/>
 
-                {/* Catch all */}
-                <Route path="*" component={ Page }/>
-            </Switch>
+                    {/* Category and tag routes */}
+                    <Route path="/category/:parent/:slug/page/:pageNum" component={ Category }/>
+                    <Route path="/category/:parent/:slug/" component={ Category }/>
+                    <Route path="/category/:slug/page/:pageNum" component={ Category }/>
+                    <Route path="/category/:slug/" component={ Category }/>
+                    <Route path="/tag/:slug" component={ Tag }/>
+                    <Route path="/tag/:slug/page/:pageNum" component={ Tag }/>
+
+                    {/* Posts */}
+                    <Route path={ this.getPermalinkStructure() } component={ Single }/>
+
+                    {/* Pages */}
+                    <Route path="/:slug" component={ Page }/>
+                </Switch>
+
+                <Footer/>
+            </div>
         );
     }
 }

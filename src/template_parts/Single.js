@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import tk from '../include/tk_scripts';
 
-import Splash from './components/Splash';
+import SectionHero from './components/SectionHero';
+import SectionCustom from './components/SectionCustom';
 
 export default class Single extends Component {
 
@@ -12,53 +14,36 @@ export default class Single extends Component {
     }
 
     componentDidMount() {
+        this.fetchPostData();
+    }
+
+    fetchPostData() {
         let post_slug = this.props.match.params.slug;
 
-        fetch( __TK__.urls.wp_api + '/posts/?slug=' + post_slug )
-        .then( response => response.json() )
-        .then( json => {
+        tk.api.posts.fetchPostBySlug( post_slug ).then( response => {
             this.setState( {
-                post_data: json[0] || false
+                post_data: response[0]
             } );
-        } )
-        .catch( error => { console.log( error ) } );
-    }
-
-    shouldComponentUpdate( nextProps, nextState ) {
-        if (!nextState.post_data) {
-            this.setState( {
-                post_data: {
-                    title: { rendered: 'Single Post Template' }
-                }
-            } );
-
-            return false;
-        }
-
-        return true;
-    }
-
-    createPageContentMarkup() {
-        let content = (this.state.post_data.content) ? this.state.post_data.content.rendered : '<p><i>No Posts found...</i></p>';
-        return {__html: content};
+        } );
     }
 
     render() {
         let post_data = this.state.post_data || false;
-        let post_title = (post_data) ? post_data.title.rendered : false;
+        let post_title = ( post_data.title ) ? post_data.title.rendered : 'Loading..';
+        let post_content = ( post_data.content ) ? post_data.content.rendered : '...';
+        let featured_media_src = ( post_data.featured_media_src ) ? post_data.featured_media_src : false;
 
         return (
             <div className="tk-content">
 
-                <Splash
-                    title={post_title}
+                <SectionHero
+                    title={ post_title }
+                    feature_img_src={ featured_media_src }
                 />
 
-                <div className="container">
-
-                    <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
-
-                </div>
+                <SectionCustom>
+                    <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( post_content ) }></div>
+                </SectionCustom>
 
             </div>
         );

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
-import Splash from './components/Splash';
-import PostsList from './components/PostsList';
+import tk from '../include/tk_scripts';
+
+import SectionHero from './components/SectionHero';
+import SectionCustom from './components/SectionCustom';
+import ContentPosts from './components/ContentPosts';
 
 export default class FrontPage extends Component {
 
@@ -13,51 +16,39 @@ export default class FrontPage extends Component {
     }
 
     componentDidMount() {
-        // TODO: Move this fetch to index.js and handle page slug dynamically
-        //       then we can pass page data down as props.
-        fetch( __TK__.urls.wp_api + '/pages/' + __TK__.settings.home_page )
-        .then( response => response.json() )
-        .then( json => {
+        tk.api.pages.fetchPageById( __TK__.settings.home_page )
+        .then( response => {
             this.setState( {
-                page_data: json
+                page_data: response
             } );
-        } )
-        .catch( error => { console.log( error ) } );
-    }
-
-    createPageContentMarkup() {
-        const content = (this.state.page_data) ? this.state.page_data.content.rendered : 'Loading...';
-        return {__html: content};
+        } );
     }
 
     render() {
+        let page_data = this.state.page_data || false;
+        let page_content = ( page_data.content ) ? page_data.content.rendered : false;
+        let feature_image_src = ( page_data.content ) ? page_data.featured_media_src : false;
+
         return (
             <div className="tk-content">
 
-                <Splash
+                <SectionHero
+                    hero_class="tk-dark"
                     title="tk_react"
                     text="A WordPress + React starter theme."
-                    link_to="/blog"
-                    link_text="Check Out Your Blog"
                 />
 
-                <section className="container">
+                <SectionCustom
+                    title="Front Page Content"
+                >
+                    <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
+                </SectionCustom>
 
-                    <h1 style={ {textTransform: 'uppercase'} }>Front Page <span className="tk-hot-title">Content</span></h1>
-                    <span className="tk-title-underline"></span>
-
-                    <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
-
-                </section>
-
-                <section className="container">
-
-                    <h1 style={ {textTransform: 'uppercase'} }>Recent <span className="tk-hot-title">Posts</span></h1>
-                    <span className="tk-title-underline"></span>
-
-                    <PostsList/>
-
-                </section>
+                <SectionCustom
+                    title="Recent Posts"
+                >
+                    <ContentPosts/>
+                </SectionCustom>
 
             </div>
         );

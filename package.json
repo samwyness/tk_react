@@ -5,8 +5,9 @@
     "private": true,
     "sideEffects": false,
     "scripts": {
-        "start": "webpack --mode development --config webpack.dev.js",
-        "tk_build": "webpack --mode production --config webpack.prod.js"
+        "start": "webpack --config webpack.dev.js",
+        "tk_build": "webpack --config webpack.prod.js",
+        "tk_stats": "webpack --config webpack.prod.js --profile --json > stats.json"
     },
     "devDependencies": {
         "babel-core": "^6.26",
@@ -21,15 +22,19 @@
         "eslint-loader": "^2.0.0",
         "eslint-plugin-react": "^7.9.1",
         "file-loader": "^1.1.11",
+        "mini-css-extract-plugin": "^0.5.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-router-dom": "^4.3.1",
         "style-loader": "^0.21.0",
-        "webpack": "^4.7.0",
-        "webpack-cli": "^2.1.2",
-        "webpack-dev-server": "^3.1.4",
+        "uglifyjs-webpack-plugin": "^2.0.1",
+        "url-loader": "^1.1.2",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.1",
         "webpack-merge": "^4.1.2"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {}
 }

@@ -1,68 +1,76 @@
 import React, { Component } from 'react';
 
-import Splash from './components/Splash';
+import tk from '../include/tk_scripts';
+
+import SectionHero from './components/SectionHero';
 
 export default class Page extends Component {
-  constructor( props ) {
-      super( props )
-      this.state = {
-          page_data: false
-      }
-  }
+    constructor( props ) {
+        super( props )
+        this.state = {
+            page_data: false,
+            loading: false
+        }
+    }
 
-  componentDidMount() {
-      // TODO: Move this fetch to index.js and handle post slug dynamically
-      //       then we can pass page data down as props.
-      let page_slug = this.props.location.pathname;
+    componentDidMount() {
+        return this.fetchPageData();
+    }
 
-      fetch( __TK__.urls.wp_api + '/pages?slug=' + page_slug )
-      .then( response => response.json() )
-      .then( json => {
-          this.setState( {
-              page_data: json[0] || false
-          } );
-      } )
-      .catch( error => { console.log( error ) } );
-  }
+    componentDidUpdate( prevProps, prevState ) {
+        let prev_slug = prevProps.match.params.slug;
+        let current_slug = this.props.match.params.slug;
 
-  shouldComponentUpdate( nextProps, nextState ) {
-      if (!nextState.page_data) {
-          this.setState( {
-              page_data: {
-                  title: { rendered: 'Page Template' }
-              }
-          } );
+        if (prev_slug !== current_slug) {
+            return this.fetchPageData();
+        }
 
-          return false;
-      }
+        return false;
+    }
 
-      return true;
-  }
+    fetchPageData() {
+        let page_slug = this.props.match.params.slug;
 
-  createPageContentMarkup() {
-      let content = (this.state.page_data.content) ? this.state.page_data.content.rendered : '';
-      return {__html: content};
-  }
+        this.setState( {
+            loading: true
+        } );
 
-  render() {
-      let page_data = this.state.page_data || false;
-      let page_title = (page_data) ? page_data.title.rendered : false;
+        tk.api.pages.fetchPageBySlug( page_slug )
+        .then( response => {
+            this.setState( {
+                page_data: response[0],
+                loading: false
+            } );
+        } );
+    }
 
-      return (
-          <div className="tk-content">
+    render() {
+        let page_data = this.state.page_data || false;
+        let page_title = (page_data.title) ? page_data.title.rendered : false;
+        let page_content = (page_data.content) ? page_data.content.rendered : false;
+        let loading = (this.state.loading) ? 'Loading...' : false;
 
-              <Splash
-                  bg_class="tk-hot"
-                  title={page_title}
-              />
+        if (loading) {
+            page_title = loading;
+        }
 
-              <div className="container">
+        return (
+            <div className="tk-content">
 
-                  <div dangerouslySetInnerHTML={this.createPageContentMarkup()}></div>
+                <SectionHero
+                    hero_class="tk-dark"
+                    title={ page_title }
+                />
 
-              </div>
+                <section>
+                    <div className="container">
 
-          </div>
-      );
-  }
+                        <div dangerouslySetInnerHTML={ tk.tools.createHTMLMarkup( page_content ) }></div>
+
+                    </div>
+                </section>
+
+            </div>
+        );
+    }
 }
