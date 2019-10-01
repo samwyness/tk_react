@@ -10,7 +10,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 	/**
 	 * TKR REST Pages class.
 	 *
-	 * @package TKR_API
+	 * @package API
 	 * @since 1.0.0
 	 */
 	class TKR_REST_Menus_Controller extends TKR_REST_Controller {
@@ -106,6 +106,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 			}
 
 			$menu_obj = wp_get_nav_menu_object( $theme_locations[$location] );
+			
 			if ( !isset( $menu_obj->term_id ) ) {
 				return rest_ensure_response( array() );
 			}

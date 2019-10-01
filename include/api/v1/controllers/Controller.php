@@ -5,18 +5,16 @@
  * Description: Extends TKR API with WordPress post routes.
  *
  */
-
-if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
+if ( ! class_exists( 'TKR_REST_Controller' ) ) :
 	/**
 	 * TKR REST Posts class.
 	 *
-	 * @package TKR_API
+	 * @package API
 	 * @since 1.0.0
 	 */
 	class TKR_REST_Controller extends WP_REST_Controller {
-
 		protected $controller = null;
-
+		
 		/**
 	     * Constructor.
 	     *
@@ -39,8 +37,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 		    // }
 		    return true;
 		}
-
-
+		
 		/**
 		 * Prepare a response for inserting into a collection of responses.
 		 *
@@ -50,22 +47,25 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 		public function prepare_response_for_collection( $response ) {
 		    if ( ! ( $response instanceof WP_REST_Response ) ) {
 		        return $response;
-		    }
-
-		    $data = (array) $response->get_data();
-
+			}
+			
+			$data = (array) $response->get_data();
+			
 		    return $data;
 		}
-
-
-		// Sets up the proper HTTP status code for authorization.
+		
+		/**
+		 * Sets up the proper HTTP status code for authorization.
+		 *
+		 * @return int HTTP status code for authorization
+		 */
 		public function authorization_status_code() {
 		    $status = 401;
-
-		    if ( is_user_logged_in() ) {
+			
+			if ( is_user_logged_in() ) {
 		        $status = 403;
-		    }
-
+			}
+			
 		    return $status;
 		}
 	}

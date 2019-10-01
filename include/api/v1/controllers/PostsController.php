@@ -2,13 +2,12 @@
 /**
  * TKR REST API Custom Posts routes
  *
- * Description: Extends TKR API with WordPress post routes.
- *
+ * Extends TKR API with WordPress post routes.
  */
 
 if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 	/**
-	 * TKR REST Posts class.
+	 * TKR REST Multi class.
 	 *
 	 * @package TKR_API
 	 * @since 1.0.0
@@ -44,7 +43,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 		/**
 		 * Get all posts
 		 *
-		 * @param WP_REST_Request $request Current request.
+		 * @param WP_REST_Request $request - Current request
 		 * @return array All published posts
 		 */
 		public function get_items( $request ) {
@@ -78,7 +77,6 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 
 		    return rest_ensure_response( $collection );
 		}
-
 
 		/**
 		 * Get a single post

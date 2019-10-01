@@ -1,7 +1,7 @@
 <?php
 /**
  * TKR REST API
- * Description: A custom Wordpress API for tk_react.
+ * Description: A custom Wordpress API for wp-react-resume.
  *
  * Version:     1.0.0
  *
@@ -9,7 +9,6 @@
  * Author URI:  https://github.com/samwyness
  *
  */
-
 class TKR_REST_API extends WP_REST_Controller {
     const VERSION = '1.0.0';
 
@@ -18,6 +17,7 @@ class TKR_REST_API extends WP_REST_Controller {
         require_once "controllers/MenusController.php";
         require_once "controllers/PagesController.php";
         require_once "controllers/PostsController.php";
+        }
     }
 
     public function init() {
@@ -26,7 +26,7 @@ class TKR_REST_API extends WP_REST_Controller {
     }
 
     public function create_rest_routes() {
-    	// Menus.
+    	// Menus
     	$controller = new TKR_REST_Menus_Controller;
     	$controller->register_routes();
 
@@ -34,7 +34,7 @@ class TKR_REST_API extends WP_REST_Controller {
     	$controller = new TKR_REST_Pages_Controller;
     	$controller->register_routes();
 
-    	// Posts.
+    	// Posts
     	$controller = new TKR_REST_Posts_Controller;
     	$controller->register_routes();
     }
@@ -63,10 +63,7 @@ add_action('rest_api_init', function() {
     $tkr_api->init();
 });
 
-
-
 // NOTE: These functions may need to be moved to a new controller
-
 /*
  *
  * Add feature image to wp rest
@@ -89,6 +86,6 @@ function get_rest_featured_image( $object, $field_name, $request ) {
         $img = wp_get_attachment_image_src( $object['featured_media'], 'app-thumb' );
         return $img[0];
     }
-
+    
     return false;
 }
