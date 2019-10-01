@@ -9,9 +9,8 @@
  * go full React comment them out.
  *
  */
-
 get_header(); ?>
 
-    <div id="App"></div>
+    <div id="root"></div>
 
-<?php get_footer(); ?>
+<?php get_footer(); ?>
