@@ -1,12 +1,12 @@
 const path = require('path');
 
 module.exports = {
-    theme_name: 'tk_react',
-    proxy_target: 'http://tk-react.local', // Point to where your wordpress install is served i.e 'http://localhost:8080'
-    api: 'http://tk-react.local/wp-json/tkr/v1/',
-    paths: {
-        base: path.resolve(__dirname),
-        src: path.resolve(__dirname, 'src'),
-        dist: path.resolve(__dirname, 'dist')
-    }
+	paths: {
+		root: path.resolve(__dirname),
+		dist: path.resolve(__dirname, 'dist'),
+		src: path.resolve(__dirname, 'src'),
+		assets: path.resolve(__dirname, 'src/assets'),
+		css: path.resolve(__dirname, 'src/css'),
+		components: path.resolve(__dirname, 'src/assets'),
+	}
 };
