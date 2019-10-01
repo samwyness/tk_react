@@ -128,8 +128,8 @@ function tk_react_header_script() {
  */
 add_action('wp_enqueue_scripts', 'tk_react_add_google_fonts', 0 );
 function tk_react_add_google_fonts() {
-	// wp_register_style( 'tk-google-fonts-roboto', 'https://fonts.googleapis.com/css?family=Roboto:400,700' );
-	// wp_enqueue_style( 'tk-google-fonts-roboto' );
+    wp_register_style( 'tk_react-google-fonts-roboto', 'https://fonts.googleapis.com/css?family=Roboto:400,900' );
+    wp_enqueue_style( 'tk_react-google-fonts-roboto' );
 }
 
 /*
