@@ -1,9 +1,10 @@
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-module.exports = merge(common, {
-    mode: 'development',
-    watch: true,
-    devtool: 'inline-source-map'
-});
+const config = {
+	mode: 'development',
+	devtool: 'inline-source-map',
+	watch: true,
+};
+
+module.exports = merge(common, config);
