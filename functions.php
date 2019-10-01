@@ -87,13 +87,18 @@ function tk_react_header_script() {
 		$logo_url = wp_get_attachment_image_src( $logo_id , 'full' )[0];
 	}
     
+    $custom_post_types = get_post_types( array(
+		'public'   => true,
+ 	   '_builtin' => false
+	), 'objects', 'and' );
+    
     // Create the script
 	$var = '__tkr__';
 	$data = json_encode( array(
 		'urls' => array(
 			'base' => 				get_option( 'home' ),
 			'wp_api' => 			esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
-			'tkr_api' => 			esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
+			'tkr_api' =>			esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
 		),
 		'settings' => array(
 			'theme' => array(
@@ -106,7 +111,9 @@ function tk_react_header_script() {
 			'blog_page_slug' => 	$blog_page_url,
 			'site_logo' => 			$logo_url,
 			'permalinks' => 		get_option( 'permalink_structure' ),
+			'custom_post_types' => 	$custom_post_types,
 			'default_category' => 	get_option( 'default_category' ),
+			'categories' => 		get_categories(),
 			'template' => 			get_option( 'template' ),
 			'nonce' => 				wp_create_nonce( 'wp_rest' ),
 			'is_logged_in' => 		is_user_logged_in(),
