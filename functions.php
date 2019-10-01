@@ -65,6 +65,8 @@ function tk_react_enqueue_scripts() {
  */
 add_action( 'wp_head', 'tk_react_header_script', 1 );
 function tk_react_header_script() {
+	$theme = wp_get_theme();
+    
     // Front Page Settings
 	$page_on_front = get_option( 'page_on_front' );
 	$page_for_posts = get_option( 'page_for_posts' );
@@ -94,7 +96,11 @@ function tk_react_header_script() {
 			'tkr_api' => 			esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
 		),
 		'settings' => array(
-			'home_page' => 			$page_on_front,
+			'theme' => array(
+				'name' => $theme->name,
+				'version' => $theme->version,
+			),
+			'home_page' => 			(int) $page_on_front,
 			'home_page_slug' => 	$home_page_url,
 			'blog_page' => 			$page_for_posts,
 			'blog_page_slug' => 	$blog_page_url,
