@@ -15,8 +15,12 @@ class TKR_REST_API extends WP_REST_Controller {
     public static function includes() {
         require_once "controllers/Controller.php";
         require_once "controllers/MenusController.php";
-        require_once "controllers/PagesController.php";
+        require_once "controllers/FormsController.php";
         require_once "controllers/PostsController.php";
+        
+        // Yoast extension
+        if ( defined( 'WPSEO_FILE' ) ) {
+            require_once "class-yoast-frontend.php";
         }
     }
 
@@ -28,33 +32,15 @@ class TKR_REST_API extends WP_REST_Controller {
     public function create_rest_routes() {
     	// Menus
     	$controller = new TKR_REST_Menus_Controller;
-    	$controller->register_routes();
-
-    	// Pages.
-    	$controller = new TKR_REST_Pages_Controller;
-    	$controller->register_routes();
+        $controller->register_routes();
+        
+        // Forms
+        $controller = new TKR_REST_Forms_Controller;
+        $controller->register_routes();
 
     	// Posts
     	$controller = new TKR_REST_Posts_Controller;
     	$controller->register_routes();
-    }
-
-    public function tkr_api_debug( $request ) {
-        $request_log = array();
-        $request_log['method'] = $request->get_method();
-        $request_log['headers'] = $request->get_headers();
-        $request_log['content_type'] = $request->get_content_type();
-        $request_log['params'] = $request->get_params();
-        $request_log['url_params'] = $request->get_url_params();
-        $request_log['query_params'] = $request->get_query_params();
-        $request_log['body_params'] = $request->get_body_params();
-        $request_log['file_params'] = $request->get_file_params();
-        $request_log['body'] = $request->get_body();
-        $request_log['json_params'] = $request->get_json_params();
-        $request_log['route'] = $request->get_route();
-        $request_log['attributes'] = $request->get_attributes();
-
-        return $request_log;
     }
 }
 
@@ -89,3 +75,32 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     
     return false;
 }
+
+/*
+ *
+ * Add support for showing blocks as parsed json in the rest api.
+ *
+ * This will add support for all post types including custom post types.
+ *
+ */
+function add_blocks_support_to_api() {
+	if ( ! function_exists( 'use_block_editor_for_post_type' ) ) {
+		require ABSPATH . 'wp-admin/includes/post.php';
+	}
+    
+    // Surface all Gutenberg blocks in the WordPress REST API
+	$post_types = get_post_types_by_support( ['editor'] );
+    
+    foreach ( $post_types as $post_type ) {
+		if ( use_block_editor_for_post_type( $post_type ) ) {
+			register_rest_field( $post_type, 'blocks',
+				array(
+					'get_callback' => function ( array $post ) {
+						return parse_blocks( $post['content']['raw'] );
+					},
+				)
+			);
+		}
+	}
+}
+add_action( 'rest_api_init', 'add_blocks_support_to_api' );

@@ -18,7 +18,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 	     * Constructor.
 	     */
 		public function __construct() {
-			$this->rest_base = 'posts';
+			$this->rest_base = 'multi';
 			parent::__construct();
 	    }
 
@@ -29,8 +29,9 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 					'callback'            => array( $this, 'get_items' ),
 					'permission_callback' => array( $this, 'get_item_permissions_check' ),
 				)
-			) );
-			register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+            ) );
+            
+			register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<slug>[\w\-]+)', array(
 				array(
 					'methods'  			  => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_item' ),
@@ -79,20 +80,27 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 		}
 
 		/**
-		 * Get a single post
+		 * Get a single post 
 		 *
 		 * @since  1.0.0
 		 * @return array The published post
 		 */
 		public function get_item( $request ) {
-			$id = (int) $request['id'];
-		    $post = get_post( $id );
+			$slug = $request['slug'];
+			
+			$args = array(
+				'post_type' => 'any',
+				'name' => $slug,
+			);
+			
+			$post_query = new WP_Query();
+			$result = $post_query->query( $args );
 
-		    if ( empty( $post ) ) {
+		    if ( empty( $result ) ) {
 		        return rest_ensure_response( array() );
 		    }
 
-		    $response = $this->prepare_item_for_response( $post );
+		    $response = $this->prepare_item_for_response( $result[0], $request );
 
 		    return $response;
 		}
@@ -107,23 +115,48 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 			$post = $post_obj;
 			setup_postdata( $post );
 
-		    $post_data = array();
+			$post_id = $post_obj->ID;
+			$post_data = array();
+			
+			// Yoast extension
+			$yoast_meta = array();
+			if ( defined( 'WPSEO_FILE' ) ) {
+				$yoast_frontend = parent::yoast_to_rest();
+				$yoast_meta = $yoast_frontend->wp_api_encode_yoast( $post_id );
+			}
 
-			$post_data['id'] = get_the_ID();
+			$post_data['id'] = $post_id;
 			$post_data['slug'] = $post->post_name;
 			$post_data['link'] = get_the_permalink();
+			$post_data['post_type'] = get_post_type();
 			$post_data['title'] = get_the_title();
-			$post_data['date'] = $post->post_date;
-			$post_data['date_gmt'] = $post->post_date_gmt;
-			$post_data['author'] = get_the_author_meta( 'display_name' );
 			$post_data['content'] = apply_filters( 'the_content', get_the_content() );
 			$post_data['excerpt'] = apply_filters( 'the_excerpt', get_the_excerpt() );
-			$post_data['featured_media_src'] = get_the_post_thumbnail_url();
+			// $post_data['blocks'] = parse_blocks( $post_obj->post_content );
+			$post_data['categories'] = get_the_category( $post_id );
+			$post_data['date'] = $post->post_date;
+			$post_data['date_gmt'] = $post->post_date_gmt;
+			$post_data['yoast_meta'] = $yoast_meta;
+			$post_data['author'] = array(
+				'display_name' 	=> get_the_author_meta( 'display_name' ),
+				'avatar_src' 	=> get_avatar_url( get_the_author_meta( 'ID' ), array( 'gravatar_default' ) ),
+			);
+			$post_data['featured_media'] = array(
+				'sizes' => array(
+					'full' => get_the_post_thumbnail_url( $post_id, 'full' ),
+					'large' => get_the_post_thumbnail_url( $post_id, 'large' ),
+					'medium' => get_the_post_thumbnail_url( $post_id, 'medium'),
+					'tkr-custom-thumbnail' => get_the_post_thumbnail_url( $post_id, 'tkr-custom-thumbnail' ),
+				),
+				'meta' => array(
+					'title' => get_the_title( get_post_thumbnail_id( $post_id ) ),
+					'alt' => get_the_post_thumbnail_caption( $post_id ),
+				)
+			);
 
 			wp_reset_postdata();
-
+			
 		    return rest_ensure_response( $post_data );
 		}
-
 	}
 endif;
