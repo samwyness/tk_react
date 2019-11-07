@@ -18,7 +18,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 	     * Constructor.
 	     */
 		public function __construct() {
-			$this->rest_base = 'multi';
+			$this->rest_base = 'posts';
 			parent::__construct();
 	    }
 
