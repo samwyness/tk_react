@@ -1,0 +1,39 @@
+// Colors
+$primary-color: #3f51b5; // #ff4351
+$primary-color-400: #757de8;
+$primary-color-600: #002984;
+
+$secondary-color: #039be5;
+$secondary-color-400: #63ccff;
+$secondary-color-600: #006db3;
+
+$black: #24292e;
+$white: #FFFFFF;
+$dark: #24292e;
+$grey: #e1e2e3;
+$light-grey: #F6f7f9;
+
+// Text
+$primary-color-text: #FFF;
+$secondary-color-text: #000;
+$light-grey-text: #757575;
+$dark-grey-text: #515151;
+
+$shadow: 0 2px 5px rgba(0,0,0,0.24);
+
+$border-color: $light-grey;
+
+
+// Media Queries
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;

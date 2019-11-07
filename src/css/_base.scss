@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #454545;
+
+    /* Adjust font size */
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    
+    /* Font variant */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    
+    /* Font Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    
+    /* Spacing */
+    letter-spacing: 0.02em;
+
+    /* Scrolling */
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    background-color: #FFFFFF;
+    color: #181818;
+
+    font-family: sans-serif;
+    line-height: normal;
+    font-size: 15px;
+    font-weight: normal;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/*--------------------------------
+    Typography
+--------------------------------*/
+h1, h2, h3 {
+    font-weight: inherit;
+}
+h1 { font-size: 2.4rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.4rem; }
+
+p, li, a {
+    font-size: 100%;
+    line-height: 1.6;
+    color: inherit;
+}
+
+input, textarea, select, button {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.6;
+    color: inherit;
+    letter-spacing: 0.04rem;
+}
+
+/*--------------------------------
+    Media
+--------------------------------*/
+img {
+    width: 100%;
+    height: auto;
+}
+img.object-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+img.inverted {
+    filter: invert(1);
+}
+svg {
+    width: 100%;
+}
+
+#tkr-svg-sprite {
+    display: none;
+}
+
+.tkr-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/*--------------------------------
+    Lists
+--------------------------------*/
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    &.list-style-none {
+        list-style: none;
+    }
+    
+    &.list-horizontal {
+        vertical-align: middle;
+
+        &.align-right {
+            li {
+                margin-right: 0;
+                margin-left: 14px;
+            }
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 14px;
+        }
+    }
+}
+
+/*--------------------------------
+    Links
+--------------------------------*/
+.stretched-link {
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        // Just in case `pointer-events: none` is set on a parent
+        pointer-events: auto;
+        content: "";
+        // IE10 bugfix, see https://stackoverflow.com/questions/16947967/ie10-hover-pseudo-class-doesnt-work-without-background-color
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+/*--------------------------------
+    Scrollbar
+--------------------------------*/
+::-webkit-scrollbar {
+    display: none;
+}
