@@ -112,6 +112,32 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 
 		    return $response;
 		}
+		
+		/**
+		 * Get a single post by it's ID
+		 *
+		 * @since  1.0.0
+		 * @return array The published post
+		 */
+		public function get_item_by_id( $request ) {
+			$ID = $request['id'];
+			
+			$args = array(
+				'post_type' => 'any',
+				'p' => $ID,
+			);
+			
+			$post_query = new WP_Query();
+			$result = $post_query->query( $args );
+
+		    if ( empty( $result ) ) {
+				return new WP_Error( 'rest_post_invalid_id', 'Invalid post ID.', array('status' => 404) );
+		    }
+
+		    $response = $this->prepare_item_for_response( $result[0], $request );
+
+		    return $response;
+		}
 
 		/**
 		 * Prepare post response.
