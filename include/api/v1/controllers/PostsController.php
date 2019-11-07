@@ -125,7 +125,8 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 
 			$post_id = $post_obj->ID;
 			$post_data = array();
-			
+			$feature_img_id = (int) get_post_thumbnail_id( $post_id );
+
 			// Yoast extension
 			$yoast_meta = array();
 			if ( defined( 'WPSEO_FILE' ) ) {
@@ -150,6 +151,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 				'avatar_src' 	=> get_avatar_url( get_the_author_meta( 'ID' ), array( 'gravatar_default' ) ),
 			);
 			$post_data['featured_media'] = array(
+				'id' => $feature_img_id !== 0 ? $feature_img_id : false,
 				'sizes' => array(
 					'full' => get_the_post_thumbnail_url( $post_id, 'full' ),
 					'large' => get_the_post_thumbnail_url( $post_id, 'large' ),
