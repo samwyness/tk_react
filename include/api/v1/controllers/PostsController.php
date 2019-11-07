@@ -105,7 +105,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 			$result = $post_query->query( $args );
 
 		    if ( empty( $result ) ) {
-		        return rest_ensure_response( array() );
+		        return new WP_Error( 'rest_post_invalid_slug', 'Invalid post slug.', array('status' => 404) );
 		    }
 
 		    $response = $this->prepare_item_for_response( $result[0], $request );
