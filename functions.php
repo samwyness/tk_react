@@ -159,6 +159,17 @@ add_filter( 'excerpt_length', function( $length ) {
 
 /*
  *
+ * Add svg styles for diplay in admin
+ *
+ */
+add_action('admin_head', 'custom_admin_head');
+function custom_admin_head() {
+	$css = 'td.media-icon img[src$=".svg"] { width: 100% !important; height: auto !important; }';
+	echo '<style type="text/css">'.$css.'</style>';
+}
+
+/*
+ *
  * Enable SVG support
  *
  */
