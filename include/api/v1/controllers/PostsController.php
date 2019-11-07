@@ -38,6 +38,14 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 					'permission_callback' => array( $this, 'get_item_permissions_check' ),
 				)
 			) );
+			
+			register_rest_route( $this->namespace, '/' . $this->rest_base . '/id/(?P<id>[\d]+)', array(
+				array(
+					'methods'  			  => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_item_by_id' ),
+					'permission_callback' => array( $this, 'get_item_permissions_check' ),
+				)
+			) );
 		}
 
 
