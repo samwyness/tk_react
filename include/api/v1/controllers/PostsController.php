@@ -88,7 +88,7 @@ if ( ! class_exists( 'TKR_REST_Posts_Controller' ) ) :
 		}
 
 		/**
-		 * Get a single post 
+		 * Get a single post by it's slug
 		 *
 		 * @since  1.0.0
 		 * @return array The published post
