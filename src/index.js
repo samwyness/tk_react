@@ -1,4 +1,8 @@
-console.log('%cApp started: entry point index.js', 'color: green;');
+// Polyfills
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import 'raf/polyfill';
+import 'whatwg-fetch';
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
