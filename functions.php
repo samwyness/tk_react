@@ -156,6 +156,12 @@ add_filter( 'excerpt_length', function( $length ) {
 	return 14;
 }, 999 );
 
+/*
+ *
+ * Remove html tags from post excerpt
+ *
+ */
+remove_filter( 'the_excerpt', 'wpautop' );
 
 /*
  *
