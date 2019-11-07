@@ -152,9 +152,13 @@ remove_action('wp_print_styles', 'print_emoji_styles');
  * Add custom post excerpt length
  *
  */
-add_filter( 'excerpt_length', function( $length ) {
-	return 14;
-}, 999 );
+
+add_filter( 'the_excerpt', 'tk_react_custom_excerpt_length' );
+function tk_react_custom_excerpt_length( $excerpt ) {
+	return substr( $excerpt, 0, 150 );
+}
+
+add_filter('excerpt_more','__return_false');
 
 /*
  *
