@@ -120,7 +120,6 @@ add_action( 'wp_enqueue_scripts', 'tk_react_enqueue_scripts' );
  * Add inline script to header
  *
  */
-add_action( 'wp_head', 'tk_react_header_script', 1 );
 function tk_react_header_script() {
 	$theme = wp_get_theme();
     
@@ -153,36 +152,36 @@ function tk_react_header_script() {
 	$var = '__tkr__';
 	$data = json_encode( array(
 		'urls' => array(
-			'base' => 				get_option( 'home' ),
-			'wp_api' => 			esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
-			'tkr_api' =>			esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
+			'base' => get_option( 'home' ),
+			'wp_api' => esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
+			'tkr_api' => esc_url_raw( get_rest_url( null, '/tkr/v1' ) )
 		),
 		'settings' => array(
 			'theme' => array(
 				'name' => $theme->name,
 				'version' => $theme->version,
 			),
-			'home_page' => 			(int) $page_on_front,
-			'home_page_slug' => 	$home_page_url,
-			'blog_page' => 			$page_for_posts,
-			'blog_page_slug' => 	$blog_page_url,
-			'site_logo' => 			$logo_url,
-			'permalinks' => 		get_option( 'permalink_structure' ),
-			'custom_post_types' => 	$custom_post_types,
-			'default_category' => 	get_option( 'default_category' ),
-			'categories' => 		get_categories(),
-			'template' => 			get_option( 'template' ),
-			'nonce' => 				wp_create_nonce( 'wp_rest' ),
-			'is_logged_in' => 		is_user_logged_in(),
+			'home_page' => (int) $page_on_front,
+			'home_page_slug' => $home_page_url,
+			'blog_page' => $page_for_posts,
+			'blog_page_slug' => $blog_page_url,
+			'site_logo' => $logo_url,
+			'permalinks' => get_option( 'permalink_structure' ),
+			'custom_post_types' => $custom_post_types,
+			'default_category' => get_option( 'default_category' ),
+			'categories' => get_categories(),
+			'template' => get_option( 'template' ),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+			'is_logged_in' => is_user_logged_in(),
 			'meta' => array(
-				'title' => 			get_option( 'blogname' ),
-				'description' => 	get_option( 'blogdescription' )
+				'title' => get_option( 'blogname' ),
+				'description' => get_option( 'blogdescription' )
 			),
 		)
 	) );
-    
-    // Add to the wp header
-  	echo "<script> window.{$var} = {$data}; </script>\n";
+			
+	// Add to the wp header
+	echo "<script> window.{$var} = {$data}; </script>\n";
 }
 
 /**
