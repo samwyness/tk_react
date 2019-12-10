@@ -56,6 +56,9 @@ function tk_react_theme_setup() {
     // Add custom image size for thumbnails
 	add_image_size( 'tk_react-thumbnail', 500 );
 	
+	// Add support for full and wide align images.
+	add_theme_support( 'align-wide' );
+
 		'main-menu'		=> __( 'Main Menu', 'tk_react' ),
 	) );
 }
