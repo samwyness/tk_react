@@ -29,11 +29,11 @@ const Blog = () => {
 					{ posts && posts.data.map((post) => (	
 						<div key={post.id} className="col-12 col-md-6 col-lg-12 p-0 px-md-3">
 							<article className={ setPostClassName(post) }>
-								<div className="tkr-entry-thumbnail">
-									<ImageSet src={ post.featured_media.sizes.full } meta={ post.featured_media.meta } />
-								</div>
-								{/* { post && hasThumbnail(post) &&
-								} */}
+								{ post && hasThumbnail(post) &&
+									<div className="tkr-entry-thumbnail">
+										<ImageSet src={ post.featured_media.sizes.full } meta={ post.featured_media.meta } />
+									</div>
+								}
 
 								<div className="tkr-entry-meta">	
 									<header className="tkr-entry-header">
