@@ -13,6 +13,14 @@
  */
 add_action( 'after_setup_theme', 'tk_react_theme_setup' );
 function tk_react_theme_setup() {
+	// Enable support for custom background color.
+	add_theme_support(
+		'custom-background',
+		array(
+			'default-color' => 'ffffff',
+		)
+	);
+
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
     
