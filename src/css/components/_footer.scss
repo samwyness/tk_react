@@ -2,61 +2,70 @@ $height-sm: 60px;
 $height-lg: 72px;
 
 .tkr-footer {
+    .tkr-footer-top {
+        // Site Branding
+        .tkr-site-branding {
+            display: block;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
 
-    // Site Branding
-    .tkr-site-branding {
-        display: block;
-        text-decoration: none;
-        text-transform: uppercase;
-        overflow: hidden;
+            .tkr-site-logo,
+            .tkr-site-title {
+                display: inline-block;
+            }
 
-        .tkr-site-logo,
-        .tkr-site-title {
-            display: inline-block;
+            .tkr-site-logo {
+                ~ .tkr-site-title {
+                    margin-left: 18px;
+                }
+
+                img {
+                    max-width: 60px;
+                }
+            }
+
         }
 
-        .tkr-site-logo {
-            height: 40px;
-            filter: invert(1);
-
-            ~ .tkr-site-title {
-                margin-left: 18px;
-            }
-
-            img {
-                max-width: 90px;
-            }
-        }
-
-    }
-
-    // Social Links
-    .tkr-social-links {
-        li {
-            width: 44px;
-            height: 44px;
-            margin-right: 0;
-            padding: 10px;
-            
-            &:hover {
-                background: $light-grey;
-            }
-            
-            svg path {
-                fill: $light-grey;
+        // Social Links
+        .tkr-social-links {
+            li {
+                width: 44px;
+                height: 44px;
+                margin-right: 0;
+                padding: 10px;
+                
+                &:hover {
+                    background: $light-grey;
+                }
+                
+                svg path {
+                    fill: $light-grey;
+                }
             }
         }
-    }
 
-    // Footer Links
-    .tkr-footer-links {
-        
+        // Footer Links
+        .tkr-footer-links {
+            .tkr-footer-links-title {
+                width: 100%;
+            }
+
+            ul {
+                width: 100%;
+
+                li {
+                    a {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
     }
     
     // Footer Bottom
     .tkr-footer-bottom {
         width: 100%;
         padding: 18px 0;
-        background: #fafbfc;
     }
 }

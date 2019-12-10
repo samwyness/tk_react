@@ -7,22 +7,22 @@ $height-lg: 72px;
     left: 0;
     width: 100%;
     height: $height-sm;
-    background: $dark;
-    color: #FFF;
+    background: $white;
+    color: $black;
     text-align: center;
     z-index: 90000;
     transition: box-shadow 0.14s ease-in,
                 height 0.2s ease-in;
     
     &.scrolled {
-        box-shadow: $shadow;
+        box-shadow: $shadow-light;
 
         .tkr-scroll-arrow {
             display: none;
         }
     }
 
-    @include lg {
+    @include breakpoint('lg') {
         text-align: initial;
         height: $height-lg;
     }
@@ -30,7 +30,7 @@ $height-lg: 72px;
     .row {
         margin: 0;
 
-        @include md {
+        @include breakpoint('md') {
             margin-right: -15px;
             margin-left: -15px;
         }   
@@ -44,7 +44,7 @@ $height-lg: 72px;
         margin-right: -15px;
         margin-left: -15px;
               
-        @include lg {
+        @include breakpoint('lg') {
             margin-right: 0;
             margin-left: 0;
         }
@@ -52,7 +52,7 @@ $height-lg: 72px;
         &.tkr-mobile-drawer-btn {
             display: inline-block;
             
-            @include lg {
+            @include breakpoint('lg') {
                 display: none;
             }
         }
@@ -62,7 +62,7 @@ $height-lg: 72px;
             background: none;
         }
         
-        @include lg {
+        @include breakpoint('lg') {
             width: $height-lg; // square
             height: $height-lg;
         }
@@ -81,7 +81,7 @@ $height-lg: 72px;
         text-decoration: none;
         overflow: hidden;
 
-        @include lg {
+        @include breakpoint('lg') {
             margin-right: 32px;
         }
 
@@ -100,7 +100,7 @@ $height-lg: 72px;
                 height: 100%;
             }
             
-            @include lg {
+            @include breakpoint('lg') {
                 height: $height-lg;
             }
 
@@ -115,7 +115,7 @@ $height-lg: 72px;
     nav.tkr-main-menu {
         display: none;
 
-        @include lg {
+        @include breakpoint('lg') {
             display: inline-block;
         }
         
@@ -142,7 +142,7 @@ $height-lg: 72px;
                             border-color: #000;
                         }
                         
-                        @include lg {
+                        @include breakpoint('lg') {
                             height: $height-lg;
                         }
                     }
