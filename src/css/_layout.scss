@@ -29,7 +29,7 @@
 .tkr-app {
     padding-top: 60px;
     
-    @include lg {
+    @include breakpoint('lg') {
         padding-top: 72px;
     }
 }
