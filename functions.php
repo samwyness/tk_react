@@ -11,7 +11,6 @@
  * Sets up theme defaults and registers support for various WordPress features.
  *
  */
-add_action( 'after_setup_theme', 'tk_react_theme_setup' );
 function tk_react_theme_setup() {
 	// Enable support for custom background color.
 	add_theme_support(
@@ -76,6 +75,8 @@ function tk_react_theme_setup() {
 		)
 	);
 }
+
+add_action( 'after_setup_theme', 'tk_react_theme_setup' );
 
 /*
  *
@@ -160,6 +161,9 @@ function tk_react_header_script() {
 			'theme' => array(
 				'name' => $theme->name,
 				'version' => $theme->version,
+			),
+			'colors' => array(
+				'background' => '#' . get_background_color(),
 			),
 			'home_page' => (int) $page_on_front,
 			'home_page_slug' => $home_page_url,
