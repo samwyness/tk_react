@@ -1,6 +1,11 @@
 @import "_wpblocks";
 
 .tkr-content {
+    &.post article {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+
     article {
         margin-bottom: 48px;
         padding-bottom: 48px;
