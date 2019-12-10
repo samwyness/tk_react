@@ -184,6 +184,8 @@ function tk_react_header_script() {
 	echo "<script> window.{$var} = {$data}; </script>\n";
 }
 
+add_action( 'wp_head', 'tk_react_header_script', 1 );
+
 /**
  *
  * Add Google Fonts
