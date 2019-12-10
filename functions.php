@@ -191,11 +191,12 @@ add_action( 'wp_head', 'tk_react_header_script', 1 );
  * Add Google Fonts
  *
  */
-add_action('wp_enqueue_scripts', 'tk_react_add_google_fonts', 0 );
 function tk_react_add_google_fonts() {
-    wp_register_style( 'tk_react-google-fonts-roboto', 'https://fonts.googleapis.com/css?family=Roboto:400,900' );
+	wp_register_style( 'tk_react-google-fonts-roboto', 'https://fonts.googleapis.com/css?family=Roboto:400,900' );
     wp_enqueue_style( 'tk_react-google-fonts-roboto' );
 }
+
+add_action('wp_enqueue_scripts', 'tk_react_add_google_fonts', 0 );
 
 /*
  *
@@ -211,11 +212,11 @@ remove_action('wp_print_styles', 'print_emoji_styles');
  *
  */
 
-add_filter( 'the_excerpt', 'tk_react_custom_excerpt_length' );
 function tk_react_custom_excerpt_length( $excerpt ) {
 	return substr( $excerpt, 0, 150 );
 }
 
+add_filter( 'the_excerpt', 'tk_react_custom_excerpt_length' );
 add_filter('excerpt_more','__return_false');
 
 /*
@@ -230,22 +231,24 @@ remove_filter( 'the_excerpt', 'wpautop' );
  * Add svg styles for diplay in admin
  *
  */
-add_action('admin_head', 'custom_admin_head');
 function custom_admin_head() {
 	$css = 'td.media-icon img[src$=".svg"] { width: 100% !important; height: auto !important; }';
 	echo '<style type="text/css">'.$css.'</style>';
 }
+
+add_action('admin_head', 'custom_admin_head');
 
 /*
  *
  * Enable SVG support
  *
  */
-add_filter( 'upload_mimes', 'cc_mime_types' );
 function cc_mime_types( $mimes ) {
-  	$mimes['svg'] = 'image/svg+xml';
-  	return $mimes;
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
 }
+
+add_filter( 'upload_mimes', 'cc_mime_types' );
 
 /*
  *
@@ -253,3 +256,10 @@ function cc_mime_types( $mimes ) {
  *
  */
 require_once get_template_directory() . '/include/api/v1/api.php';
+
+/*
+ *
+ * Register Custom Post Types
+ *
+ */
+// require_once get_template_directory() . '/include/custom_post_types/index.php';
