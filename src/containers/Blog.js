@@ -42,7 +42,7 @@ const Blog = () => {
 										
 									<p className="tkr-entry-content" dangerouslySetInnerHTML={ { __html: post.excerpt } }></p>
 
-									<A className="tkr-entry-link stretched-link" href={ `/${post.slug}/` } alt={ post.title }>Read more..</A>
+									<A className="tkr-entry-link" href={ `/${post.slug}/` } alt={ post.title }>Read more..</A>
 								</div>
 							</article>
 						</div>
