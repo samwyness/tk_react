@@ -37,12 +37,22 @@
                 margin-top: 0;
             }
         }
-        
-        p {
+
+        h1, h2, h3, h4, h5, p {
             margin-top: 0;
             margin-bottom: 48px;
-            font-size: 1.12rem;
-            color: $dark-grey-text;
+        }
+        
+        p {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+            font-size: 1.2rem;
+            color: $article-text;
+        }
+
+        .has-drop-cap:not(:focus):first-letter {
+            font-size: 4.2rem;
+            line-height: .68;
+            margin: .05em .1em 0 0;
         }
     }
 }
