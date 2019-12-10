@@ -76,9 +76,25 @@ function tk_react_theme_setup() {
 		)
 	);
 }
+
+/*
+ *
+ * Register navigation menus uses wp_nav_menu in five places.
+ *
+ */
+function tk_react_menus() {
+		
+	$locations = array(
 		'main-menu'		=> __( 'Main Menu', 'tk_react' ),
-	) );
+		'mobile-menu' 	=> __( 'Mobile Menu', 'tk_react' ),
+		'footer-menu' 	=> __( 'Footer Menu', 'tk_react' ),
+		'social-menu' 	=> __( 'Social Menu', 'tk_react' ),
+	);
+
+	register_nav_menus( $locations );
 }
+
+add_action( 'init', 'tk_react_menus' );
 
 /*
  *
