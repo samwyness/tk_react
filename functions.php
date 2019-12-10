@@ -28,15 +28,26 @@ function tk_react_theme_setup() {
 	add_theme_support( 'title-tag' );
     
     // Enable support for custom logo
-	$defaults = array(
-        'height'      => 100,
-        'width'       => 400,
-        'flex-height' => true,
-        'flex-width'  => true,
-        'header-text' => array( 'site-title', 'site-description' ),
-    );
-    
-    // Enable support for custom logo
+	$logo_width  = 120;
+	$logo_height = 90;
+
+	// If the retina setting is active, double the recommended width and height.
+	if ( get_theme_mod( 'retina_logo', false ) ) {
+		$logo_width  = floor( $logo_width * 2 );
+		$logo_height = floor( $logo_height * 2 );
+	}
+
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => $logo_height,
+			'width'       => $logo_width,
+			'flex-height' => true,
+			'flex-width'  => true,
+		)
+	);
+	
+	// Set post thumbnail size.
     add_theme_support( 'custom-logo', $defaults );
     
     // Custom Thumbnail size
