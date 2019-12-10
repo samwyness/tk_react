@@ -33,7 +33,8 @@ const Single = () => {
 	}, [current_path, post]);
 	
 	return(
-		<div className="tkr-content">
+		
+		<div className={`tkr-content ${post && post.post_type ? post.post_type : '' }`}>
 			<div className="container">
 
 				{ !post &&
