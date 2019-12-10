@@ -48,13 +48,14 @@ function tk_react_theme_setup() {
 	);
 	
 	// Set post thumbnail size.
-    add_theme_support( 'custom-logo', $defaults );
-    
-    // Custom Thumbnail size
-	add_image_size( 'tk_react-custom-thumbnail', 500 );
-    
-    // This theme uses wp_nav_menu() in two locations.
-	register_nav_menus( array(
+	set_post_thumbnail_size( 1200, 9999 );
+
+	// Add custom image size for fullscreen images
+	add_image_size( 'tk_react-fullscreen', 1980, 9999 );
+
+    // Add custom image size for thumbnails
+	add_image_size( 'tk_react-thumbnail', 500 );
+	
 		'main-menu'		=> __( 'Main Menu', 'tk_react' ),
 	) );
 }
