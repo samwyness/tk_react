@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Util
-import { debug } from 'utils/debug';
+// import { debug } from 'utils/debug';
 
 // Store
 import { useStore } from 'store';
@@ -34,19 +34,19 @@ const fetchPostsSuccess = (payload, dispatch) => {
 /**
  * Sends an API request through the TKR Service to retreive the
  * themes 'main-menu' and updates our store with the response.
- * 
+ *
  * @version 1.0.0
  */
 export const useFetchPosts = () => {
 	const { state, dispatch } = useStore();
-	
+
 	useEffect(() => {
 		// Get the themes 'main-menu' from the TKR Service
 		const fetchPosts = async () => {
 			fetchPostsLoading(true, dispatch);
 
 			await Posts.getAll()
-				.then(response => {					
+				.then(response => {
 					fetchPostsSuccess(response, dispatch);
 				})
 				.catch(err => {
@@ -56,23 +56,23 @@ export const useFetchPosts = () => {
 
 			fetchPostsLoading(false, dispatch);
 		};
-		
+
 		// Only fetch if our stores posts state is empty
 		state.app.posts.data.length === 0 && fetchPosts();
-		
+
 	}, [dispatch, state.app.posts.data]);
 };
 
 /**
  * Retrieves the main menu from the store
- * 
+ *
  * @version 1.0.0
  * @return {Object} main_menu - The themes 'main-menu' data
  */
 export const usePosts = () => {
 	const { state } = useStore();
 	const [posts, setPosts] = useState(state.app.posts);
-	
+
 	useFetchPosts();
 
 	useEffect(() => {
@@ -107,19 +107,19 @@ const fetchMainMenuSuccess = (payload, dispatch) => {
 /**
  * Sends an API request through the TKR Service to retreive the
  * themes 'main-menu' and updates our store with the response.
- * 
+ *
  * @version 1.0.0
  */
 export const useFetchMainMenu = () => {
 	const { state, dispatch } = useStore();
-	
+
 	useEffect(() => {
 		// Get the themes 'main-menu' from the TKR Service
 		const fetchMainMenu = async () => {
 			fetchMainMenuLoading(true, dispatch);
 
 			await Menus.getByLocation('main-menu')
-				.then(response => {					
+				.then(response => {
 					fetchMainMenuSuccess(response, dispatch);
 				})
 				.catch(err => {
@@ -129,23 +129,23 @@ export const useFetchMainMenu = () => {
 
 			fetchMainMenuLoading(false, dispatch);
 		};
-		
+
 		// Only fetch if our stores main_menu state is null
 		!state.app.main_menu.data && fetchMainMenu();
-		
+
 	}, [dispatch, state.app.main_menu.data]);
 };
 
 /**
  * Retrieves the main menu from the store
- * 
+ *
  * @version 1.0.0
  * @return {Object} main_menu - The themes 'main-menu' data
  */
 export const useMainMenu = () => {
 	const { state } = useStore();
 	const [main_menu, setMainMenu] = useState(state.app.main_menu);
-	
+
 	useFetchMainMenu();
 
 	useEffect(() => {
