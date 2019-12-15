@@ -1,6 +1,7 @@
-// Variables and Mixins
+// Variables, Mixins and Utilities
 @import "_variables";
-@import "_breakpoints";
+@import "utils/_breakpoints";
+@import "utils/_grid";
 
 // Base and Layout
 @import "_base";
