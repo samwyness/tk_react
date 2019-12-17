@@ -1,6 +1,8 @@
 @import "_wpblocks";
 
 .tkr-content {
+    min-height: 80vh;
+
     &.post article {
         max-width: 780px;
         margin: 0 auto;
@@ -17,7 +19,7 @@
                 height: 420px;
                 margin-bottom: 30px;
                 overflow: hidden;
-                
+
                 img {
                     width: 100%;
                     width: 100%;
@@ -32,7 +34,7 @@
                 margin-top: 0;
                 margin-bottom: 48px;
             }
-            
+
             h2 {
                 margin-top: 0;
             }
@@ -42,7 +44,7 @@
             margin-top: 0;
             margin-bottom: 48px;
         }
-        
+
         p {
             font-family: Georgia, Cambria, "Times New Roman", Times, serif;
             font-size: 1.2rem;
@@ -66,7 +68,7 @@
 
         &:hover {
             background: rgba(0,0,0,0.03);
-            
+
             .tkr-entry-thumbnail {
                 opacity: 0.9;
             }
@@ -75,15 +77,15 @@
         .tkr-entry-thumbnail {
             height: 225px;
             background: $grey;
-            
+
             img {
                 display: block;
                 height: 100%;
                 object-fit: cover;
                 object-position: center;
-                
+
             }
-            
+
             @include breakpoint('lg') {
                 width: 360px;
                 height: 280px;
