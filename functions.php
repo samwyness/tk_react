@@ -135,32 +135,38 @@ function getMenuFromApi($location) {
  */
 function tk_react_header_script() {
 	$theme = wp_get_theme();
-    
+
     // Front Page Settings
 	$page_on_front = get_option( 'page_on_front' );
 	$page_for_posts = get_option( 'page_for_posts' );
-    
+
     if ( $page_on_front === '0' ) {
 		$page_on_front = false;
 		$page_for_posts = false;
 	}
-    
+
     $home_page_url = ( $page_on_front ) ? get_post_field( 'post_name', $page_on_front ) : '/';
 	$blog_page_url = ( $page_for_posts ) ? get_post_field( 'post_name', $page_for_posts ) : '/';
-    
+
     // Custom Logo
 	$logo_id = get_theme_mod( 'custom_logo' );
 	$logo_url = false;
-    
+
     if ( $logo_id ) {
 		$logo_url = wp_get_attachment_image_src( $logo_id , 'full' )[0];
 	}
-    
+
+    // Custom Post Types
     $custom_post_types = get_post_types( array(
 		'public'   => true,
  	   '_builtin' => false
-	), 'objects', 'and' );
-    
+    ), 'objects', 'and' );
+
+    // Menus
+    $location = 'main-menu';
+    $request = new WP_REST_Request( 'GET', '/tkr/v1/menus/locations/main-menu');
+    $response = rest_do_request( $request );
+
     // Create the script
 	$var = '__tkr__';
 	$data = json_encode( array(
@@ -176,7 +182,13 @@ function tk_react_header_script() {
 			),
 			'colors' => array(
 				'background' => '#' . get_background_color(),
-			),
+            ),
+            'menus' => array(
+                'main_menu' => getMenuFromApi('main-menu'),
+                'mobile_menu' => getMenuFromApi('mobile-menu'),
+                'footer_menu' => getMenuFromApi('footer-menu'),
+                'social_menu' => getMenuFromApi('social-menu'),
+            ),
 			'home_page' => (int) $page_on_front,
 			'home_page_slug' => $home_page_url,
 			'blog_page' => $page_for_posts,
@@ -195,7 +207,7 @@ function tk_react_header_script() {
 			),
 		)
 	) );
-			
+
 	// Add to the wp header
 	echo "<script> window.{$var} = {$data}; </script>\n";
 }
