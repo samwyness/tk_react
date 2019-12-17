@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./src/**/*.js",
     "start": "webpack --config webpack.dev.js --open",
-    "build": "webpack --config webpack.prod.js"
+    "build": "npm run lint && webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
