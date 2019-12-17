@@ -4,7 +4,7 @@ module.exports = {
 		'es6': true,
 		'node': true
 	},
-	'extends': 'eslint:recommended',
+    'extends': 'eslint:recommended',
 	'globals': {
 		'Atomics': 'readonly',
 		'SharedArrayBuffer': 'readonly',
@@ -29,7 +29,7 @@ module.exports = {
 		],
 		'linebreak-style': [
 			'error',
-			'windows'
+			'unix'
 		],
 		'quotes': [
 			'error',
@@ -47,7 +47,7 @@ module.exports = {
         'react/jsx-no-comment-textnodes': 'error',
 		'react/jsx-no-target-blank': ['error', {'enforceDynamicLinks': 'always'}],
 		'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    	'react-hooks/exhaustive-deps': 'warn' // Checks effect dependencies	
+    	'react-hooks/exhaustive-deps': 'warn' // Checks effect dependencies
 
 	}
 };
