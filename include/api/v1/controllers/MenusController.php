@@ -83,7 +83,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 		    $menu_obj = wp_get_nav_menu_object( $id );
 
 		    if ( empty( $menu_obj ) ) {
-		        return rest_ensure_response( array() );
+		        return rest_ensure_response( null );
 		    }
 
 		    $response = $this->prepare_item_for_response( $menu_obj );
@@ -102,13 +102,13 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 			$theme_locations = get_nav_menu_locations();
 
 			if ( !isset( $theme_locations[$location] ) ) {
-				return rest_ensure_response( array() );
+				return rest_ensure_response( null );
 			}
 
 			$menu_obj = wp_get_nav_menu_object( $theme_locations[$location] );
-			
+
 			if ( !isset( $menu_obj->term_id ) ) {
-				return rest_ensure_response( array() );
+				return rest_ensure_response( null );
 			}
 
 			$response = $this->prepare_item_for_response( $menu_obj, $request );
@@ -139,7 +139,7 @@ if ( ! class_exists( 'TKR_REST_Menus_Controller' ) ) :
 				// Break the url into parts
 				$url = parse_url($item_data->url);
 				$url_base = $url['scheme'] . '://' . $url['host'];
-				
+
 				// If the menu url is the same as the wordpress home url set
 				// url part path to '/' so we can use it in react
 				if (!$url['path'] && $url_base === get_option( 'home' )) {
