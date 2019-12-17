@@ -1,51 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { usePath } from 'hookrouter';
 
-// Services
-import { Posts } from 'utils/services/tkr';
+// Store
+import { useCurrentPage } from 'store/actions/appActions';
 
 // Components
 import Content from 'components/Content';
 
 const Single = () => {
 	const current_path = usePath().split('/')[1];
-	const [post, setCurrentPost] = useState(null);
+	const current_page = useCurrentPage(current_path);
+	const post_type = (current_page.data) ? current_page.data.post_type : false;
 
-	useEffect(() => {
-		// Gets the current post data from the TKR Service
-		const fetchPost = async () => {			
-			setCurrentPost(null);
-			
-			await Posts.getBySlug(current_path)
-				.then(response => {
-					setCurrentPost(response);
-				})
-				.catch(err => {
-					// TODO: send to 404
-					throw new Error(err);
-				});
-		};
-		
-		
-		if (!post || post.slug !== current_path) {
-			fetchPost();
-		}
-	}, [current_path, post]);
-	
 	return(
-		
-		<div className={`tkr-content ${post && post.post_type ? post.post_type : '' }`}>
+
+		<div className={`tkr-content ${ post_type ? post_type : '' }`}>
 			<div className="container">
 
-				{ !post &&
-					<p>Loading...</p>
+				{ current_page.loading &&
+                    <p>Loading...</p>
 				}
-				
-				{ post &&
-					<Content post={ post } />
+
+				{ !current_page.loading && !current_page.hasError && current_page.data &&
+                    <Content post={ current_page.data } />
 				}
-			
-			</div>    
+
+			</div>
 		</div>
 	);
 };
