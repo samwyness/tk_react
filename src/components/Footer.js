@@ -7,6 +7,7 @@ import Icon from 'components/Icon';
 // Theme variables
 const site_logo = __tkr__.settings.site_logo;
 const site_title = __tkr__.settings.meta.title;
+const social_menu = __tkr__.settings.menus.social_menu;
 
 const Footer = () => {
 	return(
@@ -27,18 +28,19 @@ const Footer = () => {
 									<span className="tkr-site-title">
 										<strong>{ site_title }</strong>
 									</span>
-								}			
+								}
 							</A>
-						
+
 							<ul className="tkr-social-links mt-3 list-style-none list-horizontal">
-								<li><Icon icon="facebook"/></li>
-								<li><Icon icon="instagram"/></li>
-								<li><Icon icon="linkedin"/></li>
-								<li><Icon icon="youtube"/></li>
-								<li><Icon icon="gmail"/></li>
+								{ social_menu && social_menu.items.map((item, index) => (
+									<li key={index}>
+										<Icon icon={item.title}/>
+										<A href={`${item.url.protocol}://${item.url.host}`}></A>
+									</li>
+								))}
 							</ul>
 						</div>
-					
+
 						<div className="tkr-footer-links col-md-8">
 							<div className="row">
 
@@ -60,10 +62,10 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
-			
+
 			<div className="tkr-footer-bottom">
 				<div className="container justify-content-center">
-					
+
 					<span>© { new Date().getFullYear() } Sam Wyness</span>
 
 				</div>
