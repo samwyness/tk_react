@@ -4,19 +4,16 @@ import { useState, useEffect } from 'react';
 import { useStore } from 'store';
 
 // Services
-import { Posts, Menus } from 'utils/services/tkr';
+import PostsService from 'utils/services/tkr/PostsService';
 
-// Main Menu
+const Posts = new PostsService();
+
+/*-----------------------------
+    POSTS
+-----------------------------*/
 const fetchPostsLoading = (payload, dispatch) => {
 	return dispatch({
 		type: 'FETCH_POSTS_LOADING',
-		payload: payload
-	});
-};
-
-const fetchPostsError = (payload, dispatch) => {
-	return dispatch({
-		type: 'FETCH_POSTS_ERROR',
 		payload: payload
 	});
 };
@@ -28,43 +25,51 @@ const fetchPostsSuccess = (payload, dispatch) => {
 	});
 };
 
+const fetchPostsError = (payload, dispatch) => {
+	return dispatch({
+		type: 'FETCH_POSTS_ERROR',
+		payload: payload
+	});
+};
+
 /**
- * Sends an API request through the TKR Service to retreive the
- * themes 'main-menu' and updates our store with the response.
+ * Sends an API request through the TKR Service to retreive a
+ * collection of posts. If there are no posts in the store an
+ * XHR request is fired and the store is updated.
  *
  * @version 1.0.0
  */
 export const useFetchPosts = () => {
 	const { state, dispatch } = useStore();
+	const { posts } = state.app;
 
 	useEffect(() => {
-		// Get the themes 'main-menu' from the TKR Service
 		const fetchPosts = async () => {
 			fetchPostsLoading(true, dispatch);
 
-			await Posts.getAll()
-				.then(response => {
-					fetchPostsSuccess(response, dispatch);
-				})
-				.catch(err => {
-					new Error(err);
-					fetchPostsError(true, dispatch);
-				});
+			const response = await Posts.getAll();
+			const posts = await response.json();
 
+			if (!response.ok) {
+				fetchPostsError(true, dispatch);
+			}
+
+			fetchPostsSuccess(posts, dispatch);
 			fetchPostsLoading(false, dispatch);
 		};
 
-		// Only fetch if our stores posts state is empty
-		state.app.posts.data.length === 0 && fetchPosts();
-
-	}, [dispatch, state.app.posts.data]);
+		// Only fetch posts data if our stores posts.data state is empty
+		if (posts.data.length < 1) {
+			!posts.loading && fetchPosts();
+		}
+	}, [dispatch, posts.data.length, posts.loading]);
 };
 
 /**
- * Retrieves the main menu from the store
+ * Retrieves a collection of posts from the store.
  *
  * @version 1.0.0
- * @return {Object} main_menu - The themes 'main-menu' data
+ * @return {Array} A collection of posts
  */
 export const usePosts = () => {
 	const { state } = useStore();
@@ -79,75 +84,109 @@ export const usePosts = () => {
 	return posts;
 };
 
-// Main Menu
-const fetchMainMenuLoading = (payload, dispatch) => {
+/*-----------------------------
+    SINGLE POST/PAGE
+-----------------------------*/
+const addCachedPage = (payload, dispatch) => {
 	return dispatch({
-		type: 'FETCH_MAIN_MENU_LOADING',
+		type: 'ADD_CACHED_PAGE',
 		payload: payload
 	});
 };
 
-const fetchMainMenuError = (payload, dispatch) => {
+const fetchCurrentPageLoading = (payload, dispatch) => {
 	return dispatch({
-		type: 'FETCH_MAIN_MENU_ERROR',
+		type: 'FETCH_CURRENT_PAGE_LOADING',
 		payload: payload
 	});
 };
 
-const fetchMainMenuSuccess = (payload, dispatch) => {
+const fetchCurrentPageSuccess = (payload, dispatch) => {
+	// Handle page caching in the store
+	if (payload && payload.post_type === 'page') {
+		addCachedPage(payload, dispatch);
+	}
+
 	return dispatch({
-		type: 'FETCH_MAIN_MENU_SUCCESS',
+		type: 'FETCH_CURRENT_PAGE_SUCCESS',
+		payload: payload
+	});
+};
+
+const fetchCurrentPageError = (payload, dispatch) => {
+	return dispatch({
+		type: 'FETCH_CURRENT_PAGE_ERROR',
 		payload: payload
 	});
 };
 
 /**
  * Sends an API request through the TKR Service to retreive the
- * themes 'main-menu' and updates our store with the response.
+ * current page's data and updates our store with the response.
  *
  * @version 1.0.0
+ * @param {String} slug - The slug for the current page
  */
-export const useFetchMainMenu = () => {
+export const useFetchCurrentPage = async (slug) => {
 	const { state, dispatch } = useStore();
+	const { current_page, posts, pages } = state.app;
 
 	useEffect(() => {
-		// Get the themes 'main-menu' from the TKR Service
-		const fetchMainMenu = async () => {
-			fetchMainMenuLoading(true, dispatch);
+		// Gets the current post data from the TKR Posts Service or
+		// from a cached version saved in the store.
+		const fetchPost = async () => {
+			const cached_post = posts.data.find(post => post.slug === slug);
+			const cached_page = pages.data.find(post => post.slug === slug);
 
-			await Menus.getByLocation('main-menu')
-				.then(response => {
-					fetchMainMenuSuccess(response, dispatch);
-				})
-				.catch(err => {
-					new Error(err);
-					fetchMainMenuError(true, dispatch);
-				});
+			if (cached_post) {
+				fetchCurrentPageSuccess(cached_post, dispatch);
+			} else if (cached_page) {
+				fetchCurrentPageSuccess(cached_page, dispatch);
+			} else {
+				fetchCurrentPageLoading(true, dispatch);
 
-			fetchMainMenuLoading(false, dispatch);
+				const response = await Posts.getSingle({slug});
+				const post = await response.json();
+
+				if (!response.ok) {
+					fetchCurrentPageError(true, dispatch);
+				}
+
+				fetchCurrentPageSuccess(post, dispatch);
+			}
+
+			fetchCurrentPageLoading(false, dispatch);
 		};
 
-		// Only fetch if our stores main_menu state is null
-		!state.app.main_menu.data && fetchMainMenu();
-
-	}, [dispatch, state.app.main_menu.data]);
+		// Only fetch new post data if our stores current_page
+		// is null or we have a new slug
+		if (!current_page.data || current_page.data.slug !== slug) {
+			!current_page.loading && fetchPost(slug);
+		}
+	});
 };
 
 /**
- * Retrieves the main menu from the store
+ * Retrieves the current page from the store.
  *
  * @version 1.0.0
- * @return {Object} main_menu - The themes 'main-menu' data
+ * @return {Object} An object representing the current page's data
  */
-export const useMainMenu = () => {
-	const { state } = useStore();
-	const [main_menu, setMainMenu] = useState(state.app.main_menu);
+export const useCurrentPage = (slug) => {
+	const { state, dispatch } = useStore();
+	const [current_page, setCurrentPage] = useState(state.app.current_page);
 
-	useFetchMainMenu();
+	// If we have a new slug set current page in the store to null
+	// and set the loading flag to true
+	if (current_page.data && current_page.data.slug !== slug) {
+		fetchCurrentPageSuccess(null, dispatch);
+	}
+
+	useFetchCurrentPage(slug);
 
 	useEffect(() => {
-		return setMainMenu(state.app.main_menu);
-	}, [state.app.main_menu]);
+		setCurrentPage(state.app.current_page);
+	}, [current_page.data, dispatch, slug, state.app.current_page]);
 
-	return main_menu;
+	return current_page;
 };
