@@ -19,11 +19,11 @@ export const appInitialState = {
  */
 export default (state = appInitialState, action) => {
 	switch (action.type) {
-			
+
 	// POSTS
 	case 'FETCH_POSTS_LOADING':
-		return { 
-			...state, 
+		return {
+			...state,
 			posts: {
 				...state.posts,
 				loading: action.payload
@@ -31,8 +31,8 @@ export default (state = appInitialState, action) => {
 		};
 
 	case 'FETCH_POSTS_ERROR':
-		return { 
-			...state, 
+		return {
+			...state,
 			posts: {
 				...state.posts,
 				hasError: action.payload
@@ -40,8 +40,8 @@ export default (state = appInitialState, action) => {
 		};
 
 	case 'FETCH_POSTS_SUCCESS':
-		return { 
-			...state, 
+		return {
+			...state,
 			posts: {
 				...state.posts,
 				data: action.payload
@@ -75,7 +75,7 @@ export default (state = appInitialState, action) => {
 				data: action.payload
 			}
 		};
-	
+
 	default:
 		return state;
 	}

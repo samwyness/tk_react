@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// Util
-// import { debug } from 'utils/debug';
-
 // Store
 import { useStore } from 'store';
 

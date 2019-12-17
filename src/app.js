@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRoutes } from 'hookrouter';
-	
+
 // Utils
 import { routes } from 'utils/router';
 
@@ -21,7 +21,7 @@ const App = () => {
 
 				{ routeResult }
 			</div>
-			
+
 			<Footer/>
 		</div>
 	);

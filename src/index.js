@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom';
 import { debug } from 'utils/debug';
 
 // Store
-import { StoreProvider } from 'store';
+import StoreProvider from 'store';
 
 // App Parts
 import App from './App';
