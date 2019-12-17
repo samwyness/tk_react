@@ -22,10 +22,10 @@ function tk_react_theme_setup() {
 
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
-    
+
     // Enable support for title-tag options
 	add_theme_support( 'title-tag' );
-    
+
     // Enable support for custom logo
 	$logo_width  = 120;
 	$logo_height = 90;
@@ -45,7 +45,7 @@ function tk_react_theme_setup() {
 			'flex-width'  => true,
 		)
 	);
-	
+
 	// Set post thumbnail size.
 	set_post_thumbnail_size( 1200, 9999 );
 
@@ -54,7 +54,7 @@ function tk_react_theme_setup() {
 
     // Add custom image size for thumbnails
 	add_image_size( 'tk_react-thumbnail', 500 );
-	
+
 	// Add support for full and wide align images.
 	add_theme_support( 'align-wide' );
 
@@ -84,7 +84,7 @@ add_action( 'after_setup_theme', 'tk_react_theme_setup' );
  *
  */
 function tk_react_menus() {
-		
+
 	$locations = array(
 		'main-menu'		=> __( 'Main Menu', 'tk_react' ),
 		'mobile-menu' 	=> __( 'Mobile Menu', 'tk_react' ),
@@ -104,17 +104,29 @@ add_action( 'init', 'tk_react_menus' );
  */
 function tk_react_enqueue_scripts() {
 	$theme_version = wp_get_theme()->get( 'Version' );
-    
+
     // Theme css files.
 	wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap-grid.min.css' ); // Bootstrap Grid Styles
 	wp_enqueue_style( 'tk_react-styles', get_theme_file_uri( '/dist/tkr-style.css' ), array(), $theme_version );
-    
+
     // Theme js files.
 	wp_enqueue_script( 'tk_react-vendors', get_theme_file_uri( 'dist/tkr-vendors.js' ), array(), $theme_version, true );
 	wp_enqueue_script( 'tk_react-scripts', get_theme_file_uri( 'dist/tkr-bundle.js' ), array(), $theme_version, true );
 }
 
 add_action( 'wp_enqueue_scripts', 'tk_react_enqueue_scripts' );
+
+
+function getMenuFromApi($location) {
+    $response = null;
+
+    if ($location) {
+        $request = new WP_REST_Request( 'GET', '/tkr/v1/menus/locations/' . $location);
+        $response = rest_do_request( $request )->data;
+    }
+
+    return $response;
+}
 
 /*
  *
