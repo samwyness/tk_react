@@ -82,21 +82,15 @@ export default (state = appInitialState, action) => {
 			}
 		};
 
-	case 'ADD_CACHED_POST':
-		return {
-			...state,
-			posts: {
-				...state.posts,
-				data: Object.assign([], state.posts.data, [ action.payload ])
-			}
-		};
-
 	case 'ADD_CACHED_PAGE':
 		return {
 			...state,
 			pages: {
 				...state.pages,
-				data: Object.assign([], state.pages.data, [ action.payload ])
+				data: [
+					...state.pages.data,
+					action.payload
+				]
 			}
 		};
 
