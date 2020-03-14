@@ -42,8 +42,8 @@ module.exports = {
     appAssets: resolveApp('src/assets'),
     appComponents: resolveApp('src/components'),
     appContainers: resolveApp('src/containers'),
-    appCss: resolveApp('src/assets/css'),
     appStore: resolveApp('src/store'),
+    appStyles: resolveApp('src/styles'),
     appUtils: resolveApp('src/utils'),
 
     dotenv: resolveApp('.env'),

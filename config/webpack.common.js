@@ -1,4 +1,4 @@
-const path = require('path');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -6,15 +6,10 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 // Path variables
 const paths = require('./paths.js');
 
-// Setup quick access to path constants
-const SRC = paths.appSrc;
-const ASSETS = paths.appAssets;
-const CSS = paths.appCss;
-
 // Common webpack config
 const config = {
     entry: {
-        bundle: path.resolve(SRC, 'index.js')
+        bundle: paths.appIndexJs
     },
 
     stats: true,
@@ -31,7 +26,7 @@ const config = {
             {
                 test: /\.(js|jsx)$/,
                 enforce: 'pre',
-                include: SRC,
+                include: paths.appSrc,
                 exclude: /node_modules/,
                 loader: 'eslint-loader',
                 options: {
@@ -57,7 +52,7 @@ const config = {
             },
             {
                 test: /\.svg$/,
-                include: path.resolve(ASSETS, 'icons'),
+                include: paths.appAssets,
                 loader: 'svg-sprite-loader',
                 options: {
                     extract: true,
@@ -86,6 +81,8 @@ const config = {
     },
 
     plugins: [
+        new webpack.ProgressPlugin(),
+
         new CleanWebpackPlugin(),
 
         new MiniCssExtractPlugin({
@@ -103,12 +100,12 @@ const config = {
     resolve: {
         extensions: ['ts', 'tsx', '.js', '.jsx'],
         alias: {
-            assets: ASSETS,
-            css: CSS,
-            store: path.resolve(SRC, 'store'),
-            utils: path.resolve(SRC, 'utils'),
-            components: path.resolve(SRC, 'components'),
-            containers: path.resolve(SRC, 'containers')
+            assets: paths.appAssets,
+            components: paths.appComponents,
+            containers: paths.appContainers,
+            store: paths.appStore,
+            styles: paths.appStyles,
+            utils: paths.appUtils
         }
     }
 };
