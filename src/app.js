@@ -10,21 +10,21 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 
 const App = () => {
-	const routeResult = useRoutes(routes) || null;
+    const routeResult = useRoutes(routes) || null;
 
-	return(
-		<div className="tkr-app">
-			<Header/>
+    return (
+        <div className="tkr-app">
+            <Header />
 
-			<div className="tkr-main-content">
-				<ScrollRestoration />
+            <div className="tkr-main-content">
+                <ScrollRestoration />
 
-				{ routeResult }
-			</div>
+                {routeResult}
+            </div>
 
-			<Footer/>
-		</div>
-	);
+            <Footer />
+        </div>
+    );
 };
 
 export default App;
