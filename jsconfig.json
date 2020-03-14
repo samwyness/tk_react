@@ -4,12 +4,13 @@
         "target": "es6",
         "baseUrl": "./",
         "paths": {
+            "config/*": ["config/*"],
             "assets/*": ["src/assets/*"],
-            "config/*": ["src/assets/*"],
-            "store/*": ["src/store/*"],
-            "utils/*": ["src/utils/*"],
             "components/*": ["src/components/*"],
-            "containers/*": ["src/containers/*"]
+            "containers/*": ["src/containers/*"],
+            "store/*": ["src/store/*"],
+            "styles/*": ["src/styles/*"],
+            "utils/*": ["src/utils/*"]
         }
     },
     "exclude": ["node_modules", "dist"]
