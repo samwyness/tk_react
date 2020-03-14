@@ -2,7 +2,7 @@
 
 A WordPress + React starter theme.
 
-[![GitHub release](https://img.shields.io/github/v/release/samwyness/tk_react?color=red&style=flat-square)](https://GitHub.com/samwyness/tk_react/releases/)
+[![GitHub release](https://img.shields.io/github/v/release/samwyness/tk_react?color=blue&style=flat-square)](https://GitHub.com/samwyness/tk_react/releases/)
 [![Only 32 Kb](https://badge-size.herokuapp.com/samwyness/tk_react/master/dist/tkr-bundle.js?label=bundle%20size&color=green&style=flat-square)](https://github.com/samwyness/tk_react/blob/master/dist/tkr-bundle.js)
 
 ## Getting Started
