@@ -3,19 +3,18 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
-// Theme Environment
-const THEME_ENV = require('./env.config.js');
+// Path variables
+const paths = require('./paths.js');
 
-// Path constants
-const SRC = THEME_ENV.paths.src;
-const ASSETS = THEME_ENV.paths.assets;
-const CSS = THEME_ENV.paths.css;
+// Setup quick access to path constants
+const SRC = paths.appSrc;
+const ASSETS = paths.appAssets;
+const CSS = paths.appCss;
 
 // Common webpack config
 const config = {
     entry: {
-        bundle: path.resolve(SRC, 'index.js'),
-        style: path.resolve(CSS, 'style.scss')
+        bundle: path.resolve(SRC, 'index.js')
     },
 
     stats: true,
@@ -27,6 +26,18 @@ const config = {
 
     module: {
         rules: [
+            // First, run the linter.
+            // It's important to do this before Babel processes the JS.
+            {
+                test: /\.(js|jsx)$/,
+                enforce: 'pre',
+                include: SRC,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                options: {
+                    cache: true
+                }
+            },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
