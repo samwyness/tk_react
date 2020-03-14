@@ -1,6 +1,8 @@
 import React from 'react';
 import { useRoutes } from 'hookrouter';
 
+import './assets/css/style.scss';
+
 // Utils
 import { routes } from 'utils/router';
 

@@ -115,7 +115,7 @@ function tk_react_enqueue_scripts()
 
     // Theme css files.
     wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap-grid.min.css'); // Bootstrap Grid Styles
-    wp_enqueue_style('tk_react-styles', get_theme_file_uri('/dist/tkr-style.css'), array(), $theme_version);
+    wp_enqueue_style('tk_react-styles', get_theme_file_uri('/dist/tkr-bundle.css'), array(), $theme_version);
 
     // Theme js files.
     wp_enqueue_script('tk_react-vendors', get_theme_file_uri('dist/tkr-vendors.js'), array(), $theme_version, true);
