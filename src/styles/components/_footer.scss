@@ -1,0 +1,75 @@
+$height-sm: 60px;
+$height-lg: 72px;
+
+.tkr-footer {
+    .tkr-footer-top {
+        // Site Branding
+        .tkr-site-branding {
+            display: block;
+            text-decoration: none;
+            overflow: hidden;
+
+            .tkr-site-logo,
+            .tkr-site-title {
+                display: inline-block;
+                font-size: 17px;
+                line-height: normal;
+            }
+
+            .tkr-site-logo {
+                ~ .tkr-site-title {
+                    margin-left: 18px;
+                }
+
+                img {
+                    max-width: 60px;
+                }
+            }
+
+            .tkr-site-description {
+                margin-top: 12px;
+            }
+        }
+
+        // Social Links
+        .tkr-social-links {
+            li {
+                width: 44px;
+                height: 44px;
+                margin-right: 0;
+                padding: 10px;
+
+                &:hover {
+                    background: $light-grey;
+                }
+
+                svg path {
+                    fill: $light-grey;
+                }
+            }
+        }
+
+        // Footer Links
+        .tkr-footer-links {
+            .tkr-footer-menu-title {
+                width: 100%;
+            }
+
+            ul {
+                width: 100%;
+
+                li {
+                    a {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // Footer Bottom
+    .tkr-footer-bottom {
+        width: 100%;
+        padding: 18px 0;
+    }
+}

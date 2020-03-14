@@ -1,0 +1,33 @@
+article blockquote.wp-block-quote {
+    margin: 0;
+    margin: $margin-lg 0;
+    padding: 0 20px;
+    border-left: 4px solid $dark-grey-text;
+    overflow: hidden;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+article .wp-block-cover {
+    margin: $margin-lg 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+        color: $white;
+    }
+}
+
+article .wp-block-gallery {
+    margin: $margin-lg 0;
+    margin-bottom: $margin-sm;
+}

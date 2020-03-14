@@ -1,0 +1,127 @@
+@import "_wpblocks";
+
+.tkr-content {
+    &.post article {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+
+    article {
+        .tkr-entry-thumbnail {
+            position: relative;
+            height: 420px;
+            margin-bottom: $margin-lg;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        header {
+            h1 {
+                font-size: 2.4rem;
+                margin-top: 0;
+                margin-bottom: $margin-lg;
+            }
+
+            h2 {
+                margin-top: 0;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        p {
+            margin-top: 0;
+            margin-bottom: $margin-lg;
+        }
+
+        p {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+            font-size: 1.2rem;
+            color: $article-text;
+        }
+
+        .has-drop-cap:not(:focus):first-letter {
+            font-size: 4.2rem;
+            line-height: 0.68;
+            margin: 0.05em 0.1em 0 0;
+        }
+    }
+}
+
+.tkr-content-blog {
+    padding-top: 32px;
+
+    article {
+        position: relative;
+        width: 100%;
+        margin-bottom: $gutter-lg;
+        background: $white;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.03);
+
+            .tkr-entry-thumbnail {
+                opacity: 0.9;
+            }
+        }
+
+        .tkr-entry-thumbnail {
+            height: 225px;
+            background: $grey;
+
+            img {
+                display: block;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            @include breakpoint("lg") {
+                width: 360px;
+                height: 280px;
+            }
+        }
+
+        .tkr-entry-meta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1 0 0;
+            padding: 20px 15px;
+
+            @include breakpoint("lg") {
+                padding: 40px;
+            }
+
+            header.tkr-entry-header {
+                .tkr-entry-title {
+                    margin-top: 0;
+                    margin-bottom: 14px;
+                    font-weight: bold;
+                }
+            }
+
+            .tkr-entry-content {
+                margin-top: 0;
+                margin-bottom: 20px;
+                font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+                font-size: 1.12rem;
+                color: $dark-grey-text;
+            }
+
+            .tkr-entry-link {
+                color: $dark-grey-text;
+            }
+        }
+    }
+}
