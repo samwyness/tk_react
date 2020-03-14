@@ -4,9 +4,8 @@
     "description": "A WordPress + React starter theme.",
     "main": "index.js",
     "scripts": {
-        "lint": "eslint ./src/**/*.js",
         "start": "webpack --config ./config/webpack.dev.js --open",
-        "build": "npm run lint && webpack --config ./config/webpack.prod.js"
+        "build": "webpack --config ./config/webpack.prod.js"
     },
     "repository": {
         "type": "git",
