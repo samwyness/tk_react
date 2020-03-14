@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The main template file
  *
@@ -11,8 +12,8 @@
  */
 get_header(); ?>
 
-    <div id="root"></div>
+<div id="root"></div>
 
-    <?php include_once 'dist/icon-sprite.svg' ?>
-    
+<?php include_once 'dist/icon-sprite.svg' ?>
+
 <?php get_footer(); ?>
