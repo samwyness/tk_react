@@ -11,7 +11,7 @@ tk_react requires [Node.js](https://nodejs.org/) for development.
 
 1. Install the project by running the command `yarn install` in the project
    directory.
-2. Zip the project folder and upload the theme to your local WordPress install.
+2. Zip the project folder and upload the theme to your WordPress install.
 
 ## Development
 
@@ -30,7 +30,8 @@ Any lint errors will be displayed in the console.
 
 ## Production
 
-Builds the app for production to the `dist` folder.
+Running the command `yarn build` in the project directory builds the app for
+production into the `dist` folder.<br />
 
 It correctly bundles React in production mode and optimizes the build for the
 best performance. The build is minified and your app is ready to be deployed!
