@@ -1,8 +1,12 @@
 $breakpoints: (
-  'sm': 576px, // Small tablets and large smartphones (landscape view)
-  'md': 768px, // Small tablets (portrait view)
-  'lg': 992px, // Tablets (landscape view) and small desktops
-  'xl': 1200px, // Large tablets and desktops
+    "sm": 576px,
+    // Small tablets and large smartphones (landscape view)
+        "md": 768px,
+    // Small tablets (portrait view)
+        "lg": 992px,
+    // Tablets (landscape view) and small desktops
+        "xl": 1200px,
+    // Large tablets and desktops
 ) !default;
 
 @mixin breakpoint($breakpoint) {
@@ -13,7 +17,7 @@ $breakpoints: (
             @content;
         }
     }
-   
+
     // If the key doesn't exist in the map
     @else {
         @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "

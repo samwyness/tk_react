@@ -1,19 +1,15 @@
-$height-sm: 60px;
-$height-lg: 72px;
-
 .tkr-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: $height-sm;
+    height: $nav-height-sm;
     background: $white;
     color: $black;
     text-align: center;
     z-index: 90000;
-    transition: box-shadow 0.14s ease-in,
-                height 0.2s ease-in;
-    
+    transition: box-shadow 0.14s ease-in, height 0.2s ease-in;
+
     &.scrolled {
         box-shadow: $shadow-light;
 
@@ -22,18 +18,18 @@ $height-lg: 72px;
         }
     }
 
-    @include breakpoint('lg') {
+    @include breakpoint("lg") {
         text-align: initial;
-        height: $height-lg;
+        height: $nav-height-lg;
     }
 
     .row {
         margin: 0;
 
-        @include breakpoint('md') {
+        @include breakpoint("md") {
             margin-right: -15px;
             margin-left: -15px;
-        }   
+        }
     }
 
     // Header Buttons
@@ -43,30 +39,30 @@ $height-lg: 72px;
         height: $height-sm;
         margin-right: -15px;
         margin-left: -15px;
-              
-        @include breakpoint('lg') {
+
+        @include breakpoint("lg") {
             margin-right: 0;
             margin-left: 0;
         }
 
         &.tkr-mobile-drawer-btn {
             display: inline-block;
-            
-            @include breakpoint('lg') {
+
+            @include breakpoint("lg") {
                 display: none;
             }
         }
-        
+
         &:hover,
         &:focus {
             background: none;
         }
-        
-        @include breakpoint('lg') {
+
+        @include breakpoint("lg") {
             width: $height-lg; // square
             height: $height-lg;
         }
-        
+
         .tkr-icon {
             width: 24px;
             height: 24px;
@@ -81,7 +77,7 @@ $height-lg: 72px;
         text-decoration: none;
         overflow: hidden;
 
-        @include breakpoint('lg') {
+        @include breakpoint("lg") {
             margin-right: 32px;
         }
 
@@ -99,26 +95,25 @@ $height-lg: 72px;
                 width: auto;
                 height: 100%;
             }
-            
-            @include breakpoint('lg') {
+
+            @include breakpoint("lg") {
                 height: $height-lg;
             }
 
-            ~.tkr-site-title {
+            ~ .tkr-site-title {
                 margin-left: 18px;
             }
         }
-
     }
 
     // Main Menu
     nav.tkr-main-menu {
         display: none;
 
-        @include breakpoint('lg') {
+        @include breakpoint("lg") {
             display: inline-block;
         }
-        
+
         ul {
             li {
                 display: inline-block;
@@ -130,7 +125,7 @@ $height-lg: 72px;
                         height: $height-sm;
                         border-radius: 0;
                         opacity: 0.4;
-                        
+
                         &:hover {
                             opacity: 0.8;
                             background: none;
@@ -141,8 +136,8 @@ $height-lg: 72px;
                             opacity: 1;
                             border-color: #000;
                         }
-                        
-                        @include breakpoint('lg') {
+
+                        @include breakpoint("lg") {
                             height: $height-lg;
                         }
                     }
@@ -154,7 +149,6 @@ $height-lg: 72px;
     // Header expanded
     &.expanded {
         nav.tkr-main-menu {
-            
         }
     }
 
@@ -178,7 +172,7 @@ $height-lg: 72px;
         will-change: transform;
         transform: scale(0);
         transition: transform 0.14s ease-out;
-        
+
         &.visible {
             transform: scale(1);
         }

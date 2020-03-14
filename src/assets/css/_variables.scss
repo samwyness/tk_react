@@ -8,19 +8,30 @@ $secondary-color-400: #63ccff;
 $secondary-color-600: #006db3;
 
 $black: #24292e;
-$white: #FFFFFF;
+$white: #ffffff;
 $dark: #24292e;
 $grey: #e1e2e3;
-$light-grey: #F6f7f9;
+$light-grey: #f6f7f9;
 
 // Text
-$primary-color-text: #FFF;
+$primary-color-text: #fff;
 $secondary-color-text: #000;
 $light-grey-text: #757575;
 $dark-grey-text: #515151;
-$article-text: rgba(0,0,0,0.84);
+$article-text: rgba(0, 0, 0, 0.84);
 
-$shadow: 0 2px 5px rgba(0,0,0,0.24);
-$shadow-light: 0 2px 5px rgba(0,0,0,0.06);
+$shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
+$shadow-light: 0 2px 5px rgba(0, 0, 0, 0.06);
 
 $border-color: $light-grey;
+
+// Spacing
+$gutter-sm: 16px;
+$gutter-lg: 32px;
+
+$margin-sm: 16px;
+$margin-lg: 32px;
+
+// UI variables
+$nav-height-sm: 60px;
+$nav-height-lg: 72px;

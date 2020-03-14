@@ -1,7 +1,9 @@
 /*--------------------------------
     Forms & Inputs
 --------------------------------*/
-input, select, textarea {
+input,
+select,
+textarea {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-appearance: none;
@@ -24,17 +26,19 @@ input[type="checkbox"] {
 }
 ::-webkit-input-placeholder {
     color: inherit;
-	opacity: 0.6;
+    opacity: 0.6;
 }
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
+    /* Firefox 18- */
     color: inherit;
-	opacity: 0.6;
+    opacity: 0.6;
 }
-::-moz-placeholder {  /* Firefox 19+ */
+::-moz-placeholder {
+    /* Firefox 19+ */
     color: inherit;
-	opacity: 0.6;
+    opacity: 0.6;
 }
 :-ms-input-placeholder {
     color: inherit;
-	opacity: 0.6;
+    opacity: 0.6;
 }

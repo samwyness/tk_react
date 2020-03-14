@@ -7,12 +7,13 @@ $height-lg: 72px;
         .tkr-site-branding {
             display: block;
             text-decoration: none;
-            text-transform: uppercase;
             overflow: hidden;
 
             .tkr-site-logo,
             .tkr-site-title {
                 display: inline-block;
+                font-size: 17px;
+                line-height: normal;
             }
 
             .tkr-site-logo {
@@ -25,6 +26,9 @@ $height-lg: 72px;
                 }
             }
 
+            .tkr-site-description {
+                margin-top: 12px;
+            }
         }
 
         // Social Links
@@ -34,11 +38,11 @@ $height-lg: 72px;
                 height: 44px;
                 margin-right: 0;
                 padding: 10px;
-                
+
                 &:hover {
                     background: $light-grey;
                 }
-                
+
                 svg path {
                     fill: $light-grey;
                 }
@@ -47,7 +51,7 @@ $height-lg: 72px;
 
         // Footer Links
         .tkr-footer-links {
-            .tkr-footer-links-title {
+            .tkr-footer-menu-title {
                 width: 100%;
             }
 
@@ -62,7 +66,7 @@ $height-lg: 72px;
             }
         }
     }
-    
+
     // Footer Bottom
     .tkr-footer-bottom {
         width: 100%;

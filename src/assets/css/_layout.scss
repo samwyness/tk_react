@@ -27,60 +27,19 @@
     Main Layout
 --------------------------------*/
 .tkr-app {
-    padding-top: 60px;
-    
-    @include breakpoint('lg') {
-        padding-top: 72px;
+    padding-top: $nav-height-sm;
+
+    @include breakpoint("lg") {
+        padding-top: $nav-height-lg;
     }
 }
 
-.tkr-main-content  {
-    padding: 20px 0;
+.tkr-main-content {
     background: $light-grey;
-    
-    &:before, &:after {
+
+    &:before,
+    &:after {
         content: " ";
         display: table;
     }
-}
-
-.tkr-container, .tkr-container-fluid {
-    display: flex;
-    position: relative;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-.tkr-container-fluid {
-    max-width: 100%;
-}
-.tkr-row {
-    display: flex;
-    width: 100%;
-    margin-right: -10px;
-    margin-left: -10px;
-}
-.tkr-col-25,
-.tkr-col-33,
-.tkr-col-50,
-.tkr-col-66,
-.tkr-col-75 {
-    display: inline-block;
-    position: relative;
-    padding: 0 10px;
-}
-.tkr-col-25 {
-    width: 25%;
-}
-.tkr-col-33 {
-    width: 33.3333%;
-}
-.tkr-col-50 {
-    width: 50%;
-}
-.tkr-col-66 {
-    width: 66.6666%;
-}
-.tkr-col-75 {
-    width: 75%;
 }

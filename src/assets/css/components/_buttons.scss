@@ -14,11 +14,11 @@
     border-radius: 4px;
     background: transparent;
     color: inherit;
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 2.25rem;
     line-height: inherit;
-    letter-spacing: .0892857143em;
+    letter-spacing: 0.0892857143em;
     text-decoration: none;
     text-transform: uppercase;
     -webkit-user-select: none;
@@ -30,7 +30,7 @@
     -webkit-appearance: none;
     overflow: visible;
     cursor: pointer;
-    
+
     &:hover {
         background-color: #f2f3f4;
         text-decoration: none;
@@ -55,12 +55,12 @@
         width: 18px;
         height: 18px;
         vertical-align: middle;
-        
+
         ~ .tkr-btn-label {
             margin-left: 8px;
         }
     }
-    
+
     .tkr-btn-label {
         display: inline-block;
         vertical-align: middle;
@@ -71,20 +71,21 @@
         background-color: $primary-color;
         color: $primary-color-text;
         fill: $primary-color-text;
-        
+
         &:hover {
             background-color: $primary-color-400;
         }
-        &:active, &:focus {
+        &:active,
+        &:focus {
             background-color: $primary-color-600;
         }
     }
-    
+
     &.tkr-btn-secondary {
         background-color: $secondary-color;
         color: $secondary-color-text;
         fill: $secondary-color-text;
-        
+
         &:hover {
             background-color: $secondary-color-400;
         }
@@ -96,8 +97,8 @@
 
 // Dark Theme Buttons
 .dark-theme .tkr-btn {
-    color: #FFF;
-    
+    color: #fff;
+
     &:hover {
         background: #272c33;
         color: inherit;
@@ -105,7 +106,7 @@
 
     &.tkr-btn-secondary {
         background-color: #23292f;
-        
+
         &:hover {
             background-color: #272c33;
         }

@@ -12,17 +12,17 @@ html {
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    
+
     /* Font variant */
     font-variant-ligatures: none;
     -webkit-font-variant-ligatures: none;
-    
+
     /* Font Smoothing */
     text-rendering: optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
-    
+    text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+
     /* Spacing */
     letter-spacing: 0.02em;
 }
@@ -32,7 +32,7 @@ body {
     width: 100%;
     height: auto;
     margin: 0;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: #181818;
 
     font-family: sans-serif;
@@ -58,34 +58,47 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+    display: block;
 }
 
 audio,
 canvas,
 progress,
 video {
-  display: inline-block;
-  vertical-align: baseline;
+    display: inline-block;
+    vertical-align: baseline;
 }
 
 /*--------------------------------
     Typography
 --------------------------------*/
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: inherit;
 }
-h1 { font-size: 2.4rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.4rem; }
+h1 {
+    font-size: 2.4rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.4rem;
+}
 
-p, li, a {
+p,
+li,
+a {
     font-size: 100%;
     line-height: 1.6;
     color: inherit;
 }
 
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
     font-family: inherit;
     font-size: 100%;
     line-height: 1.6;
@@ -125,7 +138,8 @@ svg {
 /*--------------------------------
     Lists
 --------------------------------*/
-ol, ul {
+ol,
+ul {
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
@@ -133,7 +147,7 @@ ol, ul {
     &.list-style-none {
         list-style: none;
     }
-    
+
     &.list-horizontal {
         vertical-align: middle;
 
