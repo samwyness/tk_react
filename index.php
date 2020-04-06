@@ -16,26 +16,26 @@
 <html <?php language_attributes(); ?> dir="ltr">
 
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="<?php bloginfo('charset'); ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="<?php bloginfo('description'); ?>">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="<?php bloginfo('description'); ?>">
 
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+  <link rel="profile" href="http://gmpg.org/xfn/11">
+  <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-    <?php wp_head(); ?>
+  <?php wp_head(); ?>
 </head>
 
 <body>
 
-    <div id="root"></div>
+  <div id="root"></div>
 
-    <?php include_once 'dist/icon-sprite.svg' ?>
+  <?php include_once 'dist/icon-sprite.svg' ?>
 
-    <?php wp_footer(); ?>
+  <?php wp_footer(); ?>
 
 </body>
 

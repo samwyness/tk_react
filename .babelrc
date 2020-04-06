@@ -1,13 +1,13 @@
 {
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "useBuiltIns": "usage",
-                "corejs": 3
-            }
-        ],
-        "@babel/preset-react"
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
     ],
-    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+    "@babel/preset-react"
+  ],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }
