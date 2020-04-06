@@ -6,7 +6,7 @@
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  *
- * If you dont want the generatic wordpress header and footer and want to
+ * If you dont want the generatic WordPress header and footer and want to
  * go full React remove/comment out the 'wp_head' and 'wp_footer' calls.
  *
  */
