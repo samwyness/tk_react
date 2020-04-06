@@ -1,9 +1,3 @@
-// Polyfills
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import 'raf/polyfill';
-import 'whatwg-fetch';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
