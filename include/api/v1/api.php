@@ -2,7 +2,7 @@
 
 /**
  * TKR REST API
- * Description: A custom Wordpress API for wp-react-resume.
+ * Description: A custom WordPress API for wp-react-resume.
  *
  * Version:     1.0.0
  *
