@@ -9,19 +9,19 @@ import Term from 'containers/Term';
 import Search from 'containers/Search';
 import Single from 'containers/Single';
 
-const blog_path = __tkr__.settings.blog_page_slug;
-const blog_routes = {};
-
-blog_routes[`/${blog_path}/page/:offSet/`] = ({ offset }) => (
-  <Blog offset={offset} />
-);
-blog_routes[`/${blog_path}/`] = () => <Blog />;
+const { home_page, blog_page_slug } = __tkr__.settings;
+const Home = Number(home_page) === 0 ? Blog : FrontPage;
 
 // NOTE: Route url parameters (eg: :postId) do not support '_' or '-'
 export const routes = {
-  '/': () => <FrontPage page_id={__tkr__.settings.home_page} />,
+  '/': () => <Home page_id={home_page} />,
 
-  ...blog_routes,
+  // BLOG
+
+  [`/${blog_page_slug}/page/:offset/`]: ({ offset }) => (
+    <Blog offset={offset} />
+  ),
+  [`/${blog_page_slug}/`]: () => <Blog />,
 
   '/attachment/:postSlug/:mediaId/': ({ postSlug, mediaId }) => (
     <Attachment post_slug={postSlug} mediaId={mediaId} />
