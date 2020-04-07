@@ -1,180 +1,184 @@
 .tkr-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: $nav-height-sm;
-    background: $white;
-    color: $black;
-    text-align: center;
-    z-index: 90000;
-    transition: box-shadow 0.14s ease-in, height 0.2s ease-in;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $nav-height-sm;
+  background: $white;
+  color: $black;
+  text-align: center;
+  z-index: 90000;
+  transition: box-shadow 0.14s ease-in, height 0.2s ease-in;
 
-    &.scrolled {
-        box-shadow: $shadow-light;
+  &.scrolled {
+    box-shadow: $shadow-light;
 
-        .tkr-scroll-arrow {
-            display: none;
-        }
-    }
-
-    @include breakpoint("lg") {
-        text-align: initial;
-        height: $nav-height-lg;
-    }
-
-    .row {
-        margin: 0;
-
-        @include breakpoint("md") {
-            margin-right: -15px;
-            margin-left: -15px;
-        }
-    }
-
-    // Header Buttons
-    .tkr-header-btn {
-        vertical-align: middle;
-        width: $height-sm; // square
-        height: $height-sm;
-        margin-right: -15px;
-        margin-left: -15px;
-
-        @include breakpoint("lg") {
-            margin-right: 0;
-            margin-left: 0;
-        }
-
-        &.tkr-mobile-drawer-btn {
-            display: inline-block;
-
-            @include breakpoint("lg") {
-                display: none;
-            }
-        }
-
-        &:hover,
-        &:focus {
-            background: none;
-        }
-
-        @include breakpoint("lg") {
-            width: $height-lg; // square
-            height: $height-lg;
-        }
-
-        .tkr-icon {
-            width: 24px;
-            height: 24px;
-        }
-    }
-
-    // Site Branding
-    .tkr-site-branding {
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 17px;
-        text-decoration: none;
-        overflow: hidden;
-
-        @include breakpoint("lg") {
-            margin-right: 32px;
-        }
-
-        .tkr-site-logo,
-        .tkr-site-title {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .tkr-site-logo {
-            height: $height-sm;
-            padding: 18px 0;
-
-            img {
-                width: auto;
-                height: 100%;
-            }
-
-            @include breakpoint("lg") {
-                height: $height-lg;
-            }
-
-            ~ .tkr-site-title {
-                margin-left: 18px;
-            }
-        }
-    }
-
-    // Main Menu
-    nav.tkr-main-menu {
-        display: none;
-
-        @include breakpoint("lg") {
-            display: inline-block;
-        }
-
-        ul {
-            li {
-                display: inline-block;
-
-                a {
-                    display: block;
-
-                    .tkr-btn-link {
-                        height: $height-sm;
-                        border-radius: 0;
-                        opacity: 0.4;
-
-                        &:hover {
-                            opacity: 0.8;
-                            background: none;
-                            transition: opacity 0.14s ease-in;
-                        }
-
-                        &.active {
-                            opacity: 1;
-                            border-color: #000;
-                        }
-
-                        @include breakpoint("lg") {
-                            height: $height-lg;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // Header expanded
-    &.expanded {
-        nav.tkr-main-menu {
-        }
-    }
-
-    // Scroll To Top Arrow
     .tkr-scroll-arrow {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        width: 50px;
-        height: 50px;
-        margin-right: 28px;
-        margin-bottom: 28px;
-        padding: 13px;
-        background: $light-grey;
-        color: $light-grey-text;
-        border-radius: 50%;
-        box-shadow: $shadow;
-        text-align: center;
-        z-index: 8000;
-        cursor: pointer;
-        will-change: transform;
-        transform: scale(0);
-        transition: transform 0.14s ease-out;
-
-        &.visible {
-            transform: scale(1);
-        }
+      display: none;
     }
+  }
+
+  body.customize-support & {
+    top: 32px;
+  }
+
+  @include breakpoint('lg') {
+    text-align: initial;
+    height: $nav-height-lg;
+  }
+
+  .row {
+    margin: 0;
+
+    @include breakpoint('md') {
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+  }
+
+  // Header Buttons
+  .tkr-header-btn {
+    vertical-align: middle;
+    width: $height-sm; // square
+    height: $height-sm;
+    margin-right: -15px;
+    margin-left: -15px;
+
+    @include breakpoint('lg') {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    &.tkr-mobile-drawer-btn {
+      display: inline-block;
+
+      @include breakpoint('lg') {
+        display: none;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background: none;
+    }
+
+    @include breakpoint('lg') {
+      width: $height-lg; // square
+      height: $height-lg;
+    }
+
+    .tkr-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  // Site Branding
+  .tkr-site-branding {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 17px;
+    text-decoration: none;
+    overflow: hidden;
+
+    @include breakpoint('lg') {
+      margin-right: 32px;
+    }
+
+    .tkr-site-logo,
+    .tkr-site-title {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .tkr-site-logo {
+      height: $height-sm;
+      padding: 18px 0;
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+
+      @include breakpoint('lg') {
+        height: $height-lg;
+      }
+
+      ~ .tkr-site-title {
+        margin-left: 18px;
+      }
+    }
+  }
+
+  // Main Menu
+  nav.tkr-main-menu {
+    // display: none;
+
+    @include breakpoint('lg') {
+      display: inline-block;
+    }
+
+    ul {
+      li {
+        display: inline-block;
+
+        a {
+          display: block;
+
+          .tkr-btn-link {
+            height: $height-sm;
+            border-radius: 0;
+            opacity: 0.4;
+
+            &:hover {
+              opacity: 0.8;
+              background: none;
+              transition: opacity 0.14s ease-in;
+            }
+
+            &.active {
+              opacity: 1;
+              border-color: #000;
+            }
+
+            @include breakpoint('lg') {
+              height: $height-lg;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Header expanded
+  &.expanded {
+    nav.tkr-main-menu {
+    }
+  }
+
+  // Scroll To Top Arrow
+  .tkr-scroll-arrow {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    margin-right: 28px;
+    margin-bottom: 28px;
+    padding: 13px;
+    background: $light-grey;
+    color: $light-grey-text;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    text-align: center;
+    z-index: 8000;
+    cursor: pointer;
+    will-change: transform;
+    transform: scale(0);
+    transition: transform 0.14s ease-out;
+
+    &.visible {
+      transform: scale(1);
+    }
+  }
 }

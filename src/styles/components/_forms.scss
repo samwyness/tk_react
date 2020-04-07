@@ -4,41 +4,41 @@
 input,
 select,
 textarea {
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
 }
-input[type="submit"] {
-    border: none;
+input[type='submit'] {
+  border: none;
 }
 textarea {
-    max-width: 100%;
-    min-height: 100px;
-    padding: 5px 10px;
+  max-width: 100%;
+  min-height: 100px;
+  padding: 5px 10px;
 }
-input[type="checkbox"] {
-    float: left;
-    width: 20px;
-    height: 20px;
-    margin: 2px 7px;
+input[type='checkbox'] {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 2px 7px;
 }
 ::-webkit-input-placeholder {
-    color: inherit;
-    opacity: 0.6;
+  color: inherit;
+  opacity: 0.6;
 }
 :-moz-placeholder {
-    /* Firefox 18- */
-    color: inherit;
-    opacity: 0.6;
+  /* Firefox 18- */
+  color: inherit;
+  opacity: 0.6;
 }
 ::-moz-placeholder {
-    /* Firefox 19+ */
-    color: inherit;
-    opacity: 0.6;
+  /* Firefox 19+ */
+  color: inherit;
+  opacity: 0.6;
 }
 :-ms-input-placeholder {
-    color: inherit;
-    opacity: 0.6;
+  color: inherit;
+  opacity: 0.6;
 }
