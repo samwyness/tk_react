@@ -4,111 +4,111 @@
     Buttons
 --------------------------------*/
 .tkr-btn {
-    display: inline-block;
-    position: relative;
-    width: auto;
-    height: 36px;
-    padding: 0 16px 0 16px;
-    outline: none;
-    border: none;
-    border-radius: 4px;
-    background: transparent;
-    color: inherit;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 2.25rem;
-    line-height: inherit;
-    letter-spacing: 0.0892857143em;
+  display: inline-block;
+  position: relative;
+  width: auto;
+  height: 36px;
+  padding: 0 16px 0 16px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 2.25rem;
+  line-height: inherit;
+  letter-spacing: 0.0892857143em;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  overflow: visible;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f2f3f4;
     text-decoration: none;
-    text-transform: uppercase;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -moz-touch-action: manipulation;
-    touch-action: manipulation;
-    -webkit-appearance: none;
-    overflow: visible;
-    cursor: pointer;
+  }
+
+  // Button Sizes
+  &.tkr-btn-large {
+    height: 50px;
+    padding: 0 24px 0 24px;
+    border-radius: 6px;
+  }
+  &.tkr-btn-full-width {
+    width: 100%;
+    height: 50px;
+    border-radius: 6px;
+  }
+
+  // Icon Buttons
+  .tkr-icon {
+    display: inline-block;
+    fill: currentColor;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+
+    ~ .tkr-btn-label {
+      margin-left: 8px;
+    }
+  }
+
+  .tkr-btn-label {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  // Button Colors
+  &.tkr-btn-primary {
+    background-color: $primary-color;
+    color: $primary-color-text;
+    fill: $primary-color-text;
 
     &:hover {
-        background-color: #f2f3f4;
-        text-decoration: none;
+      background-color: $primary-color-400;
     }
-
-    // Button Sizes
-    &.tkr-btn-large {
-        height: 50px;
-        padding: 0 24px 0 24px;
-        border-radius: 6px;
+    &:active,
+    &:focus {
+      background-color: $primary-color-600;
     }
-    &.tkr-btn-full-width {
-        width: 100%;
-        height: 50px;
-        border-radius: 6px;
+  }
+
+  &.tkr-btn-secondary {
+    background-color: $secondary-color;
+    color: $secondary-color-text;
+    fill: $secondary-color-text;
+
+    &:hover {
+      background-color: $secondary-color-400;
     }
-
-    // Icon Buttons
-    .tkr-icon {
-        display: inline-block;
-        fill: currentColor;
-        width: 18px;
-        height: 18px;
-        vertical-align: middle;
-
-        ~ .tkr-btn-label {
-            margin-left: 8px;
-        }
+    &:active {
+      background-color: $secondary-color-600;
     }
-
-    .tkr-btn-label {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    // Button Colors
-    &.tkr-btn-primary {
-        background-color: $primary-color;
-        color: $primary-color-text;
-        fill: $primary-color-text;
-
-        &:hover {
-            background-color: $primary-color-400;
-        }
-        &:active,
-        &:focus {
-            background-color: $primary-color-600;
-        }
-    }
-
-    &.tkr-btn-secondary {
-        background-color: $secondary-color;
-        color: $secondary-color-text;
-        fill: $secondary-color-text;
-
-        &:hover {
-            background-color: $secondary-color-400;
-        }
-        &:active {
-            background-color: $secondary-color-600;
-        }
-    }
+  }
 }
 
 // Dark Theme Buttons
 .dark-theme .tkr-btn {
-    color: #fff;
+  color: #fff;
+
+  &:hover {
+    background: #272c33;
+    color: inherit;
+  }
+
+  &.tkr-btn-secondary {
+    background-color: #23292f;
 
     &:hover {
-        background: #272c33;
-        color: inherit;
+      background-color: #272c33;
     }
-
-    &.tkr-btn-secondary {
-        background-color: #23292f;
-
-        &:hover {
-            background-color: #272c33;
-        }
-    }
+  }
 }

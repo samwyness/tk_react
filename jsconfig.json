@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-        "module": "es6",
-        "target": "es6",
-        "baseUrl": "./",
-        "paths": {
-            "config/*": ["config/*"],
-            "assets/*": ["src/assets/*"],
-            "components/*": ["src/components/*"],
-            "containers/*": ["src/containers/*"],
-            "store/*": ["src/store/*"],
-            "styles/*": ["src/styles/*"],
-            "utils/*": ["src/utils/*"]
-        }
-    },
-    "exclude": ["node_modules", "dist"]
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+    "baseUrl": "./",
+    "paths": {
+      "config/*": ["config/*"],
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "store/*": ["src/store/*"],
+      "styles/*": ["src/styles/*"],
+      "utils/*": ["src/utils/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
 }

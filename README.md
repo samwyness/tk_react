@@ -9,29 +9,32 @@ A WordPress + React starter theme.
 
 tk_react requires [Node.js](https://nodejs.org/) for development.
 
-1. Install the project by running the command `yarn install` in the project
-   directory.
-2. Zip the project folder and upload the theme to your WordPress install.
+1. Install the theme by running the command `yarn install` or `npm install`in
+   the theme directory.
+2. Zip the theme folder and upload to your WordPress install.
 
 ## Development
 
-Running the command `yarn start` in the project directory will start the app in
-development mode. Creates a watch script that compiles .js and .css changes on
-save.
+### `yarn start` or `npm start`
+
+Running one of the above commands in the project directory will start the theme
+in development mode.
 
 Any lint errors will be displayed in the console.
 
-**Notes on development.**
+**Notes on development**
 
--   This theme does not yet support using child themes, the theme is intended to
-    be edited directly.
--   tk_react is just a theme, how you choose to run your WordPress instance
-    locally is entirely up to you.
+- This theme does not yet support using child themes, the theme is intended to
+  be edited directly.
+- tk_react is just a theme, how you choose to run your WordPress instance
+  locally is entirely up to you.
 
 ## Production
 
-Running the command `yarn build` in the project directory builds the app for
-production into the `dist` folder.<br />
+### `yarn build` or `npm run build`
+
+Running one of the above commands in the theme directory builds the theme ready
+for production into the **'dist'** folder.<br />
 
 It correctly bundles React in production mode and optimizes the build for the
-best performance. The build is minified and your app is ready to be deployed!
+best performance. The build is minified and your theme is ready to be deployed!

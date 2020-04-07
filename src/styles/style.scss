@@ -1,18 +1,18 @@
 // Variables, Mixins and Utilities
-@import "_variables";
-@import "utils/_breakpoints";
-@import "utils/_grid";
+@import '_variables';
+@import 'utils/_breakpoints';
+@import 'utils/_grid';
 
 // Base and Layout
-@import "_base";
-@import "_layout";
+@import '_base';
+@import '_layout';
 
 // Components
-@import "components/_buttons";
-@import "components/_footer";
-@import "components/_forms";
-@import "components/_header";
-@import "components/_loaders";
+@import 'components/_buttons';
+@import 'components/_footer';
+@import 'components/_forms';
+@import 'components/_header';
+@import 'components/_loaders';
 
 // Content
-@import "_content";
+@import '_content';

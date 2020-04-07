@@ -2,44 +2,44 @@
     Alignment
 --------------------------------*/
 .align-left {
-    margin-right: auto;
+  margin-right: auto;
 }
 .align-right {
-    margin-left: auto;
+  margin-left: auto;
 }
 .align-center {
-    display: block;
-    float: none;
-    margin: 0 auto;
+  display: block;
+  float: none;
+  margin: 0 auto;
 }
 
 .text-left {
-    text-align: left;
+  text-align: left;
 }
 .text-right {
-    text-align: right;
+  text-align: right;
 }
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 /*--------------------------------
     Main Layout
 --------------------------------*/
 .tkr-app {
-    padding-top: $nav-height-sm;
+  padding-top: $nav-height-sm;
 
-    @include breakpoint("lg") {
-        padding-top: $nav-height-lg;
-    }
+  @include breakpoint('lg') {
+    padding-top: $nav-height-lg;
+  }
 }
 
 .tkr-main-content {
-    background: $light-grey;
+  background: $light-grey;
 
-    &:before,
-    &:after {
-        content: " ";
-        display: table;
-    }
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
 }
