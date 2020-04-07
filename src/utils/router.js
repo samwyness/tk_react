@@ -23,29 +23,36 @@ export const routes = {
   ),
   [`/${blog_page_slug}/`]: () => <Blog />,
 
+  // ATTACHMENTS
   '/attachment/:postSlug/:mediaId/': ({ postSlug, mediaId }) => (
     <Attachment post_slug={postSlug} mediaId={mediaId} />
   ),
 
-  '/author/:authorSlug/page/:offSet/': ({ authorSlug, offset }) => (
+  // AUTHORS
+  '/author/:authorSlug/page/:offset/': ({ authorSlug, offset }) => (
     <Author author_slug={authorSlug} offset={offset} />
   ),
   '/author/:authorSlug/': ({ authorSlug }) => (
     <Author author_slug={authorSlug} />
   ),
 
-  '/category/:catSlug/page/:offSet/': ({ catSlug, offset }) => (
+  // CATEGORIES
+  '/category/:catSlug/page/:offset/': ({ catSlug, offset }) => (
     <Term cat_slug={catSlug} offset={offset} />
   ),
   '/category/:catSlug/': ({ catSlug }) => <Term cat_slug={catSlug} />,
 
+  // TAGS
   '/tag/:tagSlug/': ({ tagSlug }) => <Term tag_slug={tagSlug} />,
 
+  // SEARCHES
   '/search/:query/': ({ query }) => <Search query={query} />,
   '/search/': () => <Search />,
 
+  // ARCHIVES
   '/archives/:postId/': ({ postId }) => <Single post_id={postId} />,
 
+  // POSTS
   '/:year/:month/:day/:postSlug/': ({ postSlug }) => (
     <Single post_slug={postSlug} />
   ),
