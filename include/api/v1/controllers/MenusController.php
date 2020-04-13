@@ -1,25 +1,18 @@
 <?php
 
-/**
- * TKR REST API Custom Pages routes
- *
- * Description: Extends TKR API with WordPress page routes.
- *
- */
-
 if (!class_exists('TKR_REST_Menus_Controller')) :
   /**
-   * TKR REST Pages class.
+   * Menus Controller
    *
-   * @package API
+   * Controller class for registering and handling WordPress menu routes.
+   *
    * @since 1.0.0
+   * @package TKR_REST_API
+   * @author Sam Wyness <samwyness22@gmail.com>
+   *
    */
   class TKR_REST_Menus_Controller extends TKR_REST_Controller
   {
-
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
       $this->rest_base = 'menus';
@@ -30,22 +23,22 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
     {
       register_rest_route($this->namespace, '/' . $this->rest_base, array(
         array(
-          'methods'                => WP_REST_Server::READABLE,
+          'methods'             => WP_REST_Server::READABLE,
           'callback'            => array($this, 'get_items'),
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
-      register_rest_route($this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+      register_rest_route($this->namespace, '/' . $this->rest_base . '/(?P<name>[a-zA-Z0-9_-]+)', array(
         array(
-          'methods'                => WP_REST_Server::READABLE,
+          'methods'             => WP_REST_Server::READABLE,
           'callback'            => array($this, 'get_item'),
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
-      register_rest_route($this->namespace, '/' . $this->rest_base . '/locations/(?P<location>[a-zA-Z0-9_-]+)', array(
+      register_rest_route($this->namespace, '/' . $this->rest_base . '/location/(?P<location>[a-zA-Z0-9_-]+)', array(
         array(
-          'methods'                => WP_REST_Server::READABLE,
-          'callback'            => array($this, 'get_item_by_location'),
+          'methods'             => WP_REST_Server::READABLE,
+          'callback'            => array($this, 'get_location_item'),
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
@@ -53,19 +46,22 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
 
 
     /**
-     * Get all menus and output rest response
+     * Get all menus items
      *
-     * @param WP_REST_Request $request Current request.
-     * @return array All published menus
+     * @param WP_REST_Request $request - Current request object
+     * @return Array A collection of created WordPress menus
      */
     public function get_items($request)
     {
-      $menus = wp_get_nav_menus($args);
-
+      $menus = wp_get_nav_menus();
       $collection = array();
 
       if (empty($menus)) {
-        return rest_ensure_response($collection);
+        return new WP_Error(
+          'rest_menu_invalid_name',
+          'Invalid menu name.',
+          array('status' => 404)
+        );
       }
 
       foreach ($menus as $menu) {
@@ -73,89 +69,88 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
         $collection[] = $this->prepare_response_for_collection($response);
       }
 
-      return rest_ensure_response($collection);
+      return $collection;
     }
 
 
     /**
-     * Get Menu
+     * Get a single menu item
      *
-     * @since  1.0.0
+     * @since 1.0.0
+     * @author Sam Wyness <sa
+     *
      * @return array The published menu
      */
     public function get_item($request)
     {
-      $id = (int) $request['id'];
-      $menu_obj = wp_get_nav_menu_object($id);
+      $menu_name = $request['name'];
+      $menu_obj = wp_get_nav_menu_object($menu_name);
 
       if (empty($menu_obj)) {
-        return rest_ensure_response(null);
+        return new WP_Error(
+          'rest_menu_invalid_name',
+          'Invalid menu name.',
+          array('status' => 404)
+        );
       }
 
-      $response = $this->prepare_item_for_response($menu_obj);
-
-      return $response;
+      return $this->prepare_item_for_response($menu_obj, $request);;
     }
 
+
     /**
-     * Get Menu
+     * Get a single menu item by its location
      *
-     * @since  1.0.0
+     * @since 1.0.0
+     * @author Sam Wyness <samwyness22@gmail.com>
+     *
+     * @param WP_REST_Request $request - Current request object.
      * @return array The published menu
      */
-    public function get_item_by_location($request)
+    public function get_location_item($request)
     {
       $location = $request['location'];
       $theme_locations = get_nav_menu_locations();
 
       if (!isset($theme_locations[$location])) {
-        return rest_ensure_response(null);
+        return new WP_Error(
+          'rest_menu_invalid_location',
+          'Invalid location.',
+          array('status' => 404)
+        );
       }
 
-      $menu_obj = wp_get_nav_menu_object($theme_locations[$location]);
+      $menu_obj = get_term($theme_locations[$location], 'nav_menu');
 
       if (!isset($menu_obj->term_id)) {
-        return rest_ensure_response(null);
+        return new WP_Error(
+          'rest_menu_invalid_term_id',
+          'Invalid term id.',
+          array('status' => 404)
+        );
       }
 
-      $response = $this->prepare_item_for_response($menu_obj, $request);
-
-      return $response;
+      return $this->prepare_item_for_response($menu_obj, $request);
     }
 
     /**
-     * Prepare menu response.
+     * Prepare menu item response
      *
-     * @param WP_Post $menu_obj The menu object whose response is being prepared.
+     * @since 1.0.0
+     * @author Sam Wyness <samwyness22@gmail.com>
+     *
+     * @param WP_Post $menu_obj - The menu object whose response is being prepared.
+     * @return WP_REST_Response
      */
     public function prepare_item_for_response($menu_obj, $request)
     {
       $menu = $menu_obj;
-      $theme_locations = get_nav_menu_locations();
-      $menu_locations = array();
-
-      foreach ($theme_locations as $location => $menu_id) {
-        if ($menu_id === $menu->term_id) {
-          $menu_locations[] = $location;
-        }
-      }
-
       $nav_items = wp_get_nav_menu_items($menu->term_id);
       $menu_items = array();
 
       foreach ($nav_items as $nav_item => $item_data) {
         // Break the url into parts
         $url = parse_url($item_data->url);
-        // $url_base = $url['scheme'] . '://' . $url['host'];
-
-        // If the menu url is the same as the WordPress home url set
-        // url part path to '/' so we can use it in react
-        // if (!$url['path'] && $url_base === get_option('home')) {
-        //   echo '<br><br>';
-        //   echo '<pre>';
-        //   echo print_r($url);
-        //   $url['path'] = '/';
-        // }
 
         $menu_items[$nav_item]['id'] = $item_data->object_id;
         $menu_items[$nav_item]['url'] = $url;
@@ -170,7 +165,6 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
       $menu_data['parent'] = $menu->parent;
       $menu_data['slug'] = $menu->slug;
       $menu_data['items'] = $menu_items;
-      $menu_data['locations'] = $menu_locations;
 
       return rest_ensure_response($menu_data);
     }
