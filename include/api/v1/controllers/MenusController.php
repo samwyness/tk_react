@@ -118,7 +118,7 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
         return rest_ensure_response(null);
       }
 
-      $menu_obj = wp_get_nav_menu_object($theme_locations[$location]);
+      $menu_obj = get_term($theme_locations[$location], 'nav_menu');
 
       if (!isset($menu_obj->term_id)) {
         return rest_ensure_response(null);
