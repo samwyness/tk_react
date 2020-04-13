@@ -35,7 +35,7 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
-      register_rest_route($this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+      register_rest_route($this->namespace, '/' . $this->rest_base . '/(?P<name>[a-zA-Z0-9_-]+)', array(
         array(
           'methods'                => WP_REST_Server::READABLE,
           'callback'            => array($this, 'get_item'),
@@ -85,17 +85,20 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
      */
     public function get_item($request)
     {
-      $id = (int) $request['id'];
-      $menu_obj = wp_get_nav_menu_object($id);
+      $menu_name = $request['name'];
+      $menu_obj = wp_get_nav_menu_object($menu_name);
 
       if (empty($menu_obj)) {
-        return rest_ensure_response(null);
+        return new WP_Error(
+          'rest_menu_invalid_name',
+          'Invalid menu name.',
+          array('status' => 404)
+        );
       }
 
-      $response = $this->prepare_item_for_response($menu_obj);
-
-      return $response;
+      return $this->prepare_item_for_response($menu_obj, $request);;
     }
+
 
     /**
      * Get Menu
