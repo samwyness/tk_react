@@ -8,6 +8,7 @@
       "assets/*": ["src/assets/*"],
       "components/*": ["src/components/*"],
       "containers/*": ["src/containers/*"],
+      "hooks/*": ["src/hooks/*"],
       "store/*": ["src/store/*"],
       "styles/*": ["src/styles/*"],
       "utils/*": ["src/utils/*"]

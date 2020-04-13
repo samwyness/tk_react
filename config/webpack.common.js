@@ -116,6 +116,7 @@ const config = {
       assets: paths.appAssets,
       components: paths.appComponents,
       containers: paths.appContainers,
+      hooks: paths.appHooks,
       store: paths.appStore,
       styles: paths.appStyles,
       utils: paths.appUtils,
