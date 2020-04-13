@@ -198,14 +198,7 @@ function tk_react_header_script()
       'colors' => array(
         'background' => '#' . get_background_color(),
       ),
-      'menus' => array(
-        'main_menu' => getMenuFromApi('main-menu'),
-        'mobile_menu' => getMenuFromApi('mobile-menu'),
-        'footer_menu_1' => getMenuFromApi('footer-menu-1'),
-        'footer_menu_2' => getMenuFromApi('footer-menu-2'),
-        'footer_menu_3' => getMenuFromApi('footer-menu-3'),
-        'social_menu' => getMenuFromApi('social-menu'),
-      ),
+      'menus' => $menus,
       'home_page' => (int) $page_on_front,
       'home_page_slug' => $home_page_url,
       'blog_page' => $page_for_posts,
