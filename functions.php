@@ -89,15 +89,13 @@ add_action('after_setup_theme', 'tk_react_theme_setup');
  */
 function tk_react_menus()
 {
-
   $locations = array(
-    'main-menu'        => __('Main Menu', 'tk_react'),
-    'mobile-menu'     => __('Mobile Menu', 'tk_react'),
-    'footer-menu-1' => __('Footer Menu 1', 'tk_react'),
-    'footer-menu-2' => __('Footer Menu 2', 'tk_react'),
-    'footer-menu-3' => __('Footer Menu 3', 'tk_react'),
-    'social-menu'     => __('Social Menu', 'tk_react'),
+    'primary' => __('Top Navigation Menu', 'tk_react'),
+    'mobile'  => __('Mobile Menu', 'tk_react'),
+    'footer'  => __('Footer Menu', 'tk_react'),
+    'social'  => __('Social Menu', 'tk_react'),
   );
+
 
   register_nav_menus($locations);
 }
