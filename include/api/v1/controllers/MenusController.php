@@ -60,12 +60,15 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
      */
     public function get_items($request)
     {
-      $menus = wp_get_nav_menus($args);
-
+      $menus = wp_get_nav_menus();
       $collection = array();
 
       if (empty($menus)) {
-        return rest_ensure_response($collection);
+        return new WP_Error(
+          'rest_menu_invalid_name',
+          'Invalid menu name.',
+          array('status' => 404)
+        );
       }
 
       foreach ($menus as $menu) {
@@ -73,7 +76,7 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
         $collection[] = $this->prepare_response_for_collection($response);
       }
 
-      return rest_ensure_response($collection);
+      return $collection;
     }
 
 
