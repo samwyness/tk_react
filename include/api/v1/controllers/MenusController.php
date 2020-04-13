@@ -131,31 +131,12 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
     public function prepare_item_for_response($menu_obj, $request)
     {
       $menu = $menu_obj;
-      $theme_locations = get_nav_menu_locations();
-      $menu_locations = array();
-
-      foreach ($theme_locations as $location => $menu_id) {
-        if ($menu_id === $menu->term_id) {
-          $menu_locations[] = $location;
-        }
-      }
-
       $nav_items = wp_get_nav_menu_items($menu->term_id);
       $menu_items = array();
 
       foreach ($nav_items as $nav_item => $item_data) {
         // Break the url into parts
         $url = parse_url($item_data->url);
-        // $url_base = $url['scheme'] . '://' . $url['host'];
-
-        // If the menu url is the same as the WordPress home url set
-        // url part path to '/' so we can use it in react
-        // if (!$url['path'] && $url_base === get_option('home')) {
-        //   echo '<br><br>';
-        //   echo '<pre>';
-        //   echo print_r($url);
-        //   $url['path'] = '/';
-        // }
 
         $menu_items[$nav_item]['id'] = $item_data->object_id;
         $menu_items[$nav_item]['url'] = $url;
@@ -170,7 +151,6 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
       $menu_data['parent'] = $menu->parent;
       $menu_data['slug'] = $menu->slug;
       $menu_data['items'] = $menu_items;
-      $menu_data['locations'] = $menu_locations;
 
       return rest_ensure_response($menu_data);
     }
