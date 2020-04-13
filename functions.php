@@ -170,6 +170,18 @@ function tk_react_header_script()
     '_builtin' => false
   ), 'objects', 'and');
 
+  // Menu Settings
+  $menu_locations = get_nav_menu_locations();
+  $menus = array();
+
+  foreach ($menu_locations as $key => $value) {
+    $menu = getMenuFromApi($key);
+
+    if (isset($menu['id'])) {
+      $menus[$key] = $menu;
+    }
+  }
+
   // Create the script
   $var = '__tkr__';
   $data = json_encode(array(
