@@ -115,18 +115,24 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
       $theme_locations = get_nav_menu_locations();
 
       if (!isset($theme_locations[$location])) {
-        return rest_ensure_response(null);
+        return new WP_Error(
+          'rest_menu_invalid_location',
+          'Invalid location.',
+          array('status' => 404)
+        );
       }
 
       $menu_obj = get_term($theme_locations[$location], 'nav_menu');
 
       if (!isset($menu_obj->term_id)) {
-        return rest_ensure_response(null);
+        return new WP_Error(
+          'rest_menu_invalid_term_id',
+          'Invalid term id.',
+          array('status' => 404)
+        );
       }
 
-      $response = $this->prepare_item_for_response($menu_obj, $request);
-
-      return $response;
+      return $this->prepare_item_for_response($menu_obj, $request);
     }
 
     /**
