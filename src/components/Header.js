@@ -1,11 +1,8 @@
 import React from 'react';
 import { A } from 'hookrouter';
 
-// Components
-import ButtonLink from 'components/ButtonLink';
-
-// Theme settings
 import { themeSettings } from 'utils/theme';
+import NavMenu from './NavMenu';
 
 const Header = () => {
   return (
@@ -25,18 +22,12 @@ const Header = () => {
           )}
         </A>
 
-        <nav className="tkr-main-menu align-right">
-          <ul className="list-style-none">
-            {themeSettings.menus.main_menu &&
-              themeSettings.menus.main_menu.items
-                .filter(item => item.status === 'publish')
-                .map((item, index) => (
-                  <li key={index}>
-                    <ButtonLink href={item.url.path}>{item.title}</ButtonLink>
-                  </li>
-                ))}
-          </ul>
-        </nav>
+        <NavMenu
+          menu_name="primary"
+          container="nav"
+          container_class="align-right"
+          menu_class="list-style-none"
+        />
       </div>
     </header>
   );
