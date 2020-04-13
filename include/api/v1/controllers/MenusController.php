@@ -1,25 +1,18 @@
 <?php
 
-/**
- * TKR REST API Custom Pages routes
- *
- * Description: Extends TKR API with WordPress page routes.
- *
- */
-
 if (!class_exists('TKR_REST_Menus_Controller')) :
   /**
-   * TKR REST Pages class.
+   * Menus Controller
    *
-   * @package API
+   * Controller class for registering and handling WordPress menu routes.
+   *
    * @since 1.0.0
+   * @package TKR_REST_API
+   * @author Sam Wyness <samwyness22@gmail.com>
+   *
    */
   class TKR_REST_Menus_Controller extends TKR_REST_Controller
   {
-
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
       $this->rest_base = 'menus';
@@ -30,14 +23,14 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
     {
       register_rest_route($this->namespace, '/' . $this->rest_base, array(
         array(
-          'methods'                => WP_REST_Server::READABLE,
+          'methods'             => WP_REST_Server::READABLE,
           'callback'            => array($this, 'get_items'),
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
       register_rest_route($this->namespace, '/' . $this->rest_base . '/(?P<name>[a-zA-Z0-9_-]+)', array(
         array(
-          'methods'                => WP_REST_Server::READABLE,
+          'methods'             => WP_REST_Server::READABLE,
           'callback'            => array($this, 'get_item'),
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
@@ -53,10 +46,10 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
 
 
     /**
-     * Get all menus and output rest response
+     * Get all menus items
      *
-     * @param WP_REST_Request $request Current request.
-     * @return array All published menus
+     * @param WP_REST_Request $request - Current request object
+     * @return Array A collection of created WordPress menus
      */
     public function get_items($request)
     {
@@ -81,9 +74,11 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
 
 
     /**
-     * Get Menu
+     * Get a single menu item
      *
-     * @since  1.0.0
+     * @since 1.0.0
+     * @author Sam Wyness <sa
+     *
      * @return array The published menu
      */
     public function get_item($request)
@@ -104,9 +99,12 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
 
 
     /**
-     * Get Menu
+     * Get a single menu item by its location
      *
-     * @since  1.0.0
+     * @since 1.0.0
+     * @author Sam Wyness <samwyness22@gmail.com>
+     *
+     * @param WP_REST_Request $request - Current request object.
      * @return array The published menu
      */
     public function get_location_item($request)
@@ -136,9 +134,13 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
     }
 
     /**
-     * Prepare menu response.
+     * Prepare menu item response
      *
-     * @param WP_Post $menu_obj The menu object whose response is being prepared.
+     * @since 1.0.0
+     * @author Sam Wyness <samwyness22@gmail.com>
+     *
+     * @param WP_Post $menu_obj - The menu object whose response is being prepared.
+     * @return WP_REST_Response
      */
     public function prepare_item_for_response($menu_obj, $request)
     {

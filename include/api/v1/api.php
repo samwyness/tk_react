@@ -1,14 +1,18 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  define('ABSPATH', dirname(__FILE__) . '/');
+}
+
 /**
  * TKR REST API
- * Description: A custom WordPress API for wp-react-resume.
  *
- * Version:     1.0.0
+ * A custom WordPress API for tk_react.
  *
- * Author:      Sam Wyness
- * Author URI:  https://github.com/samwyness
- *
+ * @since 1.0.0
+ * @package TKR
+ * @subpackage TKR_REST_API
+ * @author Sam Wyness <samwyness22@gmail.com>
  */
 class TKR_REST_API extends WP_REST_Controller
 {
