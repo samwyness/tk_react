@@ -42,10 +42,10 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
-      register_rest_route($this->namespace, '/' . $this->rest_base . '/locations/(?P<location>[a-zA-Z0-9_-]+)', array(
+      register_rest_route($this->namespace, '/' . $this->rest_base . '/location/(?P<location>[a-zA-Z0-9_-]+)', array(
         array(
-          'methods'                => WP_REST_Server::READABLE,
-          'callback'            => array($this, 'get_item_by_location'),
+          'methods'             => WP_REST_Server::READABLE,
+          'callback'            => array($this, 'get_location_item'),
           'permission_callback' => array($this, 'get_item_permissions_check'),
         )
       ));
@@ -109,7 +109,7 @@ if (!class_exists('TKR_REST_Menus_Controller')) :
      * @since  1.0.0
      * @return array The published menu
      */
-    public function get_item_by_location($request)
+    public function get_location_item($request)
     {
       $location = $request['location'];
       $theme_locations = get_nav_menu_locations();
