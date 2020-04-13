@@ -128,7 +128,7 @@ function getMenuFromApi($location)
   $response = null;
 
   if ($location) {
-    $request = new WP_REST_Request('GET', '/tkr/v1/menus/locations/' . $location);
+    $request = new WP_REST_Request('GET', '/tkr/v1/menus/location/' . $location);
     $response = rest_do_request($request)->data;
   }
 
