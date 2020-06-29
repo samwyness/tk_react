@@ -89,15 +89,13 @@ add_action('after_setup_theme', 'tk_react_theme_setup');
  */
 function tk_react_menus()
 {
-
   $locations = array(
-    'main-menu'        => __('Main Menu', 'tk_react'),
-    'mobile-menu'     => __('Mobile Menu', 'tk_react'),
-    'footer-menu-1' => __('Footer Menu 1', 'tk_react'),
-    'footer-menu-2' => __('Footer Menu 2', 'tk_react'),
-    'footer-menu-3' => __('Footer Menu 3', 'tk_react'),
-    'social-menu'     => __('Social Menu', 'tk_react'),
+    'primary' => __('Top Navigation Menu', 'tk_react'),
+    'mobile'  => __('Mobile Menu', 'tk_react'),
+    'footer'  => __('Footer Menu', 'tk_react'),
+    'social'  => __('Social Menu', 'tk_react'),
   );
+
 
   register_nav_menus($locations);
 }
@@ -130,7 +128,7 @@ function getMenuFromApi($location)
   $response = null;
 
   if ($location) {
-    $request = new WP_REST_Request('GET', '/tkr/v1/menus/locations/' . $location);
+    $request = new WP_REST_Request('GET', '/tkr/v1/menus/location/' . $location);
     $response = rest_do_request($request)->data;
   }
 
@@ -172,6 +170,18 @@ function tk_react_header_script()
     '_builtin' => false
   ), 'objects', 'and');
 
+  // Menu Settings
+  $menu_locations = get_nav_menu_locations();
+  $menus = array();
+
+  foreach ($menu_locations as $key => $value) {
+    $menu = getMenuFromApi($key);
+
+    if (isset($menu['id'])) {
+      $menus[$key] = $menu;
+    }
+  }
+
   // Create the script
   $var = '__tkr__';
   $data = json_encode(array(
@@ -188,14 +198,7 @@ function tk_react_header_script()
       'colors' => array(
         'background' => '#' . get_background_color(),
       ),
-      'menus' => array(
-        'main_menu' => getMenuFromApi('main-menu'),
-        'mobile_menu' => getMenuFromApi('mobile-menu'),
-        'footer_menu_1' => getMenuFromApi('footer-menu-1'),
-        'footer_menu_2' => getMenuFromApi('footer-menu-2'),
-        'footer_menu_3' => getMenuFromApi('footer-menu-3'),
-        'social_menu' => getMenuFromApi('social-menu'),
-      ),
+      'menus' => $menus,
       'home_page' => (int) $page_on_front,
       'home_page_slug' => $home_page_url,
       'blog_page' => $page_for_posts,

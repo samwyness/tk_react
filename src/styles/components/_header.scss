@@ -19,12 +19,16 @@
   }
 
   body.customize-support & {
-    top: 32px;
+    top: 46px;
   }
 
   @include breakpoint('lg') {
     text-align: initial;
     height: $nav-height-lg;
+
+    body.customize-support & {
+      top: 32px;
+    }
   }
 
   .row {
@@ -110,9 +114,9 @@
     }
   }
 
-  // Main Menu
-  nav.tkr-main-menu {
-    // display: none;
+  // Navigation Menu
+  .tkr-nav-menu {
+    display: none;
 
     @include breakpoint('lg') {
       display: inline-block;
